@@ -1,0 +1,48 @@
+﻿@model IEnumerable<HDU_Website.Models.CMS_Video>
+
+<div class="col-sm-12 col-lg-6" style="margin-bottom: 10px;">
+    @{
+        var highlight = Model.FirstOrDefault();
+    }
+    <div>
+        <iframe id="video-home" src="@highlight.LinkVideo" width="400" height="400" style="border:0;width:100%" allowfullscreen="" loading="lazy">
+        </iframe>
+    </div>
+</div>
+<div class="col-sm-12 col-lg-6" style="overflow-y: scroll; height:400px; margin-bottom: 10px;">
+    <ul class="list-group">
+        @foreach (var item in Model)
+        {
+            <li>
+                <a href="#" class="change-video" data-video="@item.LinkVideo">
+                    <p class="release-date">
+                        <i class="fa fa-video-camera" aria-hidden="true"></i>
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                        <span>@item.NgayTao</span>
+                    </p>
+                    <p>
+                        @item.TieuDe
+                    </p>
+                </a>
+                <div class="video-line"/>
+            </li>
+        }
+    </ul>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        //Click event for the image links
+        $('.change-video').click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            $('#video-home').attr('src', $(this).data('LinkVideo'));
+        });
+
+        //Display the first link
+        $('#video-home').attr('src', $('ul li:first-child a.change-image').data('LinkVideo'));
+    });
+</script>
+
+

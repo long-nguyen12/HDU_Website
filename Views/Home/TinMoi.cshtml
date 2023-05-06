@@ -1,0 +1,12 @@
+﻿@model IEnumerable<HDU_Website.Models.CMS_TinTuc>
+
+<div class="home-tin-moi" style="margin-bottom: 10px;">
+    @foreach (var item in Model)
+    {
+        <div class="row">
+            <h6>
+                @Html.DisplayFor(modelItem => item.TieuDe)
+            </h6>
+        </div>
+    }
+</div>

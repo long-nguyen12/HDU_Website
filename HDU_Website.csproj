@@ -1,0 +1,893 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1A25CBFE-B011-4B63-B422-CA0B59B212B9}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HDU_Website</RootNamespace>
+    <AssemblyName>HDU_Website</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44397</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.Web.Infrastructure.2.0.1\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.Mvc.5.2.9\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\FooterController.cs" />
+    <Compile Include="Controllers\HeaderController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ACL_Action.cs" />
+    <Compile Include="Models\ACL_CauHinhManHinh.cs" />
+    <Compile Include="Models\ACL_ChiTietNguoiDung.cs" />
+    <Compile Include="Models\ACL_ChonNhanSu.cs" />
+    <Compile Include="Models\ACL_DanhMucDaoTao.cs" />
+    <Compile Include="Models\ACL_DanhMucGioiThieu.cs" />
+    <Compile Include="Models\ACL_DanhMucTinTuc.cs" />
+    <Compile Include="Models\ACL_DanhMucTinTucSinhVien.cs" />
+    <Compile Include="Models\ACL_DanhMucTraCuuVanBan.cs" />
+    <Compile Include="Models\ACL_HoSo.cs" />
+    <Compile Include="Models\ACL_LoaiHoSo.cs" />
+    <Compile Include="Models\ACL_ManHinh.cs" />
+    <Compile Include="Models\ACL_NhomNguoiDung.cs" />
+    <Compile Include="Models\ACL_PhanQuyen.cs" />
+    <Compile Include="Models\ACL_PhanQuyenNhanSuPhongBan.cs" />
+    <Compile Include="Models\ACL_PhanQuyenNhanSuPhongXuong.cs" />
+    <Compile Include="Models\ACL_PhanQuyenPhongSo.cs" />
+    <Compile Include="Models\ACL_PhanQuyenSinhVienLienHe.cs" />
+    <Compile Include="Models\ACL_PhanQuyenWebsite.cs" />
+    <Compile Include="Models\ACL_TaiKhoan.cs" />
+    <Compile Include="Models\Ads_DonViQuangCao.cs" />
+    <Compile Include="Models\Ads_LinhVuc.cs" />
+    <Compile Include="Models\Ads_LinhVuc_QuangCao.cs" />
+    <Compile Include="Models\Ads_PromotionCode_Received.cs" />
+    <Compile Include="Models\Ads_Promotion_Collection.cs" />
+    <Compile Include="Models\Ads_Promotion_Diary.cs" />
+    <Compile Include="Models\Ads_QuangCao.cs" />
+    <Compile Include="Models\Ads_QuangCao_Click.cs" />
+    <Compile Include="Models\Ads_QuangCao_KhachHang.cs" />
+    <Compile Include="Models\Ads_ScriptKey.cs" />
+    <Compile Include="Models\Ads_ScriptKey_Show.cs" />
+    <Compile Include="Models\Ads_ThongKeClick.cs" />
+    <Compile Include="Models\Ads_ViTri.cs" />
+    <Compile Include="Models\Ads_ViTri_QuangCao.cs" />
+    <Compile Include="Models\APP_Notify.cs" />
+    <Compile Include="Models\ASC_BaoGia.cs" />
+    <Compile Include="Models\ASC_BaoGiaFileAttach.cs" />
+    <Compile Include="Models\ASC_BaoGia_GuiNhan.cs" />
+    <Compile Include="Models\ASC_BaoGia_GuiNhanFileAttach.cs" />
+    <Compile Include="Models\ASC_ChiTieuNoiBo.cs" />
+    <Compile Include="Models\ASC_ChiTieuNoiBoFileAttach.cs" />
+    <Compile Include="Models\ASC_ChiTieuNoiBoNguoiThamGia.cs" />
+    <Compile Include="Models\ASC_ChiTieuNoiBo_ChiTiet.cs" />
+    <Compile Include="Models\ASC_ChiTieuNoiBo_DaXem.cs" />
+    <Compile Include="Models\ASC_ChiTieuNoiBo_LichSu.cs" />
+    <Compile Include="Models\ASC_DatVe.cs" />
+    <Compile Include="Models\ASC_DatVeFileAttach.cs" />
+    <Compile Include="Models\ASC_DatVeNguoiDi.cs" />
+    <Compile Include="Models\ASC_DatVe_DaXem.cs" />
+    <Compile Include="Models\ASC_DatVe_LichSu.cs" />
+    <Compile Include="Models\ASC_DatVe_LichSuFileAttach.cs" />
+    <Compile Include="Models\ASC_HopDong.cs" />
+    <Compile Include="Models\ASC_HopDongFileAttach.cs" />
+    <Compile Include="Models\ASC_HopDongGiaiDoan.cs" />
+    <Compile Include="Models\ASC_HopDongGiaiDoanFileAttach.cs" />
+    <Compile Include="Models\ASC_HopDongGiaiDoan_TrangThai.cs" />
+    <Compile Include="Models\ASC_HopDongHoSoFileAttach.cs" />
+    <Compile Include="Models\ASC_HopDongHSNghiemThuFileAttach.cs" />
+    <Compile Include="Models\ASC_HopDong_LichSu.cs" />
+    <Compile Include="Models\ASC_HopDong_LoaiHD.cs" />
+    <Compile Include="Models\ASC_HopDong_TrangThai.cs" />
+    <Compile Include="Models\ASC_Module.cs" />
+    <Compile Include="Models\ASC_ModuleChungNhan.cs" />
+    <Compile Include="Models\ASC_ModuleChungNhanKhachHang.cs" />
+    <Compile Include="Models\ASC_StickyNotes.cs" />
+    <Compile Include="Models\ASC_TamUng.cs" />
+    <Compile Include="Models\ASC_TamUngFileAttach.cs" />
+    <Compile Include="Models\ASC_TamUngFileAttachKeHoachCongTac.cs" />
+    <Compile Include="Models\ASC_TamUngNguoiThamGia.cs" />
+    <Compile Include="Models\ASC_TamUng_ChiTiet.cs" />
+    <Compile Include="Models\ASC_TamUng_DaXem.cs" />
+    <Compile Include="Models\ASC_TamUng_LichSu.cs" />
+    <Compile Include="Models\CMS_AlbumAnh.cs" />
+    <Compile Include="Models\CMS_AlbumAnhXoay.cs" />
+    <Compile Include="Models\CMS_AnhXoay.cs" />
+    <Compile Include="Models\CMS_BaiViet.cs" />
+    <Compile Include="Models\CMS_BaiVietFileAttach.cs" />
+    <Compile Include="Models\CMS_BinhChonAnh.cs" />
+    <Compile Include="Models\CMS_BinhChonAnh_Detail.cs" />
+    <Compile Include="Models\CMS_ChiDaoDieuHanh.cs" />
+    <Compile Include="Models\CMS_ChiDaoDieuHanhFileAttach.cs" />
+    <Compile Include="Models\CMS_DangKy.cs" />
+    <Compile Include="Models\CMS_DaoTao.cs" />
+    <Compile Include="Models\CMS_DaoTaoFileAttach.cs" />
+    <Compile Include="Models\CMS_DiaDiemThamQuan.cs" />
+    <Compile Include="Models\CMS_DiaDiemThamQuanFileAttach.cs" />
+    <Compile Include="Models\CMS_DoanhNghiep.cs" />
+    <Compile Include="Models\CMS_DoanhNghiepFileAttach.cs" />
+    <Compile Include="Models\CMS_DoiSongSinhVien.cs" />
+    <Compile Include="Models\CMS_DoiSongSinhVienFileAttach.cs" />
+    <Compile Include="Models\CMS_DuAn.cs" />
+    <Compile Include="Models\CMS_DuAnHangMucDauTu.cs" />
+    <Compile Include="Models\CMS_DuAnHangMucDauTuFileAttach.cs" />
+    <Compile Include="Models\CMS_GioiThieu.cs" />
+    <Compile Include="Models\CMS_GioiThieuFileAttach.cs" />
+    <Compile Include="Models\CMS_HoiDongNhanDan.cs" />
+    <Compile Include="Models\CMS_HoiDongNhanDanFileAttach.cs" />
+    <Compile Include="Models\CMS_HoSo.cs" />
+    <Compile Include="Models\CMS_HoSoFileAttach.cs" />
+    <Compile Include="Models\CMS_KeHoachLichCongTac.cs" />
+    <Compile Include="Models\CMS_KeHoachLichCongTacFileAttach.cs" />
+    <Compile Include="Models\CMS_LienHe.cs" />
+    <Compile Include="Models\CMS_LoaiAnh.cs" />
+    <Compile Include="Models\CMS_LoaiHoSo.cs" />
+    <Compile Include="Models\CMS_LoaiSlide.cs" />
+    <Compile Include="Models\CMS_LoaiVideo.cs" />
+    <Compile Include="Models\CMS_Menu.cs" />
+    <Compile Include="Models\CMS_NganhNgheTruyenThong.cs" />
+    <Compile Include="Models\CMS_NganhNgheTruyenThongFileAttach.cs" />
+    <Compile Include="Models\CMS_NhomMenu.cs" />
+    <Compile Include="Models\CMS_NhomSoDoToChuc.cs" />
+    <Compile Include="Models\CMS_PhanLoaiSanPham.cs" />
+    <Compile Include="Models\CMS_QuyHoachChienLuocKeHoach.cs" />
+    <Compile Include="Models\CMS_QuyHoachChienLuocKeHoachFileAttach.cs" />
+    <Compile Include="Models\CMS_Router.cs" />
+    <Compile Include="Models\CMS_SanPham.cs" />
+    <Compile Include="Models\CMS_SlideShow.cs" />
+    <Compile Include="Models\CMS_SoDoToChuc.cs" />
+    <Compile Include="Models\CMS_SoDoToChucChiTiet.cs" />
+    <Compile Include="Models\CMS_ThanhVien.cs" />
+    <Compile Include="Models\CMS_ThanhVienCamNhan.cs" />
+    <Compile Include="Models\CMS_ThanhVien_DangKyTheoDoi.cs" />
+    <Compile Include="Models\CMS_ThanhVien_DangKyTuVan.cs" />
+    <Compile Include="Models\CMS_ThanhVien_LichSuDangKyTuVan.cs" />
+    <Compile Include="Models\CMS_ThanhVien_LichSuThongBao.cs" />
+    <Compile Include="Models\CMS_ThanhVien_TheoDoi.cs" />
+    <Compile Include="Models\CMS_ThongKeBaoCao.cs" />
+    <Compile Include="Models\CMS_ThongKeBaoCaoFileAttach.cs" />
+    <Compile Include="Models\CMS_ThuVienAnh.cs" />
+    <Compile Include="Models\CMS_TinTuc.cs" />
+    <Compile Include="Models\CMS_TinTucBinhLuan.cs" />
+    <Compile Include="Models\CMS_TinTucFileAttach.cs" />
+    <Compile Include="Models\CMS_TinTuc_Tag.cs" />
+    <Compile Include="Models\CMS_TinTuc_Viewed.cs" />
+    <Compile Include="Models\CMS_TraCuuVanBan.cs" />
+    <Compile Include="Models\CMS_TraCuuVanBanFileAttach.cs" />
+    <Compile Include="Models\CMS_TuyenTruyen.cs" />
+    <Compile Include="Models\CMS_TuyenTruyenFileAttach.cs" />
+    <Compile Include="Models\CMS_Video.cs" />
+    <Compile Include="Models\CSV_CMS_BaiViet.cs" />
+    <Compile Include="Models\CSV_CMS_BaiVietFileAttach.cs" />
+    <Compile Include="Models\CSV_CuuSinhVien.cs" />
+    <Compile Include="Models\CSV_CuuSinhVienBinhLuan.cs" />
+    <Compile Include="Models\CSV_DM_ChuDe.cs" />
+    <Compile Include="Models\DA_CongViec.cs" />
+    <Compile Include="Models\DA_CongViecFileAttach.cs" />
+    <Compile Include="Models\DA_CongViecViewed.cs" />
+    <Compile Include="Models\DA_CongViec_LichSu.cs" />
+    <Compile Include="Models\DA_CongViec_LichSuFileAttach.cs" />
+    <Compile Include="Models\DA_DinhMuc.cs" />
+    <Compile Include="Models\DA_DoUuTien.cs" />
+    <Compile Include="Models\DA_DuAn.cs" />
+    <Compile Include="Models\DA_DuAn_Team.cs" />
+    <Compile Include="Models\DA_HangMucTrienKhai.cs" />
+    <Compile Include="Models\DA_KhachHang.cs" />
+    <Compile Include="Models\DA_LoaiCongViec.cs" />
+    <Compile Include="Models\DA_MucTieu.cs" />
+    <Compile Include="Models\DA_MucTieu_FileAttach.cs" />
+    <Compile Include="Models\DA_MucTieu_LichSu.cs" />
+    <Compile Include="Models\DA_MucTieu_Nhom.cs" />
+    <Compile Include="Models\DA_MucTieu_ThanhVien.cs" />
+    <Compile Include="Models\DA_MucTieu_TrangThai.cs" />
+    <Compile Include="Models\DA_Team.cs" />
+    <Compile Include="Models\DA_TeamThanhVien.cs" />
+    <Compile Include="Models\DA_TienDoTrienKhai.cs" />
+    <Compile Include="Models\DA_TrangThai.cs" />
+    <Compile Include="Models\DBConnection.cs" />
+    <Compile Include="Models\DM_BacDaoTao.cs" />
+    <Compile Include="Models\DM_BaiViet.cs" />
+    <Compile Include="Models\DM_BangDongBo.cs" />
+    <Compile Include="Models\DM_ChiDaoDieuHanh.cs" />
+    <Compile Include="Models\DM_ChucVu.cs" />
+    <Compile Include="Models\DM_DanhHieu.cs" />
+    <Compile Include="Models\DM_DanToc.cs" />
+    <Compile Include="Models\DM_DaoTao.cs" />
+    <Compile Include="Models\DM_DaoTao_CauHinh.cs" />
+    <Compile Include="Models\DM_DonVi.cs" />
+    <Compile Include="Models\DM_Dot.cs" />
+    <Compile Include="Models\DM_DuAnHangMucDauTu.cs" />
+    <Compile Include="Models\DM_GiaoDien.cs" />
+    <Compile Include="Models\DM_GioiThieu.cs" />
+    <Compile Include="Models\DM_GioiThieu_CauHinh.cs" />
+    <Compile Include="Models\DM_HocHam.cs" />
+    <Compile Include="Models\DM_HocVi.cs" />
+    <Compile Include="Models\DM_Huyen.cs" />
+    <Compile Include="Models\DM_KeHoachLichCongTac.cs" />
+    <Compile Include="Models\DM_KhoaHoc.cs" />
+    <Compile Include="Models\DM_KhoaHocCongNghe.cs" />
+    <Compile Include="Models\DM_KhuVuc.cs" />
+    <Compile Include="Models\DM_LinhVuc.cs" />
+    <Compile Include="Models\DM_LoaiImage.cs" />
+    <Compile Include="Models\DM_LoaiWebsite.cs" />
+    <Compile Include="Models\DM_MultiLanguage.cs" />
+    <Compile Include="Models\DM_MultiLanguageChiTiet.cs" />
+    <Compile Include="Models\DM_Nganh.cs" />
+    <Compile Include="Models\DM_NganhDetail.cs" />
+    <Compile Include="Models\DM_NganhTruong.cs" />
+    <Compile Include="Models\DM_NganhTruongDetail.cs" />
+    <Compile Include="Models\DM_NganhTruongImages.cs" />
+    <Compile Include="Models\DM_NhomNganh.cs" />
+    <Compile Include="Models\DM_PhanLoaiKeyNgonNgu.cs" />
+    <Compile Include="Models\DM_PhongBan.cs" />
+    <Compile Include="Models\DM_PhongGiaoDuc.cs" />
+    <Compile Include="Models\DM_PhuongXa.cs" />
+    <Compile Include="Models\DM_QuocGia.cs" />
+    <Compile Include="Models\DM_QuocTich.cs" />
+    <Compile Include="Models\DM_QuyHoachChienLuocKeHoach.cs" />
+    <Compile Include="Models\DM_SanPham.cs" />
+    <Compile Include="Models\DM_SoGiaoDuc.cs" />
+    <Compile Include="Models\DM_TD_TrangThai.cs" />
+    <Compile Include="Models\DM_TD_ViTriViecLam.cs" />
+    <Compile Include="Models\DM_TenMien.cs" />
+    <Compile Include="Models\DM_ThongKeBaoCao.cs" />
+    <Compile Include="Models\DM_TinhThanh.cs" />
+    <Compile Include="Models\DM_TinTuc.cs" />
+    <Compile Include="Models\DM_TinTuc_CauHinh.cs" />
+    <Compile Include="Models\DM_TonGiao.cs" />
+    <Compile Include="Models\DM_TraCuuVanBan.cs" />
+    <Compile Include="Models\DM_TrinhDoDaoTao.cs" />
+    <Compile Include="Models\DM_Truong.cs" />
+    <Compile Include="Models\DM_TruongDetail.cs" />
+    <Compile Include="Models\DM_TruongImages.cs" />
+    <Compile Include="Models\DM_TuyenTruyen.cs" />
+    <Compile Include="Models\DM_Website.cs" />
+    <Compile Include="Models\DVC_CoQuan.cs" />
+    <Compile Include="Models\EGOV_ApDungPhieuDanhGia.cs" />
+    <Compile Include="Models\EGOV_BaoCaoKeHoach.cs" />
+    <Compile Include="Models\EGOV_BaoCaoKeHoachACL.cs" />
+    <Compile Include="Models\EGOV_BaoCaoKeHoachFileAttach.cs" />
+    <Compile Include="Models\EGOV_BaoCaoKeHoachViewed.cs" />
+    <Compile Include="Models\EGOV_CongVanDen.cs" />
+    <Compile Include="Models\EGOV_CongVanDenFileAttach.cs" />
+    <Compile Include="Models\EGOV_CongVanDenPhanCongXuLy.cs" />
+    <Compile Include="Models\EGOV_CongVanDenPhanCongXuLyFileAttach.cs" />
+    <Compile Include="Models\EGOV_CongVanDenPhanCongXuLyLichSu.cs" />
+    <Compile Include="Models\EGOV_CongVanDi.cs" />
+    <Compile Include="Models\EGOV_CongVanDiFileAttach.cs" />
+    <Compile Include="Models\EGOV_CongVanDi_BanHanh.cs" />
+    <Compile Include="Models\EGOV_CongVanNoiBo_PhanCongXuLyLichSu.cs" />
+    <Compile Include="Models\EGOV_CongVanNoiBo_PhanCongXuLyLichSuFileAttach.cs" />
+    <Compile Include="Models\EGOV_CoQuan.cs" />
+    <Compile Include="Models\EGOV_DangKySuDungXe.cs" />
+    <Compile Include="Models\EGOV_DangKyTangCa.cs" />
+    <Compile Include="Models\EGOV_DangKyVang.cs" />
+    <Compile Include="Models\EGOV_DangKyXe.cs" />
+    <Compile Include="Models\EGOV_DM_DonViTinh.cs" />
+    <Compile Include="Models\EGOV_DM_LoaiXe.cs" />
+    <Compile Include="Models\EGOV_DM_LuaChon.cs" />
+    <Compile Include="Models\EGOV_DM_NhaCungCap.cs" />
+    <Compile Include="Models\EGOV_DM_NhomLuaChon.cs" />
+    <Compile Include="Models\EGOV_DM_PhieuDanhGia.cs" />
+    <Compile Include="Models\EGOV_DM_PhieuDanhGiaChiTiet.cs" />
+    <Compile Include="Models\EGOV_DM_TaiXe.cs" />
+    <Compile Include="Models\EGOV_DM_Xe.cs" />
+    <Compile Include="Models\EGOV_DotDanhGia.cs" />
+    <Compile Include="Models\EGOV_DotDanhGiaChiTiet.cs" />
+    <Compile Include="Models\EGOV_FileAttach.cs" />
+    <Compile Include="Models\EGOV_GiaoViec.cs" />
+    <Compile Include="Models\EGOV_GiaoViecBaoCao.cs" />
+    <Compile Include="Models\EGOV_GiaoViecBaoCaoFileAttach.cs" />
+    <Compile Include="Models\EGOV_GiaoViecDetail.cs" />
+    <Compile Include="Models\EGOV_GiaoViecFileAttach.cs" />
+    <Compile Include="Models\EGOV_GiaoViecNhatKy.cs" />
+    <Compile Include="Models\EGOV_GiaoViecTrangThaiXuKy.cs" />
+    <Compile Include="Models\EGOV_GiaoViec_LichSu.cs" />
+    <Compile Include="Models\EGOV_GiaoViec_NguoiGiamSat.cs" />
+    <Compile Include="Models\EGOV_GiaoViec_Notify.cs" />
+    <Compile Include="Models\EGOV_HopDongQuyetDinh.cs" />
+    <Compile Include="Models\EGOV_HopDongQuyetDinhFileAttach.cs" />
+    <Compile Include="Models\EGOV_HoSo.cs" />
+    <Compile Include="Models\EGOV_HoSoDonViCongDoan.cs" />
+    <Compile Include="Models\EGOV_HoSoDonViDang.cs" />
+    <Compile Include="Models\EGOV_HoSoDonViDoanThanhNien.cs" />
+    <Compile Include="Models\EGOV_HoSoFileAttach.cs" />
+    <Compile Include="Models\EGOV_HoSo_CongViec.cs" />
+    <Compile Include="Models\EGOV_HoSo_CongViecDetail.cs" />
+    <Compile Include="Models\EGOV_HoSo_CongViecFileAttach.cs" />
+    <Compile Include="Models\EGOV_HoSo_LoaiDoiTuong.cs" />
+    <Compile Include="Models\EGOV_HoSo_LoaiHoSo.cs" />
+    <Compile Include="Models\EGOV_HoSo_TrangThai.cs" />
+    <Compile Include="Models\EGOV_KetQuaDanhGia.cs" />
+    <Compile Include="Models\EGOV_KhoiCoQuan.cs" />
+    <Compile Include="Models\EGOV_LichCongTac.cs" />
+    <Compile Include="Models\EGOV_LichCongTacCaNhanACL.cs" />
+    <Compile Include="Models\EGOV_LichCongTacDetail.cs" />
+    <Compile Include="Models\EGOV_LichCongTacDiemDanh.cs" />
+    <Compile Include="Models\EGOV_LichCongTacFileAttach.cs" />
+    <Compile Include="Models\EGOV_LichCongTac_LichSu.cs" />
+    <Compile Include="Models\EGOV_LichCongTac_PhongHop.cs" />
+    <Compile Include="Models\EGOV_LoaiHopDongQuyetDinh.cs" />
+    <Compile Include="Models\EGOV_LoaiHoSo.cs" />
+    <Compile Include="Models\EGOV_LoaiVanBan.cs" />
+    <Compile Include="Models\EGOV_LoaiVanBanCongDoan.cs" />
+    <Compile Include="Models\EGOV_LoaiVanBanDang.cs" />
+    <Compile Include="Models\EGOV_LoaiVanBanDoanThanhNien.cs" />
+    <Compile Include="Models\EGOV_LoaiVanBan_Ver2.cs" />
+    <Compile Include="Models\EGOV_MailBox.cs" />
+    <Compile Include="Models\EGOV_MailFileAttach.cs" />
+    <Compile Include="Models\EGOV_MailNguoiNhan.cs" />
+    <Compile Include="Models\EGOV_NK_CongVanNoiBo.cs" />
+    <Compile Include="Models\EGOV_NoiLuuTru.cs" />
+    <Compile Include="Models\EGOV_NoiLuuTruCongDoan.cs" />
+    <Compile Include="Models\EGOV_NoiLuuTruDang.cs" />
+    <Compile Include="Models\EGOV_NoiLuuTruDoanThanhNien.cs" />
+    <Compile Include="Models\EGOV_PersonalWorkingOfWeeks.cs" />
+    <Compile Include="Models\EGOV_PersonalWorkings.cs" />
+    <Compile Include="Models\EGOV_PhanLoaiVanBan.cs" />
+    <Compile Include="Models\EGOV_SharePersonalWorkings.cs" />
+    <Compile Include="Models\EGOV_SoVanBan.cs" />
+    <Compile Include="Models\EGOV_SoVanBan_PhanCongPhuTrach.cs" />
+    <Compile Include="Models\EGOV_SoVanBan_PhanQuyenXuLyVanBan.cs" />
+    <Compile Include="Models\EGOV_ThongBao.cs" />
+    <Compile Include="Models\EGOV_ThongBaoDVPB.cs" />
+    <Compile Include="Models\EGOV_ThongBaoFileAttach.cs" />
+    <Compile Include="Models\EGOV_ThongBaoViewed.cs" />
+    <Compile Include="Models\EGOV_ThongBao_TinhChat.cs" />
+    <Compile Include="Models\EGOV_TrinhKy.cs" />
+    <Compile Include="Models\EGOV_TrinhKyDetail.cs" />
+    <Compile Include="Models\EGOV_TrinhKyFileAttach.cs" />
+    <Compile Include="Models\EGOV_TrinhKy_CauHinhChucDanh.cs" />
+    <Compile Include="Models\EGOV_TrinhKy_CauHinhChucDanhDetail.cs" />
+    <Compile Include="Models\EGOV_TrinhKy_LichSu.cs" />
+    <Compile Include="Models\EGOV_TrinhKy_Notify.cs" />
+    <Compile Include="Models\EGOV_TrinhKy_PhanCongNhanSuQuyTrinh.cs" />
+    <Compile Include="Models\EGOV_TrinhKy_QuyTrinh.cs" />
+    <Compile Include="Models\EGOV_VanBanDen.cs" />
+    <Compile Include="Models\EGOV_VanBanDenButPheFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanDenButPheLichSu.cs" />
+    <Compile Include="Models\EGOV_VanBanDenCongDoan.cs" />
+    <Compile Include="Models\EGOV_VanBanDenCongDoanButPheFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanDenCongDoanFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanDenCongDoanLichSu.cs" />
+    <Compile Include="Models\EGOV_VanBanDenCongDoanPhanCongXuLy.cs" />
+    <Compile Include="Models\EGOV_VanBanDenCongDoanPhanCongXuLyFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanDenCongDoanPhanCongXuLyLichSu.cs" />
+    <Compile Include="Models\EGOV_VanBanDenCongDoan_CoQuanNhan.cs" />
+    <Compile Include="Models\EGOV_VanBanDenDang.cs" />
+    <Compile Include="Models\EGOV_VanBanDenDangButPheFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanDenDangFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanDenDangLichSu.cs" />
+    <Compile Include="Models\EGOV_VanBanDenDangPhanCongXuLy.cs" />
+    <Compile Include="Models\EGOV_VanBanDenDangPhanCongXuLyFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanDenDangPhanCongXuLyLichSu.cs" />
+    <Compile Include="Models\EGOV_VanBanDenDang_CoQuanNhan.cs" />
+    <Compile Include="Models\EGOV_VanBanDenDoanThanhNien.cs" />
+    <Compile Include="Models\EGOV_VanBanDenDoanThanhNienButPheFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanDenDoanThanhNienFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanDenDoanThanhNienLichSu.cs" />
+    <Compile Include="Models\EGOV_VanBanDenDoanThanhNienPhanCongXuLy.cs" />
+    <Compile Include="Models\EGOV_VanBanDenDoanThanhNienPhanCongXuLyFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanDenDoanThanhNienPhanCongXuLyLichSu.cs" />
+    <Compile Include="Models\EGOV_VanBanDenDoanThanhNien_CoQuanNhan.cs" />
+    <Compile Include="Models\EGOV_VanBanDenFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanDenLichSu.cs" />
+    <Compile Include="Models\EGOV_VanBanDenPhanCongXuLy.cs" />
+    <Compile Include="Models\EGOV_VanBanDenPhanCongXuLyFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanDenPhanCongXuLyLichSu.cs" />
+    <Compile Include="Models\EGOV_VanBanDenPhanCongXuLyViewed.cs" />
+    <Compile Include="Models\EGOV_VanBanDenViewed.cs" />
+    <Compile Include="Models\EGOV_VanBanDen_CoQuanNhan.cs" />
+    <Compile Include="Models\EGOV_VanBanDen_Ver2.cs" />
+    <Compile Include="Models\EGOV_VanBanDen_Ver2_ButPheLichSu.cs" />
+    <Compile Include="Models\EGOV_VanBanDen_Ver2_ButPheLichSuFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanDen_Ver2_FileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanDen_Ver2_PhanCongXuLy.cs" />
+    <Compile Include="Models\EGOV_VanBanDen_Ver2_PhanCongXuLyLichSu.cs" />
+    <Compile Include="Models\EGOV_VanBanDen_Ver2_PhanCongXuLyLichSuFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanDi.cs" />
+    <Compile Include="Models\EGOV_VanBanDiCongDoan.cs" />
+    <Compile Include="Models\EGOV_VanBanDiCongDoanFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanDiCongDoan_BanHanh.cs" />
+    <Compile Include="Models\EGOV_VanBanDiCongDoan_BanHanhFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanDiCongDoan_BanHanhViewed.cs" />
+    <Compile Include="Models\EGOV_VanBanDiCongDoan_CoQuanNhan.cs" />
+    <Compile Include="Models\EGOV_VanBanDiCongDoan_DuyetTrinhKy.cs" />
+    <Compile Include="Models\EGOV_VanBanDiCongDoan_DuyetTrinhKyFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanDiCongDoan_LichSu.cs" />
+    <Compile Include="Models\EGOV_VanBanDiDang.cs" />
+    <Compile Include="Models\EGOV_VanBanDiDangFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanDiDang_BanHanh.cs" />
+    <Compile Include="Models\EGOV_VanBanDiDang_BanHanhFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanDiDang_BanHanhViewed.cs" />
+    <Compile Include="Models\EGOV_VanBanDiDang_CoQuanNhan.cs" />
+    <Compile Include="Models\EGOV_VanBanDiDang_DuyetTrinhKy.cs" />
+    <Compile Include="Models\EGOV_VanBanDiDang_DuyetTrinhKyFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanDiDang_LichSu.cs" />
+    <Compile Include="Models\EGOV_VanBanDiDoanThanhNien.cs" />
+    <Compile Include="Models\EGOV_VanBanDiDoanThanhNienFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanDiDoanThanhNien_BanHanh.cs" />
+    <Compile Include="Models\EGOV_VanBanDiDoanThanhNien_BanHanhFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanDiDoanThanhNien_BanHanhViewed.cs" />
+    <Compile Include="Models\EGOV_VanBanDiDoanThanhNien_CoQuanNhan.cs" />
+    <Compile Include="Models\EGOV_VanBanDiDoanThanhNien_DuyetTrinhKy.cs" />
+    <Compile Include="Models\EGOV_VanBanDiDoanThanhNien_DuyetTrinhKyFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanDiDoanThanhNien_LichSu.cs" />
+    <Compile Include="Models\EGOV_VanBanDiFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanDi_BanHanh.cs" />
+    <Compile Include="Models\EGOV_VanBanDi_BanHanhFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanDi_BanHanhViewed.cs" />
+    <Compile Include="Models\EGOV_VanBanDi_CoQuanNhan.cs" />
+    <Compile Include="Models\EGOV_VanBanDi_DuyetTrinhKy.cs" />
+    <Compile Include="Models\EGOV_VanBanDi_DuyetTrinhKyFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanDi_LichSu.cs" />
+    <Compile Include="Models\EGOV_VanBanDi_SendMailHistory.cs" />
+    <Compile Include="Models\EGOV_VanBanHanhChinh.cs" />
+    <Compile Include="Models\EGOV_VanBanHanhChinhFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanHanhChinh_CapNhatLoi.cs" />
+    <Compile Include="Models\EGOV_VanBanHanhChinh_CapNhatLoiFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanHanhChinh_LichSuDanhGia.cs" />
+    <Compile Include="Models\EGOV_VanBanHanhChinh_LichSuDanhGiaFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanHanhChinh_TrangThai.cs" />
+    <Compile Include="Models\EGOV_VanBanLienThong_Config.cs" />
+    <Compile Include="Models\EGOV_VanBanLienThong_CoQuan.cs" />
+    <Compile Include="Models\EGOV_VanBanLienThong_Den.cs" />
+    <Compile Include="Models\EGOV_VanBanLienThong_DenFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanLienThong_DenReplacementInfo.cs" />
+    <Compile Include="Models\EGOV_VanBanLienThong_DenResponseFor.cs" />
+    <Compile Include="Models\EGOV_VanBanLienThong_DenTo.cs" />
+    <Compile Include="Models\EGOV_VanBanLienThong_DenTrangThai.cs" />
+    <Compile Include="Models\EGOV_VanBanLienThong_Di.cs" />
+    <Compile Include="Models\EGOV_VanBanLienThong_DiFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanLienThong_DiLichSu.cs" />
+    <Compile Include="Models\EGOV_VanBanLienThong_DiReplacementInfo.cs" />
+    <Compile Include="Models\EGOV_VanBanLienThong_DiTo.cs" />
+    <Compile Include="Models\EGOV_VanBanLienThong_DiTrangThai.cs" />
+    <Compile Include="Models\EGOV_VanBanLienThong_DocumentType.cs" />
+    <Compile Include="Models\EGOV_VanBanMau.cs" />
+    <Compile Include="Models\EGOV_VanBanMauFileAttach.cs" />
+    <Compile Include="Models\EGOV_VanBanPhoCap.cs" />
+    <Compile Include="Models\EGOV_VanBanPhoCapFileAttach.cs" />
+    <Compile Include="Models\EGOV_VPP.cs" />
+    <Compile Include="Models\EGOV_VPP_ChiTietDeXuat.cs" />
+    <Compile Include="Models\EGOV_VPP_DeXuat.cs" />
+    <Compile Include="Models\EGOV_VPP_DM_PhanLoai.cs" />
+    <Compile Include="Models\EGOV_VPP_LichSuDeXuat.cs" />
+    <Compile Include="Models\EGOV_VPP_TrangThai.cs" />
+    <Compile Include="Models\EGOV_YeuCauCongViec_CauHinhChucDanh.cs" />
+    <Compile Include="Models\EGOV_YeuCauCongViec_CauHinhChucDanhDetail.cs" />
+    <Compile Include="Models\EGOV_YeuCauCongViec_PhanQuyenXuLyTheoQuyTrinh.cs" />
+    <Compile Include="Models\EGOV_YeuCauCongViec_PhieuYeuCau.cs" />
+    <Compile Include="Models\EGOV_YeuCauCongViec_PhieuYeuCauDetail.cs" />
+    <Compile Include="Models\EGOV_YeuCauCongViec_PhieuYeuCauFileAttach.cs" />
+    <Compile Include="Models\EGOV_YeuCauCongViec_PhieuYeuCauTiepNhanDetail.cs" />
+    <Compile Include="Models\ELN_ACL_LoaiTaiLieu.cs" />
+    <Compile Include="Models\ELN_BaiGiang.cs" />
+    <Compile Include="Models\ELN_BaiGiangComment.cs" />
+    <Compile Include="Models\ELN_BaiGiangFileAttach.cs" />
+    <Compile Include="Models\ELN_BaiGiang_LichSu.cs" />
+    <Compile Include="Models\ELN_LichHoc.cs" />
+    <Compile Include="Models\ELN_LoaiBaiGiang.cs" />
+    <Compile Include="Models\ELN_LoaiTaiLieu.cs" />
+    <Compile Include="Models\ELN_NhomBaiGiang.cs" />
+    <Compile Include="Models\ELN_TaiLieu.cs" />
+    <Compile Include="Models\ELN_TaiLieuFileAttach.cs" />
+    <Compile Include="Models\ES_NhanSu_NhomNhanSu.cs" />
+    <Compile Include="Models\ES_NhomNhanSu.cs" />
+    <Compile Include="Models\Express_BangGia.cs" />
+    <Compile Include="Models\Express_CongTyChuyenPhat.cs" />
+    <Compile Include="Models\Express_DeXuatChuyenPhat.cs" />
+    <Compile Include="Models\Express_GiaCPN.cs" />
+    <Compile Include="Models\Express_LichSuDeXuat.cs" />
+    <Compile Include="Models\Express_LichSuNhan.cs" />
+    <Compile Include="Models\Express_LoaiChuyenPhat.cs" />
+    <Compile Include="Models\Express_NhanBuuPham.cs" />
+    <Compile Include="Models\Express_QuocGia.cs" />
+    <Compile Include="Models\Express_TinhThanh.cs" />
+    <Compile Include="Models\FILE_QuanLyFile.cs" />
+    <Compile Include="Models\FILE_ThuMuc.cs" />
+    <Compile Include="Models\HoiDap_CauHoi.cs" />
+    <Compile Include="Models\HoiDap_CauTraLoi.cs" />
+    <Compile Include="Models\HoiDap_DonVi.cs" />
+    <Compile Include="Models\HoiDap_LinhVuc.cs" />
+    <Compile Include="Models\HT_LichSuDangNhap.cs" />
+    <Compile Include="Models\HT_LichSuThaoTac.cs" />
+    <Compile Include="Models\JOB_BangCap.cs" />
+    <Compile Include="Models\JOB_CapBac.cs" />
+    <Compile Include="Models\JOB_CongTy.cs" />
+    <Compile Include="Models\JOB_DiaDiem.cs" />
+    <Compile Include="Models\JOB_FORM_DonMau.cs" />
+    <Compile Include="Models\JOB_FORM_DonMauFileAttach.cs" />
+    <Compile Include="Models\JOB_FORM_LoaiDonMau.cs" />
+    <Compile Include="Models\JOB_HocVanUngVien.cs" />
+    <Compile Include="Models\JOB_KhoaDaoTao.cs" />
+    <Compile Include="Models\JOB_KinhNghiem.cs" />
+    <Compile Include="Models\JOB_KinhNghiemUngVien.cs" />
+    <Compile Include="Models\JOB_KyNang.cs" />
+    <Compile Include="Models\JOB_LoaiHinhCongViec.cs" />
+    <Compile Include="Models\JOB_MucLuong.cs" />
+    <Compile Include="Models\JOB_MucTieu.cs" />
+    <Compile Include="Models\JOB_NganhNghe.cs" />
+    <Compile Include="Models\JOB_NgonNgu.cs" />
+    <Compile Include="Models\JOB_Truong.cs" />
+    <Compile Include="Models\JOB_UngVien.cs" />
+    <Compile Include="Models\JOB_UngVienLoaiHinhCVMongMuon.cs" />
+    <Compile Include="Models\JOB_UngVienNganhNgheMongMuon.cs" />
+    <Compile Include="Models\JOB_UngVienNoiLamMongMuon.cs" />
+    <Compile Include="Models\JOB_ViecLam.cs" />
+    <Compile Include="Models\JOB_ViecLamDaLuu.cs" />
+    <Compile Include="Models\JOB_ViecLamDaUngTuyen.cs" />
+    <Compile Include="Models\JOB_ViecLamDiaDiemLamViec.cs" />
+    <Compile Include="Models\JOB_ViecLamNganhNgheCanTuyen.cs" />
+    <Compile Include="Models\JOB_XepLoai.cs" />
+    <Compile Include="Models\KeHoachTuyenDung.cs" />
+    <Compile Include="Models\KeHoachTuyenDung_ChiTiet.cs" />
+    <Compile Include="Models\KH_DoNghiemTrong.cs" />
+    <Compile Include="Models\KH_DotRelease.cs" />
+    <Compile Include="Models\KH_DotRelease_LichSu.cs" />
+    <Compile Include="Models\KH_DoUuTien.cs" />
+    <Compile Include="Models\KH_Loai.cs" />
+    <Compile Include="Models\KH_PhanHe.cs" />
+    <Compile Include="Models\KH_ThongBaoBaoTri.cs" />
+    <Compile Include="Models\KH_TrangThai.cs" />
+    <Compile Include="Models\KH_TrangThaiDotRelease.cs" />
+    <Compile Include="Models\KH_TrangThaiPhieuYeuCau.cs" />
+    <Compile Include="Models\KH_YeuCau.cs" />
+    <Compile Include="Models\KH_YeuCauFileAttach.cs" />
+    <Compile Include="Models\KH_YeuCau_LichSu.cs" />
+    <Compile Include="Models\KH_YeuCau_LichSuFileAttach.cs" />
+    <Compile Include="Models\KH_YeuCau_PhieuYeuCau.cs" />
+    <Compile Include="Models\KH_YeuCau_PhieuYeuCauFileAttach.cs" />
+    <Compile Include="Models\MES_Messages.cs" />
+    <Compile Include="Models\NOF_Devices.cs" />
+    <Compile Include="Models\NOF_NotifyLog.cs" />
+    <Compile Include="Models\SHR_VanBanDieuHanh.cs" />
+    <Compile Include="Models\SHR_VanBanPhapLuat.cs" />
+    <Compile Include="Models\SP_ChiTietChucNang.cs" />
+    <Compile Include="Models\SP_ChucNang.cs" />
+    <Compile Include="Models\SP_PhanLoaiChucNang.cs" />
+    <Compile Include="Models\SV_LienHe.cs" />
+    <Compile Include="Models\SV_LienHeReply.cs" />
+    <Compile Include="Models\SV_NhatKyVaoTruong.cs" />
+    <Compile Include="Models\SYS_BieuMau.cs" />
+    <Compile Include="Models\SYS_CaiDatCauHinh.cs" />
+    <Compile Include="Models\SYS_CauHinh.cs" />
+    <Compile Include="Models\SYS_ChuKyDienTu.cs" />
+    <Compile Include="Models\SYS_Config.cs" />
+    <Compile Include="Models\SYS_Config_KhachHang.cs" />
+    <Compile Include="Models\SYS_Mail.cs" />
+    <Compile Include="Models\SYS_MailContent.cs" />
+    <Compile Include="Models\SYS_Menu.cs" />
+    <Compile Include="Models\SYS_MenuActive.cs" />
+    <Compile Include="Models\SYS_MenuSinhVien.cs" />
+    <Compile Include="Models\SYS_NhomCauHinh.cs" />
+    <Compile Include="Models\SYS_Resource.cs" />
+    <Compile Include="Models\SYS_SendMailContent.cs" />
+    <Compile Include="Models\SYS_SendMailHistory.cs" />
+    <Compile Include="Models\SYS_SetConfig.cs" />
+    <Compile Include="Models\SYS_TableImport.cs" />
+    <Compile Include="Models\SYS_TableImportDetail.cs" />
+    <Compile Include="Models\SYS_Template.cs" />
+    <Compile Include="Models\SYS_ThongKeTruyCap.cs" />
+    <Compile Include="Models\SYS_ThongKeTruyCapDetail.cs" />
+    <Compile Include="Models\SYS_TimeLine.cs" />
+    <Compile Include="Models\Sys_VanBanDen_SetTimKiem.cs" />
+    <Compile Include="Models\Sys_VanBanDen_TimKiem.cs" />
+    <Compile Include="Models\SYS_Widget.cs" />
+    <Compile Include="Models\TAX_TrangThaiXuLy.cs" />
+    <Compile Include="Models\TD_QuanLyFileAttach.cs" />
+    <Compile Include="Models\TD_UngVien_FileAttach.cs" />
+    <Compile Include="Models\TEL_DangKyDienThoai.cs" />
+    <Compile Include="Models\TEL_DM_GoiCuoc.cs" />
+    <Compile Include="Models\TEL_DM_MangDienThoai.cs" />
+    <Compile Include="Models\TEL_DM_SoDienThoai.cs" />
+    <Compile Include="Models\TEL_TienDienThoai.cs" />
+    <Compile Include="Models\TL_DanhMuc.cs" />
+    <Compile Include="Models\TL_TaiLieu.cs" />
+    <Compile Include="Models\TL_TaiLieuFileAttach.cs" />
+    <Compile Include="Models\TNTS_CauHoi.cs" />
+    <Compile Include="Models\TNTS_KetQua.cs" />
+    <Compile Include="Models\TNTS_NhomCauHoi.cs" />
+    <Compile Include="Models\TNTS_TracNghiemNgheNghiep.cs" />
+    <Compile Include="Models\TSHN_DanhMucTinTuc.cs" />
+    <Compile Include="Models\TSHN_DM_ChuDe.cs" />
+    <Compile Include="Models\TSHN_DM_ChuongTrinhDaoTao.cs" />
+    <Compile Include="Models\TSHN_DM_Khoa.cs" />
+    <Compile Include="Models\TSHN_DM_KhoiThi.cs" />
+    <Compile Include="Models\TSHN_DM_Nganh.cs" />
+    <Compile Include="Models\TSHN_DM_Nghe.cs" />
+    <Compile Include="Models\TSHN_GioiThieuChung.cs" />
+    <Compile Include="Models\TSHN_LivestreamsInfo.cs" />
+    <Compile Include="Models\TSHN_TinTuc.cs" />
+    <Compile Include="Models\TSHN_TinTucFileAttach.cs" />
+    <Compile Include="Models\TSHN_TrangGioiThieu.cs" />
+    <Compile Include="Models\TS_LichSuImport.cs" />
+    <Compile Include="Models\TS_LichSuImportDetail.cs" />
+    <Compile Include="Models\t_News_Faculties.cs" />
+    <Compile Include="Models\UngVien.cs" />
+    <Compile Include="Models\UngVien_LichSu.cs" />
+    <Compile Include="Models\VBDH_CoQuan.cs" />
+    <Compile Include="Models\VBDH_DM_LoaiVanBanLienQuan.cs" />
+    <Compile Include="Models\VBDH_LinhVuc.cs" />
+    <Compile Include="Models\VBDH_LoaiVanBan.cs" />
+    <Compile Include="Models\VBDH_NhomVanBan.cs" />
+    <Compile Include="Models\VBDH_TrangThai.cs" />
+    <Compile Include="Models\VBDH_VanBan.cs" />
+    <Compile Include="Models\VBDH_VanBanFileAttach.cs" />
+    <Compile Include="Models\VBDH_VanBanLienQuan.cs" />
+    <Compile Include="Models\VBPL_CoQuan.cs" />
+    <Compile Include="Models\VBPL_LinhVuc.cs" />
+    <Compile Include="Models\VBPL_LoaiVanBan.cs" />
+    <Compile Include="Models\VBPL_Nganh.cs" />
+    <Compile Include="Models\VBPL_PhamVi.cs" />
+    <Compile Include="Models\VBPL_TrangThai.cs" />
+    <Compile Include="Models\VBPL_VanBan.cs" />
+    <Compile Include="Models\VBPL_VanBanFileAttach.cs" />
+    <Compile Include="Models\Xe_DangKyXe.cs" />
+    <Compile Include="Models\Xe_DangKyXeNguoiDi.cs" />
+    <Compile Include="Models\Xe_LichSuDangKy.cs" />
+    <Compile Include="Models\Xe_LoaiXe.cs" />
+    <Compile Include="Models\Xe_TaiXe.cs" />
+    <Compile Include="Models\Xe_XeOTo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-grid.rtl.css" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\bootstrap-utilities.css" />
+    <Content Include="Content\bootstrap-utilities.min.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.rtl.css" />
+    <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\css\font-awesome.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\fonts.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\icons.css" />
+    <Content Include="Content\images\logo-hdu-removebg-preview-20221108085539-e.png" />
+    <Content Include="Content\styles.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Header\Menu.cshtml" />
+    <Content Include="Views\Footer\Index.cshtml" />
+    <Content Include="Views\Home\TinNoiBat.cshtml" />
+    <Content Include="Views\Home\TinMoi.cshtml" />
+    <Content Include="Views\Home\Video.cshtml" />
+    <Content Include="Views\Header\Header.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\js\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>65031</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:65031/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

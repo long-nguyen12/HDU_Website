@@ -1,0 +1,136 @@
+﻿<footer class="footer-home">
+    <div onclick="topFunction()" id="up-btn">
+        <i id="icon" class="fa fa-angle-up" aria-hidden="true"></i>
+    </div>
+    <script>
+        let mybutton = document.getElementById("up-btn");
+
+        window.onscroll = function () {
+            scrollFunction();
+        };
+
+        function scrollFunction() {
+            if (
+                document.body.scrollTop > 20 ||
+                document.documentElement.scrollTop > 20
+            ) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+    <section class="menu-footer">
+        <div class="container">
+            <ul class="navbar-nav">
+                <li class="nav-item ">
+                    <a class="nav-link "
+                       title="Đào tạo"
+                       href="/">Đào tạo</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link "
+                       href="/doi-tac.html"
+                       title="Khoa học công nghệ">Khoa học công nghệ</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link "
+                       title="Học sinh, sinh viên, học viên"
+                       href="/chuyen-muc/khao-thi-47.html">Học sinh, sinh viên, học viên</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link "
+                       href="#"
+                       title="VIDEO & CLIP">VIDEO & CLIP</a>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="logo">
+                    <a href="/">
+                        <img src="@Url.Content("~/Content/images/logo-hdu-removebg-preview-20221108085539-e.png")"
+                             alt=""
+                             class="img-fluid" />
+                    </a>
+                </div>
+                <div class="left-footer">
+                    <p style="
+                        font-size: 16px;
+                        margin-bottom: 5px;
+                        margin-top: 0;
+                      ">
+                        Địa chỉ: Số 565 Quang Trung - Phường Đông Vệ - TP.Thanh Hóa
+                    </p>
+                    <p style="
+                        font-size: 16px;
+                        margin-bottom: 5px;
+                        margin-top: 0;
+                      ">
+                        Điện thoại: (0237).3910.222, Fax: (0237).3910.475
+                    </p>
+                    <p style="
+                        font-size: 16px;
+                        margin-bottom: 5px;
+                        margin-top: 0;
+                      ">
+                        Homepage: http://hdu.edu.vn
+                    </p>
+                    <p style="
+                        font-size: 16px;
+                        margin-bottom: 5px;
+                        margin-top: 0;
+                      ">
+                        Chịu trách nhiệm nội dung: TS. Hoàng Nam - Phó Hiệu trưởng
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 right-footer">
+                <div>
+                    <h3>
+                        SỨ MỆNH
+                    </h3>
+                </div>
+                <div>
+                    <p style="
+                        font-size: 16px;
+                        margin-bottom: 5px;
+                        margin-top: 0;
+                      ">
+                        Đào tạo, bồi dưỡng nguồn nhân lực đa ngành, đa lĩnh vực, có chất lượng cao, có khả năng thích ứng với sự thay đổi của thị trường lao động; nghiên cứu khoa học, chuyển giao công nghệ phục vụ giáo dục đào tạo và phát triển kinh tế - xã hội của tỉnh Thanh Hóa và đất nước.
+                    </p>
+                </div>
+                <div>
+                    <h3>
+                        TẦM NHÌN
+                    </h3>
+                </div>
+                <div>
+                    <p style="
+                        font-size: 16px;
+                        margin-bottom: 5px;
+                        margin-top: 0;
+                      ">
+                        Đến năm 2045, Trường Đại học Hồng Đức là trường đại học thông minh, đổi mới sáng tạo; là trung tâm đào tạo và nghiên cứu khoa học mạnh của cả nước; hội nhập với các trường đại học tiên tiến trong khối ASEAN và quốc tế.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="location">
+                    <h3>Bản đồ chỉ dẫn</h3>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3754.683431038226!2d105.77438067507822!3d19.768600129865078!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3136f87eb8b4c8c5%3A0x88d1e9c521aef3a9!2zVHLGsOG7nW5nIMSQYcyjaSBIb8yjYyBIw7TMgG5nIMSQxrDMgWM!5e0!3m2!1svi!2s!4v1681889744315!5m2!1svi!2s" width="400" height="300" style="border:0;width:100%; height:100%" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+        
+        <div class="gototop">
+
+        </div>
+    </div>
+</footer>
