@@ -1,12 +1,46 @@
 ﻿@model IEnumerable<HDU_Website.Models.CMS_TinTuc>
 
 <div class="home-tin-moi" style="margin-bottom: 10px;">
+    <div class="title text-uppercase" style="padding: 0px; margin: 0px; color: #fff;">Tin mới</div>
     @foreach (var item in Model)
     {
-        <div class="row">
-            <h6>
-                @Html.DisplayFor(modelItem => item.TieuDe)
-            </h6>
+        string imageUrl = "http://media.hdu.edu.vn/" + item.HinhDaiDien;
+        <div class="row" style="padding: 5px;">
+            <div class="col-4">
+                <a class="x-img "
+                   title="@item.TieuDe"
+                   href="#">
+                    <img catcherror=""
+                         lazyload=""
+                         class="img-fluid"
+                         alt="@item.TieuDe"
+                         src="@imageUrl" />
+                </a>
+            </div>
+            <div class="information col-8">
+                <p class="realease-date" style="margin-bottom: 5px;">
+                    <i class="fa fa-calendar"></i><span>
+                        @item.NgayTao
+                    </span>
+                </p>
+                <a class="article-name"
+                   title="@item.TieuDe"
+                   href="#"
+                   style="text-decoration: none; color: #fff; text-align: justify;">
+                    @item.TieuDe
+                </a>
+            </div>
         </div>
     }
+    <div class="row">
+        <div class=" col-12 text-end d-inline" style="align-items: end; margin-top: 10px; font-style: italic;">
+            <a class="see-detail"
+               title="Xem thêm"
+               href="http://hdu.edu.vn/hanh-chinh-to-chuc-su-kien.html"
+               style="text-decoration: none; color: #fff;">
+                Xem thêm >
+            </a>
+        </div>
+    </div>
+
 </div>

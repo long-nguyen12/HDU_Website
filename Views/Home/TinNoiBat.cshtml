@@ -1,25 +1,53 @@
 ﻿@model IEnumerable<HDU_Website.Models.CMS_TinTuc>
 
-<div class="tin-noi-bat" style="margin-bottom: 10px;">
-    <div class="row row-cols-md-2 row-cols-sm-1">
-        @foreach (var item in Model)
-        {
-            string imageUrl = "http://media.hdu.edu.vn/" + item.HinhDaiDien;
-            string baiviet = "#";
-            string mota = item.MoTa.Substring(0, 80) + "...";
-            <a href="@baiviet">
-                <div class="col-12 col-sm-12 col-md-12">
-                    <div class="row row-cols-1">
-                        <div class="col-6">
-                            <img class="img-fluid" catcherror="" lazyload="" src="@imageUrl" alt="@item.TieuDe" />
-                        </div>
-                        <div class="col-6">
-                            <h6>@item.TieuDe</h6>
-                            <p>@mota</p>
-                        </div>
+<div class="main-content">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-8">
+                <div class="title text-uppercase">
+                    Tin nổi bật
+                </div>
+            </div>
+            <div class="col-4 text-end d-inline">
+                <a href="http://hdu.edu.vn/hanh-chinh-to-chuc-su-kien.html" style="color: #033481; font-style: italic;">
+                    Xem thêm >
+                </a>
+            </div>
+        </div>
+        <div class="news-activity ">
+            @foreach (var item in Model)
+            {
+                string imageUrl = "http://media.hdu.edu.vn/" + item.HinhDaiDien;
+                string baiviet = "#";
+                string mota = item.MoTa.Substring(0, 80) + "...";
+                <div class="block-activity ">
+                    <a class="x-img "
+                       title="@item.TieuDe"
+                       href="#">
+                        <img catcherror=""
+                             lazyload=""
+                             class="img-fluid"
+                             alt="@item.TieuDe"
+                             src="@imageUrl" />
+                    </a>
+                    <div class="information ">
+                        <p class="realease-date">
+                            <i class="fa fa-calendar"></i><span>
+                                @item.NgayTao
+                            </span>
+                        </p>
+                        <a class="article-name"
+                           title="@item.TieuDe"
+                           href="#">
+                            @item.TieuDe
+                        </a><a class="see-detail"
+                               title="@item.TieuDe"
+                               href="#">
+                            Xem chi tiết
+                        </a>
                     </div>
                 </div>
-            </a>
-        }
+            }
+        </div>
     </div>
 </div>

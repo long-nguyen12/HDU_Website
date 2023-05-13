@@ -1,26 +1,21 @@
 ﻿@model IEnumerable<HDU_Website.Models.CMS_Menu>
 <div class="container">
     <div class="row d-flex jusitfy-content-center align-items-center">
-        <div class="col-lg-4 col-9 d-flex aligns-items-center">
-            <a class="navbar-brand" href="http://hdu.edu.vn/">
-                <img id="banner" alt="Trang chủ" src="@Url.Content("~/Content/images/logo-hdu-removebg-preview-20221108085539-e.png")">
-            </a>
-        </div>
-        <div class="col-lg-8 col-3">
+        <div class="col-12">
             <nav class="navbar navbar-expand-lg">
                 <button type="button" class="navbar-toggler ms-auto mb-2 mb-lg-0" data-bs-toggle="collapse" data-bs-target="#collapseMenu" title="Toggle navigation"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse ms-auto" id="collapseMenu">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav mb-2 mb-lg-0 slimmenu" style="text-align: center;">
                         @if (Model != null && Model.Count() > 0)
                         {
                             foreach (var item in Model)
                             {
                                 if (item.Level == 1)
                                 {
-                                    <li class="nav-item dropdown"><a class="menu-item" href="#" cursor="pointer" title="@String.Format("{0}", item.TieuDe)">@String.Format("{0}", item.TieuDe)</a></li>
+                                    <li class="nav-item dropdown"><a class="menu-item text-uppercase" href="#" cursor="pointer" title="@String.Format("{0}", item.TieuDe)">@String.Format("{0}", item.TieuDe)</a></li>
                                 }
                             }
                         }

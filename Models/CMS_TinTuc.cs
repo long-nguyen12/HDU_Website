@@ -5,6 +5,7 @@ namespace HDU_Website.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Web.Routing;
 
     public partial class CMS_TinTuc
     {

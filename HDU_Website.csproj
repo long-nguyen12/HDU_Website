@@ -767,6 +767,8 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\css\font-awesome.css" />
     <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\owl.carousel.min.css" />
+    <Content Include="Content\css\owl.theme.default.min.css" />
     <Content Include="Content\fonts.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\icons.css" />
@@ -796,7 +798,10 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Content\js\owl.carousel.js" />
+    <Content Include="Content\js\owl.carousel.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Content\js\web.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -815,10 +820,10 @@
     <Content Include="Views\Home\TinMoi.cshtml" />
     <Content Include="Views\Home\Video.cshtml" />
     <Content Include="Views\Header\Header.cshtml" />
+    <Content Include="Views\Home\TinVan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\js\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
