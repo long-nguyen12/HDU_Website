@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HDU_Website.Models.CMS_TinTuc>
+﻿@model IEnumerable<HDU_Website.Controllers.NewsRouterViewModel>
 
 <div class="main-content">
     <div class="container">
@@ -17,32 +17,33 @@
         <div class="news-activity ">
             @foreach (var item in Model)
             {
-                string imageUrl = "http://media.hdu.edu.vn/" + item.HinhDaiDien;
+                string imageUrl = "http://media.hdu.edu.vn/" + item.News.HinhDaiDien;
+                string itemUrl = "http://hdu.edu.vn/" + item.Router.Alias + ".html";
                 string baiviet = "#";
-                string mota = item.MoTa.Substring(0, 80) + "...";
+                string mota = item.News.MoTa.Substring(0, 80) + "...";
                 <div class="block-activity ">
                     <a class="x-img "
-                       title="@item.TieuDe"
-                       href="#">
+                       title="@item.News.TieuDe"
+                       href="@itemUrl">
                         <img catcherror=""
                              lazyload=""
                              class="img-fluid"
-                             alt="@item.TieuDe"
+                             alt="@item.News.TieuDe"
                              src="@imageUrl" />
                     </a>
                     <div class="information ">
                         <p class="realease-date">
                             <i class="fa fa-calendar"></i><span>
-                                @item.NgayTao
+                                @item.News.NgayTao
                             </span>
                         </p>
                         <a class="article-name"
-                           title="@item.TieuDe"
-                           href="#">
-                            @item.TieuDe
+                           title="@item.News.TieuDe"
+                           href="@itemUrl">
+                            @item.News.TieuDe
                         </a><a class="see-detail"
-                               title="@item.TieuDe"
-                               href="#">
+                               title="@item.News.TieuDe"
+                               href="@itemUrl">
                             Xem chi tiết
                         </a>
                     </div>

@@ -1,33 +1,34 @@
-﻿@model IEnumerable<HDU_Website.Models.CMS_TinTuc>
+﻿@model IEnumerable<HDU_Website.Controllers.NewsRouterViewModel>
 
 <div class="home-tin-moi" style="margin-bottom: 10px;">
     <div class="title text-uppercase" style="padding: 0px; margin: 0px; color: #fff;">Tin mới</div>
     @foreach (var item in Model)
     {
-        string imageUrl = "http://media.hdu.edu.vn/" + item.HinhDaiDien;
+        string imageUrl = "http://media.hdu.edu.vn/" + item.News.HinhDaiDien;
+                string itemUrl = "http://hdu.edu.vn/" + item.Router.Alias + ".html";
         <div class="row" style="padding: 5px;">
             <div class="col-4">
                 <a class="x-img "
-                   title="@item.TieuDe"
-                   href="#">
+                   title="@item.News.TieuDe"
+                   href="@itemUrl">
                     <img catcherror=""
                          lazyload=""
                          class="img-fluid"
-                         alt="@item.TieuDe"
+                         alt="@item.News.TieuDe"
                          src="@imageUrl" />
                 </a>
             </div>
             <div class="information col-8">
                 <p class="realease-date" style="margin-bottom: 5px;">
                     <i class="fa fa-calendar"></i><span>
-                        @item.NgayTao
+                        @item.News.NgayTao
                     </span>
                 </p>
                 <a class="article-name"
-                   title="@item.TieuDe"
-                   href="#"
+                   title="@item.News.TieuDe"
+                   href="@itemUrl"
                    style="text-decoration: none; color: #fff; text-align: justify;">
-                    @item.TieuDe
+                    @item.News.TieuDe
                 </a>
             </div>
         </div>

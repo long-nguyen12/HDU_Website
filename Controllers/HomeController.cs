@@ -9,6 +9,11 @@ using System.Web.Routing;
 
 namespace HDU_Website.Controllers
 {
+    public class NewsRouterViewModel
+    {
+        public CMS_TinTuc News { get; set; }
+        public CMS_Router Router { get; set; }
+    }
     public class HomeController : Controller
     {
         DBConnection dbConnection = new DBConnection();
@@ -23,24 +28,31 @@ namespace HDU_Website.Controllers
             var tinNoiBatModel = dbConnection.CMS_TinTuc.Where(n => n.IsHienThi == true && n.ForWeb == 1 && n.IDDanhMuc == 7 && n.IsDelete != true).OrderByDescending(n => n.ID).Take(5).ToList();
             var routerList = dbConnection.CMS_Router.ToList();
             var newsRouters = from n in tinNoiBatModel
-                              join r in routerList on n.ID equals r.IDMap into routers
-                              from r in routers.DefaultIfEmpty()
-                              select new { News = n, Router = r };
-            return PartialView(tinNoiBatModel);
+                              join r in routerList on n.ID equals r.IDMap
+                              select new NewsRouterViewModel  { News = n, Router = r };
+            return PartialView(newsRouters);
         }
 
         [ChildActionOnly]
         public ActionResult TinMoi()
         {
             var tinMoiModel = dbConnection.CMS_TinTuc.Where(n => n.IsHienThi == true && n.ForWeb == 1 && n.IDDanhMuc == 1 && n.IsDelete != true).OrderByDescending(n => n.ID).Take(5).ToList();
-            return PartialView(tinMoiModel);
+            var routerList = dbConnection.CMS_Router.ToList();
+            var newsRouters = from n in tinMoiModel
+                              join r in routerList on n.ID equals r.IDMap
+                              select new NewsRouterViewModel { News = n, Router = r };
+            return PartialView(newsRouters);
         }
 
         [ChildActionOnly]
         public ActionResult TinVan()
         {
             var tinMoiModel = dbConnection.CMS_TinTuc.Where(n => n.IsHienThi == true && n.ForWeb == 1 && n.IDDanhMuc == 1 && n.IsDelete != true).OrderByDescending(n => n.ID).Take(5).ToList();
-            return PartialView(tinMoiModel);
+            var routerList = dbConnection.CMS_Router.ToList();
+            var newsRouters = from n in tinMoiModel
+                              join r in routerList on n.ID equals r.IDMap
+                              select new NewsRouterViewModel { News = n, Router = r };
+            return PartialView(newsRouters);
         }
 
         [ChildActionOnly]
