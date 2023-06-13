@@ -91,67 +91,67 @@
                 <div class="row">
                     <div class="col-lg-7 col-12">
                         @*<div class="menu-list">
-                            <div class="menu-item">
-                                <a href="javascript:;"
-                                   title="Đánh giá năng lực"
-                                   class="i-img">
-                                    <img catcherror=""
-                                         lazyload=""
-                                         src="https://cet.vnu.edu.vn/assets/images/TTKT/cat-sau-dai-hoc.png"
-                                         class="img-fluid" />
-                                </a>
-                                <a href="javascript:;"
-                                   title="Đánh giá năng lực"
-                                   class="title">
-                                    <span>Đánh giá năng lực</span>
-                                </a>
-                            </div>
-                            <div class="menu-item">
-                                <a href="javascript:;"
-                                   title="Sau đại học"
-                                   class="i-img">
-                                    <img catcherror=""
-                                         lazyload=""
-                                         src="https://cet.vnu.edu.vn/assets/images/TTKT/cat-sau-dai-hoc.png"
-                                         class="img-fluid" />
-                                </a>
-                                <a href="javascript:;"
-                                   title="Sau đại học"
-                                   class="title">
-                                    <span>Sau đại học</span>
-                                </a>
-                            </div>
-                            <div class="menu-item">
-                                <a href="javascript:;"
-                                   title="Trung học cơ sở"
-                                   class="i-img">
-                                    <img catcherror=""
-                                         lazyload=""
-                                         src="https://cet.vnu.edu.vn/assets/images/TTKT/cat-sau-dai-hoc.png"
-                                         class="img-fluid" />
-                                </a><a href="javascript:;"
-                                       title="Trung học cơ sở"
+                                <div class="menu-item">
+                                    <a href="javascript:;"
+                                       title="Đánh giá năng lực"
+                                       class="i-img">
+                                        <img catcherror=""
+                                             lazyload=""
+                                             src="https://cet.vnu.edu.vn/assets/images/TTKT/cat-sau-dai-hoc.png"
+                                             class="img-fluid" />
+                                    </a>
+                                    <a href="javascript:;"
+                                       title="Đánh giá năng lực"
                                        class="title">
-                                    <span>Trung học cơ sở</span>
-                                </a>
-                            </div>
-                            <div class="menu-item">
-                                <a href="javascript:;"
-                                   title="Tiếng anh"
-                                   class="i-img">
-                                    <img catcherror=""
-                                         lazyload=""
-                                         src="https://cet.vnu.edu.vn/assets/images/TTKT/cat-sau-dai-hoc.png"
-                                         class="img-fluid" />
-                                </a><a href="javascript:;"
+                                        <span>Đánh giá năng lực</span>
+                                    </a>
+                                </div>
+                                <div class="menu-item">
+                                    <a href="javascript:;"
+                                       title="Sau đại học"
+                                       class="i-img">
+                                        <img catcherror=""
+                                             lazyload=""
+                                             src="https://cet.vnu.edu.vn/assets/images/TTKT/cat-sau-dai-hoc.png"
+                                             class="img-fluid" />
+                                    </a>
+                                    <a href="javascript:;"
+                                       title="Sau đại học"
+                                       class="title">
+                                        <span>Sau đại học</span>
+                                    </a>
+                                </div>
+                                <div class="menu-item">
+                                    <a href="javascript:;"
+                                       title="Trung học cơ sở"
+                                       class="i-img">
+                                        <img catcherror=""
+                                             lazyload=""
+                                             src="https://cet.vnu.edu.vn/assets/images/TTKT/cat-sau-dai-hoc.png"
+                                             class="img-fluid" />
+                                    </a><a href="javascript:;"
+                                           title="Trung học cơ sở"
+                                           class="title">
+                                        <span>Trung học cơ sở</span>
+                                    </a>
+                                </div>
+                                <div class="menu-item">
+                                    <a href="javascript:;"
                                        title="Tiếng anh"
-                                       class="title"><span>Tiếng anh</span></a>
-                            </div>
-                        </div>*@
+                                       class="i-img">
+                                        <img catcherror=""
+                                             lazyload=""
+                                             src="https://cet.vnu.edu.vn/assets/images/TTKT/cat-sau-dai-hoc.png"
+                                             class="img-fluid" />
+                                    </a><a href="javascript:;"
+                                           title="Tiếng anh"
+                                           class="title"><span>Tiếng anh</span></a>
+                                </div>
+                            </div>*@
                     </div>
                     <div class="col-lg-5 col-12">
                         @{
-                            Html.RenderAction("TinMoi", "Home");
+                            Html.RenderAction("TinMoi", "Home", new { id = 3, tieude = "Tin tuyển sinh" });
                         }
                     </div>
                 </div>
@@ -160,12 +160,12 @@
     </section>
     <section class="section-news bg-light" style="padding-top: 10px; padding-bottom: 20px;">
         @{
-            Html.RenderAction("TinNoiBat", "Home");
+            Html.RenderAction("TinHome", "Home", new { id = 1, isNoiBat = true, total = 5, title = "Tin nổi bật" });
         }
     </section>
     <section class="section-news" style="padding-top: 10px; padding-bottom: 20px;">
         @{
-            Html.RenderAction("TinVan", "Home");
+            Html.RenderAction("TinHome", "Home", new { id = 1, isNoiBat = false, total = 5, title = "Tin vắn" });
         }
     </section>
     <section class="section-video bg-light" style="padding-top: 10px; padding-bottom: 20px;">

@@ -25,27 +25,32 @@
         }
     </script>
     <section class="menu-footer">
+        <div class="social-bar">
+            <a class="zalo" href="https://zalo.me/3813136038332668260"><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></a>
+            <a href="https://www.facebook.com/DHHongDuc" class="facebook">
+                <i class="fa fa-facebook"></i>
+            </a>
+            <a href="@("://www.youtube.com/@hdu-tv")" class="youtube">
+                <i class="fa fa-youtube"></i>
+            </a>
+            <a href="https://goo.gl/maps/bPNoVfiZMdWY3TuU8" class="location"><i class="fa fa-map-marker"></i></a>
+        </div>
         <div class="container">
             <ul class="navbar-nav">
                 <li class="nav-item ">
                     <a class="nav-link "
                        title="Đào tạo"
-                       href="/">Đào tạo</a>
+                       href="@Url.Action("DaoTao", "Home", new {idDanhMuc = 4})">Đào tạo</a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link "
-                       href="/doi-tac.html"
+                       href="@Url.Action("DaoTao", "Home", new {idDanhMuc = 5})"
                        title="Khoa học công nghệ">Khoa học công nghệ</a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link "
                        title="Học sinh, sinh viên, học viên"
-                       href="/chuyen-muc/khao-thi-47.html">Học sinh, sinh viên, học viên</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link "
-                       href="#"
-                       title="VIDEO & CLIP">VIDEO & CLIP</a>
+                       href="@Url.Action("DaoTao", "Home", new {idDanhMuc = 7})">Học sinh, sinh viên, học viên</a>
                 </li>
             </ul>
         </div>

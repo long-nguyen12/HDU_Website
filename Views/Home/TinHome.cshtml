@@ -1,0 +1,56 @@
+﻿@model IEnumerable<HDU_Website.Controllers.NewsRouterViewModel>
+
+<div class="main-content">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-8">
+                <div class="title text-uppercase">
+                    @ViewBag.NewsGroup
+                </div>
+            </div>
+            <div class="col-4 text-end d-inline">
+                <a href="@Url.Action("DaoTao", "Home", new { idDanhMuc = 1 })" style="color: #033481; font-style: italic;">
+                    Xem thêm >
+                </a>
+            </div>
+        </div>
+        <div class="news-activity ">
+            @foreach (var item in Model)
+            {
+                string imageUrl = "http://media.hdu.edu.vn/" + item.News.HinhDaiDien;
+                string mota = "";
+                if(item.News.MoTa != null)
+                {
+                    mota = item.News.MoTa.Substring(0, 80) + "...";
+                }
+                <div class="block-activity ">
+                    <a class="x-img "
+                       title="@item.News.TieuDe"
+                       href="@Url.Action("ChiTietTinTuc", "Home", new {id = item.News.ID})">
+                        <img catcherror=""
+                             lazyload=""
+                             class="img-fluid"
+                             alt="@item.News.TieuDe"
+                             src="@imageUrl" />
+                    </a>
+                    <div class="information ">
+                        <p class="realease-date">
+                            <i class="fa fa-calendar"></i><span>
+                                @item.News.NgayTao
+                            </span>
+                        </p>
+                        <a class="article-name"
+                           title="@item.News.TieuDe"
+                           href="@Url.Action("ChiTietTinTuc", "Home", new {id = item.News.ID})">
+                            @item.News.TieuDe
+                        </a><a class="see-detail"
+                               title="@item.News.TieuDe"
+                               href="@Url.Action("ChiTietTinTuc", "Home", new {id = item.News.ID})">
+                            Xem chi tiết
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -81,3 +81,7 @@ D:\HDU\HDU_Themes\HDU_Website\bin\EntityFramework.dll
 D:\HDU\HDU_Themes\HDU_Website\bin\EntityFramework.SqlServer.dll
 D:\HDU\HDU_Themes\HDU_Website\bin\EntityFramework.xml
 D:\HDU\HDU_Themes\HDU_Website\bin\EntityFramework.SqlServer.xml
+D:\HDU\HDU_Themes\HDU_Website\bin\PagedList.dll
+D:\HDU\HDU_Themes\HDU_Website\bin\PagedList.Mvc.dll
+D:\HDU\HDU_Themes\HDU_Website\bin\PagedList.xml
+D:\HDU\HDU_Themes\HDU_Website\bin\PagedList.Mvc.xml

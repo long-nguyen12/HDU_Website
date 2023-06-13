@@ -1,17 +1,25 @@
-﻿$("#carousel").owlCarousel({
-    autoplay: true,
-    lazyLoad: true,
-    loop: true,
-    margin: 10,
-    responsiveClass: true,
-    autoHeight: true,
-    nav: true,
-    items: 3,
-    responsive: {
-        480: { items: 1 }, // from zero to 480 screen width 4 items
-        768: { items: 2 }, // from 480 screen widthto 768 6 items
-        1024: {
-            items: 3   // from 768 screen width to 1024 8 items
+﻿$(document).ready(function (e) {
+    var touch = $('#resp-menu');
+    var menu = $('.menu');
+    $(touch).on('click', function (e) {
+        e.preventDefault();
+        menu.slideToggle();
+    });
+    $(window).resize(function () {
+        var w = $(window).width();
+        if (w > 767 && menu.is(':hidden')) {
+            menu.removeAttr('style');
         }
-    },
-});
+    });
+    $('.sub-menu').parent('li').addClass('has-child');
+    if ($(window).width() < 768) {
+        $('.sub-menu').prev('a').attr('href', 'javascript:void(0)');
+        $('.sub-menu').prev('a').click(function () {
+            $(this).next().slideToggle();
+        });
+        $('.submenu').prev('a').attr('href', 'javascript:void(0)');
+        $('.submenu').prev('a').click(function () {
+            $(this).next().slideToggle();
+        });
+    };
+})
