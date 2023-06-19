@@ -30,7 +30,22 @@ namespace HDU_Website.Controllers
         DBConnection dbConnection = new DBConnection();
         public ActionResult Index()
         {
-            return View();
+            var configs = dbConnection.SYS_CaiDatCauHinh.Where(n => n.ForWeb == 1);
+            return View(configs);
+        }
+
+        [ChildActionOnly]
+        public ActionResult TinMoiHome(int id)
+        {
+            var tinMoiModel = dbConnection.CMS_TinTuc.Where(n => n.IsHienThi == true && n.ForWeb == 1 && n.IDDanhMuc == id && n.IsDelete != true).OrderByDescending(n => n.ID).Take(4).ToList();
+            var routerList = dbConnection.CMS_Router.ToList();
+            var danhMucList = dbConnection.DM_TinTuc.ToList();
+            var newsRouters = from n in tinMoiModel
+                              join r in routerList on n.ID equals r.IDMap
+                              join d in danhMucList on n.IDDanhMuc equals d.ID
+                              select new NewsRouterViewModel { News = n, Router = r, DanhMuc = d };
+            ViewBag.IDGroup = id;
+            return PartialView(newsRouters);
         }
 
         [ChildActionOnly]

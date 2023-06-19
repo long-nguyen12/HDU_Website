@@ -1,16 +1,38 @@
-﻿<main>
+﻿@model IEnumerable<HDU_Website.Models.SYS_CaiDatCauHinh>
+
+<main>
     <div class="slider">
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="~/Content/images/logo-hdu-removebg-preview-20221108085539-e.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="~/Content/images/logo-hdu-removebg-preview-20221108085539-e.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="~/Content/images/logo-hdu-removebg-preview-20221108085539-e.png" class="d-block w-100" alt="...">
-                </div>
+                @{
+                    var configSlides = Model.FirstOrDefault(n => n.KeyCauHinh == "TH1065DF_Slide_ID");
+                    var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+                    dynamic slides = serializer.Deserialize(configSlides.ValueCauHinh, typeof(object));
+                    if (slides.Length > 0)
+                    {
+                        for (int i = 0; i < slides.Length; i++)
+                        {
+                            var item = slides[i];
+                            string imageUrl = "http://media.hdu.edu.vn/" + item["GroupHinh"];
+                            if (i == 0)
+                            {
+
+                                <div class="carousel-item active">
+                                    <img src="@imageUrl" class="d-block w-100" alt="...">
+                                </div>
+                            }
+                            else
+                            {
+
+                                <div class="carousel-item">
+                                    <img src="@imageUrl" class="d-block w-100" alt="...">
+                                </div>
+                            }
+                        }
+
+                    }
+
+                }
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -90,85 +112,80 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-7 col-12">
-                        @*<div class="menu-list">
-                                <div class="menu-item">
-                                    <a href="javascript:;"
-                                       title="Đánh giá năng lực"
-                                       class="i-img">
-                                        <img catcherror=""
-                                             lazyload=""
-                                             src="https://cet.vnu.edu.vn/assets/images/TTKT/cat-sau-dai-hoc.png"
-                                             class="img-fluid" />
-                                    </a>
-                                    <a href="javascript:;"
-                                       title="Đánh giá năng lực"
-                                       class="title">
-                                        <span>Đánh giá năng lực</span>
-                                    </a>
-                                </div>
-                                <div class="menu-item">
-                                    <a href="javascript:;"
-                                       title="Sau đại học"
-                                       class="i-img">
-                                        <img catcherror=""
-                                             lazyload=""
-                                             src="https://cet.vnu.edu.vn/assets/images/TTKT/cat-sau-dai-hoc.png"
-                                             class="img-fluid" />
-                                    </a>
-                                    <a href="javascript:;"
-                                       title="Sau đại học"
-                                       class="title">
-                                        <span>Sau đại học</span>
-                                    </a>
-                                </div>
-                                <div class="menu-item">
-                                    <a href="javascript:;"
-                                       title="Trung học cơ sở"
-                                       class="i-img">
-                                        <img catcherror=""
-                                             lazyload=""
-                                             src="https://cet.vnu.edu.vn/assets/images/TTKT/cat-sau-dai-hoc.png"
-                                             class="img-fluid" />
-                                    </a><a href="javascript:;"
-                                           title="Trung học cơ sở"
-                                           class="title">
-                                        <span>Trung học cơ sở</span>
-                                    </a>
-                                </div>
-                                <div class="menu-item">
-                                    <a href="javascript:;"
-                                       title="Tiếng anh"
-                                       class="i-img">
-                                        <img catcherror=""
-                                             lazyload=""
-                                             src="https://cet.vnu.edu.vn/assets/images/TTKT/cat-sau-dai-hoc.png"
-                                             class="img-fluid" />
-                                    </a><a href="javascript:;"
-                                           title="Tiếng anh"
-                                           class="title"><span>Tiếng anh</span></a>
-                                </div>
-                            </div>*@
+                        @{
+                            Html.RenderAction("TinMoiHome", "Home", new { id = 1 });
+                        }
                     </div>
                     <div class="col-lg-5 col-12">
                         @{
-                            Html.RenderAction("TinMoi", "Home", new { id = 3, tieude = "Tin tuyển sinh" });
+                            var newsArea = Model.FirstOrDefault(n => n.KeyCauHinh == "TH1026DF_NewsTop_Right");
+                            Html.RenderAction("TinMoi", "Home", new { id = int.Parse(newsArea.ValueCauHinh), tieude = "Tin tuyển sinh" });
                         }
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="section-news bg-light" style="padding-top: 10px; padding-bottom: 20px;">
+    <section class="section-statistic bg-light" onload="load()">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-12 statistic-item text-center counter" data-target="3233" data-character="">
+                    <img src="~/Content/images/graduated-student.png" width="100" />
+                    <p class="fs-2 counter-value">0</p>
+                    <p style="font-size: 18px;">Sinh viên tốt nghiệp năm 2022</p>
+                </div>
+                <div class="col-md-3 col-12 statistic-item text-center counter" data-target="91" data-character="%">
+                    <img src="~/Content/images/vieclam.png" width="100" />
+                    <p class="fs-2 counter-value">0</p>
+                    <p style="font-size: 18px;">Sinh viên có việc làm khảo sát năm 2022</p>
+                </div>
+                <div class="col-md-3 col-12 statistic-item text-center counter" data-target="4" data-character="&#9733;">
+                    <img src="~/Content/images/upm-logo.png" width="100" />
+                    <p class="fs-2  counter-value">
+                        0
+                    </p>
+                    <p style="font-size: 18px;">Đạt chuẩn đối sánh Chất lượng đại học</p>
+                </div>
+                <div class="col-md-3 col-12 statistic-item text-center counter" data-target="21" data-character="">
+                    <img src="~/Content/images/kiem-dinh-clgd.png" width="100" />
+                    <p class="fs-2 counter-value">0</p>
+                    <p style="font-size: 18px;">Chương trình đào tạo được kiểm định</p>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $('.counter').each(function () {
+                    var $counter = $(this);
+                    var target = parseInt($counter.attr('data-target'));
+                    var character = $counter.attr('data-character');
+                    var duration = 2000; // Animation duration in milliseconds
+                    var step = Math.ceil(target / (duration / 10));
+                    var count = 0;
+
+                    var interval = setInterval(function () {
+                        count += step;
+                        if (count >= target) {
+                            count = target;
+                            clearInterval(interval);
+                        }
+                        $counter.find('.counter-value').text(count + character);
+                    }, 10);
+                });
+            });
+        </script>
+    </section>
+    <section class="section-news" style="padding-top: 10px; padding-bottom: 20px;">
         @{
             Html.RenderAction("TinHome", "Home", new { id = 1, isNoiBat = true, total = 5, title = "Tin nổi bật" });
         }
     </section>
-    <section class="section-news" style="padding-top: 10px; padding-bottom: 20px;">
+    <section class="section-news bg-light" style="padding-top: 10px; padding-bottom: 20px;">
         @{
-            Html.RenderAction("TinHome", "Home", new { id = 1, isNoiBat = false, total = 5, title = "Tin vắn" });
+            Html.RenderAction("TinHome", "Home", new { id = 18066, isNoiBat = false, total = 5, title = "Tin vắn" });
         }
     </section>
-    <section class="section-video bg-light" style="padding-top: 10px; padding-bottom: 20px;">
+    <section class="section-video" style="padding-top: 10px; padding-bottom: 20px;">
         <div class="main-content">
             <div class="container">
                 <div class="title">HOẠT ĐỘNG</div>

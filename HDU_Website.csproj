@@ -834,6 +834,7 @@
     <Content Include="Views\Home\ChiTietTinTuc.cshtml" />
     <Content Include="Views\Home\GioiThieu.cshtml" />
     <Content Include="Views\Home\TinHome.cshtml" />
+    <Content Include="Views\Home\TinMoiHome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
