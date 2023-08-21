@@ -1,5 +1,145 @@
-﻿<header>
+﻿
+<link rel="stylesheet" href="~/Content/css/cssdhcn.css" />
+<link rel="stylesheet" href="~/Content/css/style.css" />
+<link rel="stylesheet" href="~/Content/css/responsive.css" />
+<link rel="stylesheet" href="~/Content/css/bootstrap.min.css" />
+
+<style>
+    .vu_bg-yellow {
+        background-color: #fa9627;
+    }
+
+    .icon-float {
+        float: right
+    }
+
+    .navbar-toggler-icon {
+        color: white;
+    }
+</style>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light navbar-inverse bg-gradient vu_bg-yellow" role="navigation">
+        <div class="navbar-header">
+            <button class="navbar-toggler navbar-toggle collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bs-navbar-collapse-2" aria-controls="bs-navbar-collapse-2" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <h2 class="hidden-md hidden-lg hidden-sm text-primary" style="margin:0;"></h2>
+        </div>
+        <div class="navbar-collapse collapse" id="bs-navbar-collapse-2" aria-expanded="true" style="">
+            <ul class="nav navbar-nav top-nav">
+                <li class="menu-item">
+                    <a href="http://hdu.edu.vn/hoi-dong-truong-011859.html">Hội đồng trường</a>
+                </li>
+                <li class="dropdown">
+                    <a href="http://hdu.edu.vn/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Đơn vị đào tạo
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="http://cntt.hdu.edu.vn/">Công nghệ thông tin và Truyền thông</a></li>
+                        <li><a href="http://gdmn.hdu.edu.vn/">Giáo dục mầm non</a></li>
+                        <li><a href="http://gdtc.hdu.edu.vn/">Giáo dục thể chất</a></li>
+                        <li><a href="http://gdth.hdu.edu.vn/">Giáo dục tiểu học</a></li>
+                        <li><a href="http://khtn.hdu.edu.vn/">Khoa học tự nhiên</a></li>
+                        <li><a href="http://khxh.hdu.edu.vn/">Khoa học xã hội</a></li>
+                        <li><a href="http://ktqtkd.hdu.edu.vn/">Kinh tế - Quản trị kinh doanh</a></li>
+                        <li><a href="http://ktcn.hdu.edu.vn/">Kỹ thuật - Công nghệ</a></li>
+                        <li><a href="http://llctl.hdu.edu.vn/">Lý luận chính trị - Luật</a></li>
+                        <li><a href="http://knn.hdu.edu.vn/">Ngoại ngữ</a></li>
+                        <li><a href="http://nln.hdu.edu.vn/">Nông - Lâm - Ngư nghiệp</a></li>
+                        <li><a href="http://tlgd.hdu.edu.vn/">Tâm lý Giáo dục</a></li>
+                        <li><a href="http://mnth.hdu.edu.vn/">Trường mầm non thực hành</a></li>
+                        <li><a href="http://phothonghongduc.hdu.edu.vn/">Trường TH, THCS&amp;THPT Hồng Đức</a></li>
+
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="http://hdu.edu.vn/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Đơn vị chức năng
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="http://dbclkt.hdu.edu.vn/">Phòng Đảm bảo chất lượng và Khảo thí</a></li>
+                        <li><a href="http://cthssv.hdu.edu.vn/">Phòng GDCT và CTHSSV</a></li>
+                        <li><a href="http://khtc.hdu.edu.vn/">Phòng Kế hoạch - Tài chính</a></li>
+                        <li><a href="http://qldt.hdu.edu.vn/">Phòng Quản lý Đào tạo</a></li>
+                        <li><a href="http://qldtsdh.hdu.edu.vn/">Phòng Quản lý Đào tạo SĐH</a></li>
+                        <li><a href="http://qlkhcn.hdu.edu.vn/">Phòng Quản lý KHCN &amp; HTQT</a></li>
+                        <li><a href="http://ttpc.hdu.edu.vn/">Phòng Thanh tra - Pháp chế</a></li>
+                        <li><a href="http://tchcqt.hdu.edu.vn/">Phòng Tổ chức - Hành chính - Quản trị</a></li>
+                        <li><a href="http://cict.hdu.edu.vn/">Trung tâm CNTT&amp;TT</a></li>
+                        <li><a href="http://gdqpan.hdu.edu.vn/">Trung tâm Giáo dục Quốc phòng và An ninh</a></li>
+                        <li><a href="http://iec.hdu.edu.vn/">Trung tâm Giáo dục Quốc tế</a></li>
+                        <li><a href="http://ttgdtx.hdu.edu.vn/">Trung tâm Giáo dục Thường xuyên</a></li>
+                        <li><a href="http://issc.hdu.edu.vn/">Trung tâm Hỗ trợ khởi nghiệp và Đổi mới sáng tạo</a></li>
+                        <li><a href="http://ncudkhcn.hdu.edu.vn/">Trung tâm NCƯD và Chuyển giao KHCN</a></li>
+                        <li><a href="http://tttv.hdu.edu.vn/">Trung tâm Thông tin - Thư viện</a></li>
+                        <li><a href="http://tvkdxdmt.hdu.edu.vn/">Trung tâm Tư vấn, kiểm định XD và MT</a></li>
+                        <li><a href="http://qlnt.hdu.edu.vn/">Ban Quản lý KTX,YT&amp;ANTT</a></li>
+
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="http://hdu.edu.vn/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Tổ chức, đoàn thể
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="http://congdoan.hdu.edu.vn/">Công đoàn</a></li>
+                        <li><a href="http://doanthanhnien.hdu.edu.vn/">Đoàn Thanh niên - Hội sinh viên</a></li>
+                        <li><a href="http://cuusv.hdu.edu.vn/">Hội Cựu Sinh viên</a></li>
+                        <li><a href="http://hccb.hdu.edu.vn/">Hội Cựu Chiến binh</a></li>
+                        <li><a href="http://hdu.edu.vn/phien-ho-p-hoi-dong-khoa-hoc-va-dao-tao-truong-dai-hoc-hong-duc-nhiem-ky-2019-2024-mo-mo-i-ca-c-nga-nh-da-o-ta-o-tri-nh-do-tha-c-si-da-p-u-ng-nhu-ca-u.html">Hội đồng Khoa học và Đào tạo</a></li>
+                        <li><a href="http://hdu.edu.vn/hoi-dong-giao-su.html">Hội đồng Giáo sư cơ sở</a></li>
+                        <li><a href="http://hdu.edu.vn/khuyen-hoc-khuyen-tai.html">Hội Khuyến học</a></li>
+
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="http://hdu.edu.vn/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Điều hành
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="http://hdu.edu.vn/lich-tuan.html">Lịch tuần</a></li>
+                        <li><a href="http://hdu.edu.vn/bao-cao-chuong-trinh-cong-tac-thang.html">Báo cáo, chương trình công tác</a></li>
+                        <li><a href="http://hdu.edu.vn/bieu-mau.html">Biểu mẫu</a></li>
+                        <li><a href="http://hdu.edu.vn/thong-bao-noi-bo.html">Thông báo nội bộ</a></li>
+                        <li><a href="http://hdu.edu.vn/bieu-mau.html">ISO</a></li>
+                        <li><a href="https://dangnhap.thanhhoa.gov.vn/login">TD Office</a></li>
+
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="http://hdu.edu.vn/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Văn bản
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="http://hdu.edu.vn/quyet-dinh.html">Quyết định</a></li>
+                        <li><a href="http://hdu.edu.vn/ke-hoach.html">Kế hoạch</a></li>
+                        <li><a href="http://hdu.edu.vn/van-ban-thong-bao.html">Thông báo</a></li>
+                        <li><a href="http://hdu.edu.vn/bao-cao.html">Báo cáo</a></li>
+                        <li><a href="http://hdu.edu.vn/bien-ban.html">Biên bản</a></li>
+
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="http://hdu.edu.vn/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Tuyển sinh
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="http://qldtsdh.hdu.edu.vn/ttts-thong-bao-tuyen-sinh.html">Sau đại học</a></li>
+                        <li><a href="http://tuyensinh.hdu.edu.vn/">Chính quy</a></li>
+                        <li><a href="http://ttgdtx.hdu.edu.vn/thong-tin-tuyen-sinh.html">Liên thông, Văn bằng 2</a></li>
+
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container">
+
         <div class="row align-items-center">
             <div class="col-lg-4 col-12 d-flex aligns-items-center">
                 <a class="navbar-brand" href="http://hdu.edu.vn/">
@@ -19,3 +159,7 @@
         </div>
     </div>
 </header>
+
+<script src="~/Content/js/bootstrap.min.js">
+
+</script>

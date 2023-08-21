@@ -1,4 +1,20 @@
-﻿<footer class="footer-home">
+﻿
+<style>
+
+    .fixIcon {
+        width: 49.16px;
+        height: 49.16px;
+        text-align:center;
+    }
+
+    .social-bar a {
+        text-align: center;
+        font-size: 17px;
+    }
+</style>
+
+
+<footer class="footer-home">
     <div onclick="topFunction()" id="up-btn">
         <i id="icon" class="fa fa-angle-up" aria-hidden="true"></i>
     </div>
@@ -8,7 +24,6 @@
         window.onscroll = function () {
             scrollFunction();
         };
-
         function scrollFunction() {
             if (
                 document.body.scrollTop > 20 ||
@@ -26,14 +41,14 @@
     </script>
     <section class="menu-footer">
         <div class="social-bar">
-            <a class="zalo" href="https://zalo.me/3813136038332668260"><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></a>
-            <a href="https://www.facebook.com/DHHongDuc" class="facebook">
+            <a class="zalo fixIcon" href="https://zalo.me/3813136038332668260"><p>&nbsp;&nbsp;&nbsp;</p></a>
+            <a href="https://www.facebook.com/DHHongDuc" class="facebook fixIcon">
                 <i class="fa fa-facebook"></i>
             </a>
-            <a href="@("https://www.youtube.com/@hdu-tv")" class="youtube">
+            <a href="@("https://www.youtube.com/@hdu-tv")" class="youtube fixIcon">
                 <i class="fa fa-youtube"></i>
             </a>
-            <a href="https://goo.gl/maps/bPNoVfiZMdWY3TuU8" class="location"><i class="fa fa-map-marker"></i></a>
+            <a href="https://goo.gl/maps/bPNoVfiZMdWY3TuU8" class="location fixIcon"><i class="fa fa-map-marker"></i></a>
         </div>
         <div class="container">
             <ul class="navbar-nav">
