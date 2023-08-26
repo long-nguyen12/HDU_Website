@@ -1,4 +1,21 @@
 ﻿@model IEnumerable<HDU_Website.Models.CMS_Menu>
+
+<style>
+    .menu ul li a {
+        font-size: 16px;
+        font-weight: normal;
+        display: block;
+        color: #033481;
+        background: #fff;
+    }
+
+        .menu ul li a:hover,
+        .menu ul li:hover > a {
+            background: #033481;
+            color: #fff;
+        }
+</style>
+
 <div id="menu">
     <div class="container">
         <nav>
@@ -165,10 +182,11 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="menu-item text-uppercase" href="@Url.Action("GioiThieu", "Home", new { id = 13707 })">Ba c&#244;ng khai</a>
+                    <a class="menu-item text-uppercase" href="http://hdu.edu.vn/bao-cao-3-cong-khai.html">Ba c&#244;ng khai</a>
+                    @*<a class="menu-item text-uppercase" href="@Url.Action("GioiThieu", "Home", new { id = 13707 })">Ba c&#244;ng khai</a>*@
                 </li>
                 <li class="nav-item">
-                    <a class="menu-item text-uppercase" href="@Url.Action("GioiThieu", "Home", new { id = 13707 })">Kiểm định chất lượng</a>
+                    <a class="menu-item text-uppercase" href="http://hdu.edu.vn/kiem-dinh-chat-luong.html">Kiểm định chất lượng</a>
                 </li>
             </ul>
         </nav>
