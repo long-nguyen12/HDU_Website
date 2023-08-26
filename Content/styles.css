@@ -158,13 +158,13 @@ div#menu {
             font-size: 14px;
             font-weight: normal;
             display: block;
-            color: #fa9627;
+            color: #033481;
             background: #fff;
         }
 
             .menu ul li a:hover,
             .menu ul li:hover > a {
-                background: #fa9627;
+                background: #033481;
                 color: #fff;
             }
 
@@ -379,7 +379,7 @@ section.introduction {
 
     section.introduction .wrp-intro {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         grid-gap: 30px;
     }
 
@@ -409,7 +409,7 @@ section.introduction {
                 }
 
             section.introduction .wrp-intro .block-intro .text {
-                font-size: 16px;
+                font-size: 14px;
                 color: #033;
                 display: block;
                 position: absolute;
@@ -420,21 +420,22 @@ section.introduction {
                 max-width: 70px;
                 transition: all 0.3s;
             }
+@media (min-width: 1201px) {
+    section.introduction .wrp-intro {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+}
 
 @media (max-width: 1200px) {
     section.introduction .wrp-intro {
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     }
 }
 
 @media (max-width: 991px) {
     section.introduction .wrp-intro {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
     }
-
-        section.introduction .wrp-intro .block-intro:last-child {
-            grid-column: 1/3;
-        }
 
     section.introduction .title {
         grid-template-columns: 1fr 2fr;
@@ -442,9 +443,14 @@ section.introduction {
 }
 
 @media (max-width: 768px) {
-    section.introduction .title {
-        grid-template-columns: 1fr;
+    section.introduction .wrp-intro {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
+
+    section.introduction .title {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+
 }
 
 @media (max-width: 425px) {
@@ -453,8 +459,8 @@ section.introduction {
         grid-template-columns: unset;
         grid-template-rows: 1fr;
         grid-auto-flow: column;
-        grid-auto-columns: 70%;
-        overflow-x: auto;
+/*        grid-auto-columns: 70%;
+*/        overflow-x: auto;
         scroll-snap-type: x mandatory;
         scroll-snap-stop: always;
         padding: 10px;
@@ -464,7 +470,6 @@ section.introduction {
             grid-column: auto;
         }
 }
-
 .menu-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

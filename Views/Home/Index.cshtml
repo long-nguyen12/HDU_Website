@@ -1,5 +1,71 @@
 ﻿@model IEnumerable<HDU_Website.Models.SYS_CaiDatCauHinh>
 
+<style>
+
+
+    .block-intro {
+        width: 100px;
+        height: 100px
+    }
+
+    section.introduction .wrp-intro .block-intro .grid-item img {
+        margin-bottom: 0px;
+    }
+
+    section.introduction .wrp-intro .block-intro .text {
+        font-size: 14px;
+        color: #033;
+        display: block;
+        position: absolute;
+        /*        bottom: 25px;
+    */
+    }
+        section.introduction .wrp-intro .block-intro {
+            background-color: #fff;
+            padding: 15px 10px 30px;
+            box-shadow: 1px 2px 6px 1px #ccc;
+            transition: all 0.3s;
+            border: 1px solid #dcd9d9;
+            border-radius: 5px;
+            position: relative;
+        }
+
+            section.introduction .wrp-intro .block-intro:hover {
+                transform: scale(1.1);
+                z-index: 9;
+            }
+
+            section.introduction .wrp-intro .block-intro .grid-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                /*                width:50px;
+                    height: 50px;*/
+            }
+
+                section.introduction .wrp-intro .block-intro .grid-item img {
+                    margin-bottom: 20px;
+                }
+
+            section.introduction .wrp-intro .block-intro .text {
+                font-size: 12px;
+                color: #033;
+                display: block;
+                position: absolute;
+                bottom: 25px;
+            }
+
+            section.introduction .wrp-intro .block-intro img {
+                max-width: 30px;
+                transition: all 0.3s;
+            }
+
+/*    section.introduction .wrp-intro {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        grid-gap: 30px;
+    }*/
+</style>
 <main>
     <div class="slider">
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -82,6 +148,19 @@
                         </span>
                     </div>
                 </a>
+
+                <a target="_blank"
+                   class="block-intro"
+                   href="http://tuyensinh.hdu.edu.vn/"
+                   title="Tuyển sinh">
+                    <div class="grid-item">
+                        <img catcherror=""
+                             lazyload=""
+                             alt="Giảng viên"
+                             src="https://cet.vnu.edu.vn/gw/imageresize/unsafe/0x0/smart/cet.vnu.edu.vn/gw/file/v5/FileObject/public/9525b0d9-248b-4fab-83dd-ed8356c7ced8/download" /><span class="text">Tuyển sinh</span>
+                    </div>
+                </a>
+
                 <a class="block-intro"
                    target=”_blank”
                    title="Học liệu số"
