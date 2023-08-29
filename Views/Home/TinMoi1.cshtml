@@ -1,0 +1,49 @@
+﻿@model IEnumerable<HDU_Website.Controllers.NewsRouterViewModel>
+
+<div class="home-tin-moi" style="margin-bottom: 10px;">
+    <div class="title text-uppercase" style="padding: 0px; margin: 0px; color: #fff;">@ViewBag.NewsGroup</div>
+    @foreach (var item in Model)
+    {
+        string imageUrl = "http://media.hdu.edu.vn/" + item.News.HinhDaiDien;
+        <div class="row" style="padding: 5px;">
+            <div class="col-6">
+                <a class="x-img "
+                   title="@item.News.TieuDe"
+                   href="@Url.Action("ChiTietTinTuc", "Home", new {id = item.News.ID})">
+                    <img catcherror=""
+                         lazyload=""
+                         class="img-fluid"
+                         alt="@item.News.TieuDe"
+                         src="@imageUrl" />
+                </a>
+            </div>
+            <div class="information col-6">
+                <p class="realease-date" style="margin-bottom: 5px; font-size: 14px;">
+                    <i class="fa fa-calendar"></i><span>
+                        @item.News.NgayTao
+                    </span>
+                </p>
+                <a class="article-name"
+                   title="@item.News.TieuDe"
+                   href="@Url.Action("ChiTietTinTuc", "Home", new {id = item.News.ID})"
+                   style="text-decoration: none; color: #fff; text-align: justify; font-size: 14px;">
+                    @item.News.TieuDe
+                </a>
+                <p style="margin-top: 5px; font-size: 14px;"><i class="fa fa-bookmark-o" aria-hidden="true"></i><span>
+    @item.DanhMuc.TenDanhMuc
+            </span></p>
+            </div>
+        </div>
+    }
+    <div class="row">
+        <div class=" col-12 text-end d-inline" style="align-items: end; margin-top: 10px; font-style: italic;">
+            <a class="see-detail"
+               title="Xem thêm"
+               href="@Url.Action("DaoTao", "Home", new { idDanhMuc = ViewBag.IDGroup })"
+               style="text-decoration: none; color: #fff;">
+                Xem thêm >
+            </a>
+        </div>
+    </div>
+
+</div>

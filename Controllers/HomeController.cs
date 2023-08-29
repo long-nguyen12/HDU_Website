@@ -51,7 +51,7 @@ namespace HDU_Website.Controllers
         [ChildActionOnly]
         public ActionResult TinMoi(int id, string tieude)
         {
-            var tinMoiModel = dbConnection.CMS_TinTuc.Where(n => n.IsHienThi == true && n.ForWeb == 1 && n.IDDanhMuc == id && n.IsDelete != true).OrderByDescending(n => n.ID).Take(5).ToList();
+            var tinMoiModel = dbConnection.CMS_TinTuc.Where(n => n.IsHienThi == true && n.ForWeb == 1 && n.IDDanhMuc == id && n.IsDelete != true).OrderByDescending(n => n.ID).Take(8).ToList();
             var routerList = dbConnection.CMS_Router.ToList();
             var danhMucList = dbConnection.DM_TinTuc.ToList();
             var newsRouters = from n in tinMoiModel

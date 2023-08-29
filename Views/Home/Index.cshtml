@@ -190,12 +190,12 @@
         <div class="main-content">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-7 col-12">
+                    <div class="col-lg-8 col-12">
                         @{
                             Html.RenderAction("TinMoiHome", "Home", new { id = 1 });
                         }
                     </div>
-                    <div class="col-lg-5 col-12">
+                    <div class="col-lg-4 col-12">
                         @{
                             var newsArea = Model.FirstOrDefault(n => n.KeyCauHinh == "TH1026DF_NewsTop_Right");
                             Html.RenderAction("TinMoi", "Home", new { id = int.Parse(newsArea.ValueCauHinh), tieude = "Tin tuyển sinh" });
