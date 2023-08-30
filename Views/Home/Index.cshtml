@@ -20,47 +20,48 @@
         /*        bottom: 25px;
     */
     }
-        section.introduction .wrp-intro .block-intro {
-            background-color: #fff;
-            padding: 15px 10px 30px;
-            box-shadow: 1px 2px 6px 1px #ccc;
-            transition: all 0.3s;
-            border: 1px solid #dcd9d9;
-            border-radius: 5px;
-            position: relative;
+
+    section.introduction .wrp-intro .block-intro {
+        background-color: #fff;
+        padding: 15px 10px 30px;
+        box-shadow: 1px 2px 6px 1px #ccc;
+        transition: all 0.3s;
+        border: 1px solid #dcd9d9;
+        border-radius: 5px;
+        position: relative;
+    }
+
+        section.introduction .wrp-intro .block-intro:hover {
+            transform: scale(1.1);
+            z-index: 9;
         }
 
-            section.introduction .wrp-intro .block-intro:hover {
-                transform: scale(1.1);
-                z-index: 9;
-            }
-
-            section.introduction .wrp-intro .block-intro .grid-item {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                /*                width:50px;
+        section.introduction .wrp-intro .block-intro .grid-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /*                width:50px;
                     height: 50px;*/
+        }
+
+            section.introduction .wrp-intro .block-intro .grid-item img {
+                margin-bottom: 20px;
             }
 
-                section.introduction .wrp-intro .block-intro .grid-item img {
-                    margin-bottom: 20px;
-                }
+        section.introduction .wrp-intro .block-intro .text {
+            font-size: 12px;
+            color: #033;
+            display: block;
+            position: absolute;
+            bottom: 25px;
+        }
 
-            section.introduction .wrp-intro .block-intro .text {
-                font-size: 12px;
-                color: #033;
-                display: block;
-                position: absolute;
-                bottom: 25px;
-            }
+        section.introduction .wrp-intro .block-intro img {
+            max-width: 30px;
+            transition: all 0.3s;
+        }
 
-            section.introduction .wrp-intro .block-intro img {
-                max-width: 30px;
-                transition: all 0.3s;
-            }
-
-/*    section.introduction .wrp-intro {
+    /*    section.introduction .wrp-intro {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         grid-gap: 30px;
@@ -95,7 +96,6 @@
                                 </div>
                             }
                         }
-
                     }
 
                 }
@@ -197,7 +197,7 @@
                     </div>
                     <div class="col-lg-4 col-12">
                         @{
-                            var newsArea = Model.FirstOrDefault(n => n.KeyCauHinh == "TH1026DF_NewsTop_Right");
+                            var newsArea = Model.FirstOrDefault(n => n.KeyCauHinh == "TH1065DF_NewsTop_Right");
                             Html.RenderAction("TinMoi", "Home", new { id = int.Parse(newsArea.ValueCauHinh), tieude = "Tin tuyển sinh" });
                         }
                     </div>
@@ -254,16 +254,32 @@
             });
         </script>
     </section>
-    <section class="section-news" style="padding-top: 10px; padding-bottom: 20px;">
-        @{
-            Html.RenderAction("TinHome", "Home", new { id = 1, isNoiBat = true, total = 5, title = "Tin nổi bật" });
+    @{
+        var News = Model.FirstOrDefault(n => n.KeyCauHinh == "TH1065DF_NewsNoiBat_ArrID");
+        if (News != null)
+        {
+            var sections = News.ValueCauHinh.Split(',');
+            for (int i = sections.Length - 1; i >= 0; i--)
+            {
+                if (i % 2 != 0)
+                {
+                    <section class="section-news" style="padding-top: 10px; padding-bottom: 20px;">
+                        @{
+                            Html.RenderAction("TinHome", "Home", new { id = sections[i], total = 5 });
+                        }
+                    </section>
+                }
+                else
+                {
+                    <section class="section-news bg-light" style="padding-top: 10px; padding-bottom: 20px;">
+                        @{
+                            Html.RenderAction("TinHome", "Home", new { id = sections[i], total = 5 });
+                        }
+                    </section>
+                }
+            }
         }
-    </section>
-    <section class="section-news bg-light" style="padding-top: 10px; padding-bottom: 20px;">
-        @{
-            Html.RenderAction("TinHome", "Home", new { id = 18066, isNoiBat = false, total = 5, title = "Tin vắn" });
-        }
-    </section>
+    }
     <section class="section-video" style="padding-top: 10px; padding-bottom: 20px;">
         <div class="main-content">
             <div class="container">

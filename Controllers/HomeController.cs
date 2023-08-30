@@ -58,22 +58,24 @@ namespace HDU_Website.Controllers
                               join r in routerList on n.ID equals r.IDMap
                               join d in danhMucList on n.IDDanhMuc equals d.ID
                               select new NewsRouterViewModel { News = n, Router = r, DanhMuc = d };
-            ViewBag.NewsGroup = tieude;
+            var danhmuc = dbConnection.DM_TinTuc.Where(n => n.ID == id).FirstOrDefault();
+            ViewBag.NewsGroup = danhmuc.TenDanhMuc;
             ViewBag.IDGroup = id;
             return PartialView(newsRouters);
         }
 
         [ChildActionOnly]
-        public ActionResult TinHome(int id, int total, bool isNoiBat, string title)
+        public ActionResult TinHome(int id, int total)
         {
-            var tinMoiModel = dbConnection.CMS_TinTuc.Where(n => n.IsHienThi == true && n.ForWeb == 1 && n.IsNoiBat == isNoiBat && n.IDDanhMuc == id && n.IsDelete != true).OrderByDescending(n => n.ID).Take(total).ToList();
+            var tinMoiModel = dbConnection.CMS_TinTuc.Where(n => n.IsHienThi == true && n.ForWeb == 1 && n.IDDanhMuc == id && n.IsDelete != true).OrderByDescending(n => n.ID).Take(total).ToList();
             var routerList = dbConnection.CMS_Router.ToList();
             var danhMucList = dbConnection.DM_TinTuc.ToList();
             var newsRouters = from n in tinMoiModel
                               join r in routerList on n.ID equals r.IDMap
                               join d in danhMucList on n.IDDanhMuc equals d.ID
                               select new NewsRouterViewModel { News = n, Router = r, DanhMuc = d };
-            ViewBag.NewsGroup = title;
+            var danhmuc = dbConnection.DM_TinTuc.Where(n => n.ID == id).FirstOrDefault();
+            ViewBag.NewsGroup = danhmuc.TenDanhMuc;
             ViewBag.IDGroup = id;
             return PartialView(newsRouters);
         }
