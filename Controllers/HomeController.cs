@@ -81,14 +81,25 @@ namespace HDU_Website.Controllers
         }
 
         [ChildActionOnly]
-        public ActionResult Video (String sectionType) {
-            var videoModel = (dynamic) null;
+        public ActionResult Video(String sectionType)
+        {
+            var videoModel = (dynamic)null;
             if (sectionType.Equals("VideoList"))
             {
                 videoModel = dbConnection.CMS_Video.Where(n => n.IsHienThi == true && n.ForWeb == 1 && n.IsDelete != true).OrderByDescending(n => n.ID).Take(10).ToList();
             }
             return PartialView(videoModel);
         }
+
+        [ChildActionOnly]
+        public ActionResult ThuVienAnh(int idAlbum)
+        {
+            var videoModel = (dynamic)null;
+            videoModel = dbConnection.CMS_ThuVienAnh.Where(n => n.IDAlbum == idAlbum).ToList();
+            return PartialView(videoModel);
+        }
+
+
         public ActionResult DaoTao(int idDanhMuc, int? page)
         {
             if (page == null) page = 1;

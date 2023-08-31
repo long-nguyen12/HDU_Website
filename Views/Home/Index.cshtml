@@ -1,8 +1,6 @@
 ﻿@model IEnumerable<HDU_Website.Models.SYS_CaiDatCauHinh>
 
 <style>
-
-
     .block-intro {
         width: 100px;
         height: 100px
@@ -67,6 +65,11 @@
         grid-gap: 30px;
     }*/
 </style>
+
+<link href="~/Content/css/owl.carousel.min.css" rel="stylesheet" />
+<link href="~/Content/css/owl.theme.default.min.css" rel="stylesheet" />
+<script src="~/Content/js/owl.carousel.js"></script>
+<script src="~/Content/js/owl.carousel.min.js"></script>
 <main>
     <div class="slider">
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -285,11 +288,60 @@
             <div class="container">
                 <div class="title">HOẠT ĐỘNG</div>
                 <div class="row" style="margin-bottom: 20px">
-                    @{
-                        Html.RenderAction("Video", "Home", new { sectionType = "VideoList" });
-                    }
+                    <div class="col-6">
+                        @{
+                            var ThuVien = Model.FirstOrDefault(n => n.KeyCauHinh == "TH1065DF_Media_Gallery");
+                            Html.RenderAction("ThuVienAnh", "Home", new { idAlbum = ThuVien.ValueCauHinh });
+                        }
+                    </div>
+                    <div class="col-6">
+                        @{
+                            Html.RenderAction("Video", "Home", new { sectionType = "VideoList" });
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-ads bg-light" style="padding-top: 10px; padding-bottom: 20px;">
+        <div class="main-content">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="owl-carousel owl-theme">
+                            @{
+                                var ads = Model.FirstOrDefault(n => n.KeyCauHinh == "TH1065DF_LKFT_ID");
+                                dynamic slide_ads = serializer.Deserialize(ads.ValueCauHinh, typeof(object));
+                                if (slide_ads.Length > 0)
+                                {
+                                    for (int i = 0; i < slide_ads.Length; i++)
+                                    {
+                                        var item = slide_ads[i];
+                                        string imageUrl = "http://media.hdu.edu.vn/" + item["GroupHinh"];
+                                        <div class="item">
+                                            <a href="@item["GroupLienKet"]">
+                                                <img src="@imageUrl" class="d-block w-100" alt="...">
+                                            </a>
+                                        </div>
+                                    }
+                                }
+
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 </main>
+<script>
+    var owl = $('.owl-carousel');
+    owl.owlCarousel({
+        items: 5,
+        loop: true,
+        margin: 10,
+        autoplay: true,
+        autoplayTimeout: 2000,
+        autoplayHoverPause: true
+    });
+</script>

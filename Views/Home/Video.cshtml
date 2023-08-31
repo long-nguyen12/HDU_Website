@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<HDU_Website.Models.CMS_Video>
 
-<div class="col-sm-12 col-lg-6" style="margin-bottom: 10px;">
+<div class="col-sm-12 col-lg-12" style="margin-bottom: 10px;">
     @{
         var highlight = Model.FirstOrDefault();
     }
@@ -9,7 +9,7 @@
         </iframe>
     </div>
 </div>
-<div class="col-sm-12 col-lg-6" style="overflow-y: scroll; height:400px; margin-bottom: 10px;">
+<div class="col-sm-12 col-lg-12" style="overflow-y: scroll; height:400px; margin-bottom: 10px;">
     <ul class="list-group">
         @foreach (var item in Model)
         {
