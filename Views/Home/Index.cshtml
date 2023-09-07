@@ -72,45 +72,24 @@
 <script src="~/Content/js/owl.carousel.min.js"></script>
 <main>
     <div class="slider">
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                @{
-                    var configSlides = Model.FirstOrDefault(n => n.KeyCauHinh == "TH1065DF_Slide_ID");
-                    var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
-                    dynamic slides = serializer.Deserialize(configSlides.ValueCauHinh, typeof(object));
-                    if (slides.Length > 0)
+        <div class="owl-carousel-slide owl-carousel owl-theme">
+            @{
+                var configSlides = Model.FirstOrDefault(n => n.KeyCauHinh == "TH1065DF_Slide_ID");
+                var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+                dynamic slides = serializer.Deserialize(configSlides.ValueCauHinh, typeof(object));
+                if (slides.Length > 0)
+                {
+                    for (int i = 0; i < slides.Length; i++)
                     {
-                        for (int i = 0; i < slides.Length; i++)
-                        {
-                            var item = slides[i];
-                            string imageUrl = "http://media.hdu.edu.vn/" + item["GroupHinh"];
-                            if (i == 0)
-                            {
-
-                                <div class="carousel-item active">
-                                    <img src="@imageUrl" class="d-block w-100" alt="...">
-                                </div>
-                            }
-                            else
-                            {
-
-                                <div class="carousel-item">
-                                    <img src="@imageUrl" class="d-block w-100" alt="...">
-                                </div>
-                            }
-                        }
+                        var item = slides[i];
+                        string imageUrl = "http://media.hdu.edu.vn/" + item["GroupHinh"];
+                        <div class="item">
+                            <img src="@imageUrl" class="d-block w-100" alt="...">
+                        </div>
                     }
-
                 }
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+
+            }
         </div>
     </div>
     <section class="introduction">
@@ -308,7 +287,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12">
-                        <div class="owl-carousel owl-theme">
+                        <div class="owl-carousel-ads owl-carousel owl-theme">
                             @{
                                 var ads = Model.FirstOrDefault(n => n.KeyCauHinh == "TH1065DF_LKFT_ID");
                                 dynamic slide_ads = serializer.Deserialize(ads.ValueCauHinh, typeof(object));
@@ -335,13 +314,20 @@
     </section>
 </main>
 <script>
-    var owl = $('.owl-carousel');
-    owl.owlCarousel({
+    $('.owl-carousel-ads').owlCarousel({
         items: 5,
         loop: true,
         margin: 10,
         autoplay: true,
         autoplayTimeout: 2000,
+        autoplayHoverPause: true
+    });
+    $('.owl-carousel-slide').owlCarousel({
+        items: 1,
+        loop: true,
+        margin: 10,
+        autoplay: true,
+        autoplayTimeout: 3000,
         autoplayHoverPause: true
     });
 </script>
