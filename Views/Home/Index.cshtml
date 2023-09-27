@@ -95,76 +95,30 @@
     <section class="introduction">
         <div class="container">
             <div class="wrp-intro">
-                <a target="_blank"
-                   class="block-intro "
-                   href="http://giangvien.hdu.edu.vn/login.html"
-                   title="Giảng viên">
-                    <div class="grid-item">
-                        <img catcherror=""
-                             lazyload=""
-                             alt="Giảng viên"
-                             src="https://cet.vnu.edu.vn/gw/imageresize/unsafe/0x0/smart/cet.vnu.edu.vn/gw/file/v5/FileObject/public/9525b0d9-248b-4fab-83dd-ed8356c7ced8/download" /><span class="text">Giảng viên</span>
-                    </div>
-                </a>
-                <a class="block-intro"
-                   target=”_blank”
-                   title="Người học"
-                   href="http://sinhvien.hdu.edu.vn/sinh-vien-dang-nhap.html">
-                    <div class="grid-item">
-                        <img catcherror=""
-                             lazyload=""
-                             alt="Người học"
-                             src="https://cet.vnu.edu.vn/gw/imageresize/unsafe/0x0/smart/cet.vnu.edu.vn/gw/file/v5/FileObject/public/e5e21de6-5e7e-4a3e-b843-0ee685db00f4/download" /><span class="text">Người học</span>
-                    </div>
-                </a>
-                <a target="_blank"
-                   class="block-intro"
-                   href="http://cuusv.hdu.edu.vn/"
-                   title="Cựu người học">
-                    <div class="grid-item">
-                        <img catcherror=""
-                             lazyload=""
-                             alt="Cựu người học"
-                             src="https://cet.vnu.edu.vn/gw/imageresize/unsafe/0x0/smart/cet.vnu.edu.vn/gw/file/v5/FileObject/public/529b3755-d4b4-46e5-acc9-dad3e85bbe3d/download" /><span class="text">
-                            Cựu người học
-                        </span>
-                    </div>
-                </a>
+                @{
+                    var configIcons = Model.FirstOrDefault(n => n.KeyCauHinh == "TH1065DF_Slide_LKDM");
+                    dynamic icons = serializer.Deserialize(configIcons.ValueCauHinh, typeof(object));
+                    if (icons.Length > 0)
+                    {
+                        for (int i = 1; i < icons.Length-1; i++)
+                        {
+                            var item = icons[i];
+                            string imageUrl = "http://media.hdu.edu.vn/" + item["GroupHinh"];
+                            <a target="_blank"
+                                class="block-intro "
+                                href="@item["GroupLienKet"]"
+                                title="Giảng viên">
+                                <div class="grid-item">
+                                    <img catcherror=""
+                                            lazyload=""
+                                            alt="@item["GroupQCTitle"]"
+                                            src="@imageUrl" /><span class="text">@item["GroupQCTitle"]</span>
+                                </div>
+                            </a>
+                        }
+                    }
 
-                <a target="_blank"
-                   class="block-intro"
-                   href="http://tuyensinh.hdu.edu.vn/"
-                   title="Tuyển sinh">
-                    <div class="grid-item">
-                        <img catcherror=""
-                             lazyload=""
-                             alt="Giảng viên"
-                             src="https://cet.vnu.edu.vn/gw/imageresize/unsafe/0x0/smart/cet.vnu.edu.vn/gw/file/v5/FileObject/public/9525b0d9-248b-4fab-83dd-ed8356c7ced8/download" /><span class="text">Tuyển sinh</span>
-                    </div>
-                </a>
-
-                <a class="block-intro"
-                   target=”_blank”
-                   title="Học liệu số"
-                   href="http://thuvienso.hdu.edu.vn/">
-                    <div class="grid-item">
-                        <img catcherror=""
-                             lazyload=""
-                             alt="Học liệu số"
-                             src="https://cet.vnu.edu.vn/gw/imageresize/unsafe/0x0/smart/cet.vnu.edu.vn/gw/file/v5/FileObject/public/bfb5f33b-11a8-4767-9e6f-443801a3569a/download" /><span class="text">Học liệu số</span>
-                    </div>
-                </a>
-                <a class="block-intro"
-                   target=”_blank”
-                   title="Lịch tuần"
-                   href="/lich-tuan.html">
-                    <div class="grid-item">
-                        <img catcherror=""
-                             lazyload=""
-                             alt="Lịch tuần"
-                             src="https://cet.vnu.edu.vn/gw/imageresize/unsafe/0x0/smart/cet.vnu.edu.vn/gw/file/v5/FileObject/public/923c3e39-1571-40fa-b257-a310fa303cb2/download" /><span class="text">Lịch tuần</span>
-                    </div>
-                </a>
+                }
             </div>
         </div>
     </section>
@@ -245,7 +199,7 @@
             {
                 if (i % 2 != 0)
                 {
-                    <section class="section-news" style="padding-top: 10px; padding-bottom: 20px;">
+                    <section class="section-news bg-light" style="padding-top: 10px; padding-bottom: 20px;">
                         @{
                             Html.RenderAction("TinHome", "Home", new { id = sections[i], total = 5 });
                         }
@@ -253,7 +207,7 @@
                 }
                 else
                 {
-                    <section class="section-news bg-light" style="padding-top: 10px; padding-bottom: 20px;">
+                    <section class="section-news" style="padding-top: 10px; padding-bottom: 20px;">
                         @{
                             Html.RenderAction("TinHome", "Home", new { id = sections[i], total = 5 });
                         }
@@ -262,10 +216,10 @@
             }
         }
     }
-    <section class="section-video" style="padding-top: 10px; padding-bottom: 20px;">
+    <section class="section-video  bg-light" style="padding-top: 10px; padding-bottom: 20px;">
         <div class="main-content">
             <div class="container">
-                <div class="title">HOẠT ĐỘNG</div>
+                <div class="title-content" style="color: #033481;">HOẠT ĐỘNG</div>
                 <div class="row" style="margin-bottom: 20px">
                     <div class="col-6">
                         @{
@@ -282,7 +236,7 @@
             </div>
         </div>
     </section>
-    <section class="section-ads bg-light" style="padding-top: 10px; padding-bottom: 20px;">
+    <section class="section-ads" style="padding-top: 10px; padding-bottom: 20px;">
         <div class="main-content">
             <div class="container">
                 <div class="row justify-content-center">

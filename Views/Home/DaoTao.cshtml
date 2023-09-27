@@ -5,56 +5,70 @@
     ViewBag.Title = "DaoTao";
     Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
 }
-<div class="container">
-    <div id="breadcrumb-bar" class="col-12" >
-        <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#" style="text-decoration: none; color: #001D85;">Trang chủ</a></li>
-                <li class="breadcrumb-item active" aria-current="page">@Model.NewsRouters[0].DanhMuc.TenDanhMuc</li>
-            </ol>
-        </nav>
-    </div>
-    <div class="row">
-        <div class="col-lg-8 col-12">
-            <div class="danhmuc-tintuc" style="margin-bottom: 10px;">
-                <div class="title text-uppercase" style="padding: 0px; margin: 0px; color: #fff;">Tin mới</div>
-                @foreach (var item in Model.NewsRouters)
-                {
-                    string imageUrl = "http://media.hdu.edu.vn/" + item.News.HinhDaiDien;
-                    string itemUrl = "http://hdu.edu.vn/" + item.Router.Alias + ".html";
-                    <div class="danhmuc-item">
-                        <div class="row" style="padding: 5px;">
-                            <div class="col-4">
-                                <a class="x-img"
-                                   title="@item.News.TieuDe"
-                                   href="@Url.Action("ChiTietTinTuc", new {id = item.News.ID})">
-                                    <img catcherror=""
-                                         lazyload=""
-                                         class="img-fluid"
-                                         alt="@item.News.TieuDe"
-                                         src="@imageUrl" />
-                                </a>
-                            </div>
-                            <div class="information col-8">
-                                <p class="realease-date" style="margin-bottom: 5px;">
-                                    <i class="fa fa-calendar"></i><span>
-                                        @item.News.NgayTao
-                                    </span>
-                                </p>
-                                <a title="@item.News.TieuDe"
-                                   href="@Url.Action("ChiTietTinTuc", new {id = item.News.ID})"
-                                   style="text-decoration: none; color: #001D85; text-align: justify; font-weight: bold; ">
-                                    @item.News.TieuDe
-                                </a>
-                                <p style="font-size: 14px; text-align: justify;">
-                                    @item.News.MoTa
-                                </p>
+@if (Model != null && Model.NewsRouters.Count > 0)
+{
+    <div class="container">
+        <div id="breadcrumb-bar" class="col-12">
+            <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#" style="text-decoration: none; color: #001D85;">Trang chủ</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">@Model.NewsRouters[0].DanhMuc.TenDanhMuc</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-12">
+                <div class="danhmuc-tintuc" style="margin-bottom: 10px;">
+                    @foreach (var item in Model.NewsRouters)
+                    {
+                        string imageUrl = "http://media.hdu.edu.vn/" + item.News.HinhDaiDien;
+                        <div class="danhmuc-item">
+                            <div class="row" style="padding: 5px;">
+                                <div class="col-4">
+                                    <a class="x-img"
+                                       title="@item.News.TieuDe"
+                                       href="@Url.Action("ChiTietTinTuc", new {id = item.News.ID})">
+                                        <img catcherror=""
+                                             lazyload=""
+                                             class="img-fluid"
+                                             alt="@item.News.TieuDe"
+                                             src="@imageUrl" />
+                                    </a>
+                                </div>
+                                <div class="information col-8">
+                                    <p class="realease-date" style="margin-bottom: 5px;">
+                                        <i class="fa fa-calendar"></i><span>
+                                            @item.News.NgayTao.Value.ToString("dd/MM/yyyy")
+                                        </span>
+                                    </p>
+                                    <a title="@item.News.TieuDe"
+                                       href="@Url.Action("ChiTietTinTuc", new {id = item.News.ID})"
+                                       style="text-decoration: none; color: #001D85; text-align: justify; font-weight: bold; ">
+                                        @item.News.TieuDe
+                                    </a>
+                                    <p style="font-size: 14px; text-align: justify;">
+                                        @item.News.MoTa
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+
+                    }
+                </div>
+                @Html.PagedListPager(Model.NewsRouters, page => Url.Action("DaoTao", "Home", new { idDanhMuc = Model.IdDanhMuc, page }))
+            </div>
+            <div class="col-lg-4 col-12">
+                @{
+                    Html.RenderAction("TinMoi", "Home", new { id = 3, tieude = "Tin tuyển sinh" });
                 }
             </div>
-            @Html.PagedListPager(Model.NewsRouters, page => Url.Action("DaoTao", "Home", new { idDanhMuc = Model.IdDanhMuc, page }))
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-lg-8 col-12">
         </div>
         <div class="col-lg-4 col-12">
             @{
@@ -62,4 +76,4 @@
             }
         </div>
     </div>
-</div>
+}
