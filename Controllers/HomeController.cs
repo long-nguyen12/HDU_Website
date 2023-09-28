@@ -19,6 +19,12 @@ namespace HDU_Website.Controllers
         public DM_TinTuc DanhMuc { get; set; }
     }
 
+    public class GalleryViewModel
+    {
+        public CMS_ThuVienAnh Gallery { get; set; }
+        public FILE_QuanLyFile FileAnh { get; set; }
+    }
+
     public class NewsListViewModel
     {
         public int IdDanhMuc { get; set; }
@@ -94,9 +100,12 @@ namespace HDU_Website.Controllers
         [ChildActionOnly]
         public ActionResult ThuVienAnh(int idAlbum)
         {
-            var videoModel = (dynamic)null;
-            videoModel = dbConnection.CMS_ThuVienAnh.Where(n => n.IDAlbum == idAlbum).ToList();
-            return PartialView(videoModel);
+            var photoModel = dbConnection.CMS_ThuVienAnh.Where(n => n.IDAlbum == idAlbum).ToList();
+            var fileModel = dbConnection.FILE_QuanLyFile.Where(n => n.IsDelete != true).ToList();
+            var photoList = from n in photoModel
+                            join r in fileModel on n.IDFile equals r.ID
+                            select new GalleryViewModel { Gallery = n, FileAnh = r };
+            return PartialView(photoList);
         }
 
 
