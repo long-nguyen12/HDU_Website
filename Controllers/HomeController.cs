@@ -70,6 +70,25 @@ namespace HDU_Website.Controllers
             return PartialView(newsRouters);
         }
 
+        // TinMoiCTTinTuc - Menu Right Tin tuc trong chi tiet tin tuc
+
+        [ChildActionOnly]
+        public ActionResult TinMoiCTTinTuc(int id, string tieude)
+        {
+            var tinMoiModel = dbConnection.CMS_TinTuc.Where(n => n.IsHienThi == true && n.ForWeb == 1 && n.IDDanhMuc == id && n.IsDelete != true).OrderByDescending(n => n.ID).Take(10).ToList();
+            var routerList = dbConnection.CMS_Router.ToList();
+            var danhMucList = dbConnection.DM_TinTuc.ToList();
+            var newsRouters = from n in tinMoiModel
+                              join r in routerList on n.ID equals r.IDMap
+                              join d in danhMucList on n.IDDanhMuc equals d.ID
+                              select new NewsRouterViewModel { News = n, Router = r, DanhMuc = d };
+            var danhmuc = dbConnection.DM_TinTuc.Where(n => n.ID == id).FirstOrDefault();
+            ViewBag.NewsGroup = danhmuc.TenDanhMuc;
+            ViewBag.IDGroup = id;
+            return PartialView(newsRouters);
+        }
+
+
         [ChildActionOnly]
         public ActionResult TinHome(int id, int total)
         {
@@ -165,6 +184,9 @@ namespace HDU_Website.Controllers
             var r = dbConnection.CMS_Router.FirstOrDefault(t => t.IDMap == chiTiet.ID);
             var d = dbConnection.DM_TinTuc.FirstOrDefault(t => t.ID == chiTiet.IDDanhMuc);
             var newsRouters = new NewsRouterViewModel { News = chiTiet, Router = r, DanhMuc = d };
+            var configs = dbConnection.SYS_CaiDatCauHinh.Where(n => n.ForWeb == 1);
+            var newsArea = configs.FirstOrDefault(n => n.KeyCauHinh == "TH1065DF_NewsTop_Right");
+            ViewBag.valueCauHinh = newsArea.ValueCauHinh;
             return View(newsRouters);
         }
 

@@ -842,8 +842,7 @@
     <Content Include="Views\Home\GioiThieu.cshtml" />
     <Content Include="Views\Home\TinHome.cshtml" />
     <Content Include="Views\Home\TinMoiHome.cshtml" />
-    <Content Include="Views\Home\TinMoiHome1.cshtml" />
-    <Content Include="Views\Home\TinMoi1.cshtml" />
+    <Content Include="Views\Home\TinMoiCTTinTuc.cshtml" />
     <Content Include="Views\Home\ThuVienAnh.cshtml" />
     <Content Include="Views\Home\TimKiem.cshtml" />
   </ItemGroup>

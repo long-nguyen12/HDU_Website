@@ -1,5 +1,9 @@
-@model IEnumerable<HDU_Website.Controllers.NewsRouterViewModel>
+﻿@model IEnumerable<HDU_Website.Controllers.NewsRouterViewModel>
 <style>
+    .timeline {
+        padding: 0px 5px 0px 5px;
+        margin-bottom: 8px;
+    }
     .timeline .event-timeline {
         border-bottom: 1px solid rgba(160, 160, 160, 0.2);
         position: relative;
@@ -14,6 +18,7 @@
         /*background: linear-gradient(90deg, transparent, white);*/
         background: linear-gradient(45deg, transparent 0%, white);
     }
+
 
     .timeline-link a {
         color: #000;
@@ -36,7 +41,7 @@
                 <ul class="timeline">
                     <li class="event-timeline" style=" border-bottom: 1px solid rgba(160, 160, 160, 0.2);">
                         <div class="timeline-link">
-                            <a style="text-decoration: none" href="@Url.Action("ChiTietTinTuc", "Home", new {id = item.News.ID})" title="@item.News.TieuDe"> @item.News.TieuDe</a>
+                            <a style="text-decoration: none;" href="@Url.Action("ChiTietTinTuc", "Home", new {id = item.News.ID})" title="@item.News.TieuDe"> @item.News.TieuDe</a>
                         </div>
                     </li>
                 </ul>
@@ -49,6 +54,7 @@
                title="Xem thêm"
                href="@Url.Action("DaoTao", "Home", new { idDanhMuc = ViewBag.IDGroup })"
                style="text-decoration: none; color: #fa9627;">
+                Xem thêm >
             </a>
         </div>
     </div>
