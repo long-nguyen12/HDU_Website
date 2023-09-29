@@ -32,6 +32,9 @@
             </div>
             <div id="noidung">
             </div>
+            <div id="fileNoiDung">
+                <embed id="pdf_view" class="d-block w-100" style="display:none" type="application/pdf" />
+            </div>
         </div>
         <div class="col-lg-4 col-12">
             @{
@@ -52,18 +55,27 @@
   img.src = url;
   return deferred.promise();
 }
-
 $(document).ready(function (e) {
-  var htmlString = `@Model.News.NoiDung`;
-  htmlString = he.decode(htmlString);
+    var fileUrl = `@ViewBag.fileUrl`;
+    if (fileUrl.trim()) {
+        console.log(fileUrl)
+        var pdf_view = document.getElementById("pdf_view");
+        let url = 'http://media.hdu.edu.vn/' + fileUrl;
+        pdf_view.style.display = "inline";
+        pdf_view.style.height = "700px";
+        $("#pdf_view").attr("src", url);
+        $("#pdf_view").show();
+    }
+    var htmlString = `@Model.News.NoiDung`;
+    htmlString = he.decode(htmlString);
 
-  var tempElement = $('<div/>').html(htmlString);
-  var images = tempElement.find('img');
-  var divWidth = $('#noidung').width();
+    var tempElement = $('<div/>').html(htmlString);
+    var images = tempElement.find('img');
+    var divWidth = $('#noidung').width();
 
-  var promises = [];
+    var promises = [];
 
-  images.each(function () {
+    images.each(function () {
     var $img = $(this);
     var imageSrc = $img.attr('src');
     var promise = getImageSize(imageSrc);
@@ -71,16 +83,17 @@ $(document).ready(function (e) {
     promises.push(promise);
 
     promise.done(function (imgSize) {
-      if (imgSize.width > divWidth) {
-        $img.css('width', '100%');
-        $img.css('height', 'auto');
-      }
+        if (imgSize.width > divWidth) {
+            $img.css('width', '100%');
+            $img.css('height', 'auto');
+            }
+        });
     });
-  });
 
-  $.when.apply($, promises).done(function () {
-    var modifiedHtmlString = tempElement.html();
-    $('#noidung').html(modifiedHtmlString);
-  });
+    $.when.apply($, promises).done(function () {
+        var modifiedHtmlString = tempElement.html();
+        $('#noidung').html(modifiedHtmlString);
+    });
+
 });
 </script>

@@ -183,6 +183,13 @@ namespace HDU_Website.Controllers
             var chiTiet = dbConnection.CMS_TinTuc.FirstOrDefault(t => t.ID == id);
             var r = dbConnection.CMS_Router.FirstOrDefault(t => t.IDMap == chiTiet.ID);
             var d = dbConnection.DM_TinTuc.FirstOrDefault(t => t.ID == chiTiet.IDDanhMuc);
+            var file = dbConnection.CMS_TinTucFileAttach.FirstOrDefault(t => t.IDTinTuc == id);
+            if(file != null)
+            {
+                var attachFile = dbConnection.FILE_QuanLyFile.FirstOrDefault(t => t.ID == file.IDFile);
+                var fileUrl = attachFile.TenFileMoi;
+                ViewBag.fileUrl = fileUrl;
+            }
             var newsRouters = new NewsRouterViewModel { News = chiTiet, Router = r, DanhMuc = d };
             var configs = dbConnection.SYS_CaiDatCauHinh.Where(n => n.ForWeb == 1);
             var newsArea = configs.FirstOrDefault(n => n.KeyCauHinh == "TH1065DF_NewsTop_Right");
