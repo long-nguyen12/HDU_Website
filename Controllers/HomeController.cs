@@ -70,6 +70,20 @@ namespace HDU_Website.Controllers
             return PartialView(newsRouters);
         }
 
+        [ChildActionOnly]
+        public ActionResult TinNoiBat(int id, string tieude)
+        {
+            var tinMoiModel = dbConnection.CMS_TinTuc.Where(n => n.IsHienThi == true && n.IsNoiBat == true && n.ForWeb == 1 && n.IDDanhMuc == id && n.IsDelete != true).OrderByDescending(n => n.ID).Take(5).ToList();
+            var routerList = dbConnection.CMS_Router.ToList();
+            var danhMucList = dbConnection.DM_TinTuc.ToList();
+            var newsRouters = from n in tinMoiModel
+                              join r in routerList on n.ID equals r.IDMap
+                              join d in danhMucList on n.IDDanhMuc equals d.ID
+                              select new NewsRouterViewModel { News = n, Router = r, DanhMuc = d };
+            ViewBag.IDGroup = id;
+            return PartialView(newsRouters);
+        }
+
         // TinMoiCTTinTuc - Menu Right Tin tuc trong chi tiet tin tuc
 
         [ChildActionOnly]
@@ -84,6 +98,19 @@ namespace HDU_Website.Controllers
                               select new NewsRouterViewModel { News = n, Router = r, DanhMuc = d };
             var danhmuc = dbConnection.DM_TinTuc.Where(n => n.ID == id).FirstOrDefault();
             ViewBag.NewsGroup = danhmuc.TenDanhMuc;
+            ViewBag.IDGroup = id;
+            return PartialView(newsRouters);
+        }
+        [ChildActionOnly]
+        public ActionResult TinNoiBatCTTinTuc(int id, string tieude)
+        {
+            var tinMoiModel = dbConnection.CMS_TinTuc.Where(n => n.IsHienThi == true && n.IsNoiBat == true && n.ForWeb == 1 && n.IDDanhMuc == id && n.IsDelete != true).OrderByDescending(n => n.ID).Take(10).ToList();
+            var routerList = dbConnection.CMS_Router.ToList();
+            var danhMucList = dbConnection.DM_TinTuc.ToList();
+            var newsRouters = from n in tinMoiModel
+                              join r in routerList on n.ID equals r.IDMap
+                              join d in danhMucList on n.IDDanhMuc equals d.ID
+                              select new NewsRouterViewModel { News = n, Router = r, DanhMuc = d };
             ViewBag.IDGroup = id;
             return PartialView(newsRouters);
         }

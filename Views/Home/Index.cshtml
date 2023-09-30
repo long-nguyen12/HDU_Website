@@ -135,7 +135,9 @@
                         @{
                             var newsArea = Model.FirstOrDefault(n => n.KeyCauHinh == "TH1065DF_NewsTop_Right");
                             Html.RenderAction("TinMoi", "Home", new { id = int.Parse(newsArea.ValueCauHinh), tieude = "Tin tuyển sinh" });
-                        }
+                            Html.RenderAction("TinNoiBat", "Home", new { id = 1, tieude = "TIN NỔI BẬT" });
+
+                         }
                     </div>
                 </div>
             </div>

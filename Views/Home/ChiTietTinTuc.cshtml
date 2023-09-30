@@ -39,7 +39,8 @@
         <div class="col-lg-4 col-12">
             @{
                 Html.RenderAction("TinMoiCTTinTuc", "Home", new { id = int.Parse(@ViewBag.valueCauHinh), tieude = "Tin tuyển sinh" });
-            }
+                Html.RenderAction("TinNoiBatCTTinTuc", "Home", new { id = 1, tieude = "TIN NỔI BẬT" });
+                }
         </div>
     </div>
 </div>
