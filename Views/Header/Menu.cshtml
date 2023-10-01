@@ -84,13 +84,13 @@
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a href="@Url.Action("DaoTao", "Home" , new { idDanhMuc=1 })">Tin tức - sự kiện</a>
+                            <a href="@Url.Action("DanhMuc", "Home" , new { idDanhMuc=1 })">Tin tức - sự kiện</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("DaoTao", "Home" , new { idDanhMuc=13714 })">Tin trong nước, quốc tế</a>
+                            <a href="@Url.Action("DanhMuc", "Home" , new { idDanhMuc=13714 })">Tin trong nước, quốc tế</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("DaoTao", "Home" , new { idDanhMuc=2 })">Th&#244;ng b&#225;o</a>
+                            <a href="@Url.Action("DanhMuc", "Home" , new { idDanhMuc=2 })">Th&#244;ng b&#225;o</a>
                         </li>
                     </ul>
                 </li>
@@ -105,7 +105,7 @@
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a href="@Url.Action("DaoTao", "Home" , new {idDanhMuc=4})">Th&#244;ng tin đ&#224;o tạo</a>
+                            <a href="@Url.Action("DanhMuc", "Home" , new {idDanhMuc=4})">Th&#244;ng tin đ&#224;o tạo</a>
                         </li>
                         <li>
                             <a href="http://qldtsdh.hdu.edu.vn/ttts-thong-bao-tuyen-sinh.html">Sau đại học</a>
@@ -131,7 +131,7 @@
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a href="@Url.Action("DaoTao", "Home" , new { idDanhMuc=5 })">Th&#244;ng tin Khoa học</a>
+                            <a href="@Url.Action("DanhMuc", "Home" , new { idDanhMuc=5 })">Th&#244;ng tin Khoa học</a>
                         </li>
                         <li>
                             <a href="http://qlkhcn.hdu.edu.vn/tap-chi-khoa-hoc.html">Tạp ch&#237; khoa học</a>
@@ -146,7 +146,7 @@
                             <a href="http://qlkhcn.hdu.edu.vn/bieu-mau-kh.html">Văn bản quản l&#253;</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("DaoTao", "Home" , new { idDanhMuc=6 })">Tin hợp t&#225;c</a>
+                            <a href="@Url.Action("DanhMuc", "Home" , new { idDanhMuc=6 })">Tin hợp t&#225;c</a>
                         </li>
                         <li>
                             <a href="http://qlkhcn.hdu.edu.vn/gioi-thieu-chung-plkhcn.html">Danh s&#225;ch hợp t&#225;c</a>
@@ -169,7 +169,7 @@
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a href="@Url.Action("DaoTao", "Home" , new { idDanhMuc=7 })">Tin hoạt động</a>
+                            <a href="@Url.Action("DanhMuc", "Home" , new { idDanhMuc=7 })">Tin hoạt động</a>
                         </li>
                         <li>
                             <a href="http://nckhxhnv.hdu.edu.vn/">Cựu sinh vi&#234;n</a>
@@ -186,11 +186,11 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="menu-item text-uppercase" href="http://hdu.edu.vn/bao-cao-3-cong-khai.html">Ba c&#244;ng khai</a>
+                    <a class="menu-item text-uppercase" href="@Url.Action("DanhMuc", "Home" , new {idDanhMuc=13719})">Ba c&#244;ng khai</a>
                     @*<a class="menu-item text-uppercase" href="@Url.Action("GioiThieu", "Home" , new { id=13707 })">Ba c&#244;ng khai</a>*@
                 </li>
                 <li class="nav-item">
-                    <a class="menu-item text-uppercase" href="http://hdu.edu.vn/kiem-dinh-chat-luong.html">Kiểm định chất lượng</a>
+                    <a class="menu-item text-uppercase" href="@Url.Action("DanhMuc", "Home" , new {idDanhMuc=13707})">Kiểm định chất lượng</a>
                 </li>
             </ul>
         </nav>
