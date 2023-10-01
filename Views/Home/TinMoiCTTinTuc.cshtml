@@ -33,7 +33,7 @@
 
 <div style="margin-bottom: 10px;">
     <h2 class="title-content"> <a href="http://hdu.edu.vn/tieu-diem-thang.html">@ViewBag.NewsGroup</a></h2>
-    @foreach (var item in Model)
+    @foreach (var item in Model.Take(10))
     {
         string imageUrl = "http://media.hdu.edu.vn/" + item.News.HinhDaiDien;
         <div class="row">
@@ -48,7 +48,7 @@
             </div>
         </div>
     }
-    <div class="row">
+    @*<div class="row">
         <div class="col-12 text-end d-inline" style="align-items: end; margin-top: 10px; font-style: italic;">
             <a class="see-detail"
                title="Xem thêm"
@@ -57,6 +57,6 @@
                 Xem thêm >
             </a>
         </div>
-    </div>
+    </div>*@
 
 </div>

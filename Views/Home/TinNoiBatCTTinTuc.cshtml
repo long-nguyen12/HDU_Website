@@ -1,0 +1,59 @@
+﻿@model IEnumerable<HDU_Website.Controllers.NewsRouterViewModel>
+<style>
+    .timeline .event-timeline {
+        border-bottom: 1px solid rgba(160, 160, 160, 0.2);
+        position: relative;
+    }
+
+    .timeline-link:before {
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        margin-top: 22px;
+        /*background: linear-gradient(90deg, transparent, white);*/
+        background: linear-gradient(45deg, transparent 0%, white);
+    }
+    .title-content {
+        color: #004998;
+    }
+
+    .timeline-link a {
+        color: #000;
+        text-decoration: none;
+    }
+
+        .timeline-link a:hover {
+            text-decoration: none;
+            color: #007bff;
+        }
+</style>
+
+<div style="margin-bottom: 0px;">
+    <h2 class="title-content"> TIN NỔI BẬT</h2>
+    @foreach (var item in Model.Take(10))
+    {
+        string imageUrl = "http://media.hdu.edu.vn/" + item.News.HinhDaiDien;
+        <div class="row">
+            <div class="col-12">
+                <ul class="timeline">
+                    <li class="event-timeline" style=" border-bottom: 1px solid rgba(160, 160, 160, 0.2);">
+                        <div class="timeline-link">
+                            <a style="text-decoration: none" href="@Url.Action("ChiTietTinTuc", "Home", new {id = item.News.ID})" title="@item.News.TieuDe"> @item.News.TieuDe</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    }
+    @*<div class="row">
+        <div class="col-12 text-end d-inline" style="align-items: end; margin-top: 10px; font-style: italic;">
+            <a class="see-detail"
+               title="Xem thêm"
+               href="@Url.Action("DaoTao", "Home", new { idDanhMuc = ViewBag.IDGroup })"
+               style="text-decoration: none; color: #fa9627;">
+            </a>
+        </div>
+    </div>*@
+
+</div>
