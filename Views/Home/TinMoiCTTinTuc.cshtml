@@ -41,7 +41,7 @@
                 <ul class="timeline">
                     <li class="event-timeline" style=" border-bottom: 1px solid rgba(160, 160, 160, 0.2);">
                         <div class="timeline-link">
-                            <a style="text-decoration: none;" href="@Url.Action("ChiTietTinTuc", "Home", new {id = item.News.ID})" title="@item.News.TieuDe"> @item.News.TieuDe</a>
+                            <a style="text-decoration: none;" href="@Url.Action("GetTinTucByAlias", new {alias = item.Router.Alias})" title="@item.News.TieuDe"> @item.News.TieuDe</a>
                         </div>
                     </li>
                 </ul>

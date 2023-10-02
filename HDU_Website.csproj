@@ -848,6 +848,7 @@
     <Content Include="Views\Home\TimKiem.cshtml" />
     <Content Include="Views\Home\TinNoiBatCTTinTuc.cshtml" />
     <Content Include="Views\Home\DaoTao.cshtml" />
+    <Content Include="Views\Home\GetTinTucByAlias.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

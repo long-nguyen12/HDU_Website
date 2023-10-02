@@ -3,6 +3,7 @@ using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -235,6 +236,26 @@ namespace HDU_Website.Controllers
             };
             ViewBag.query = query;
             return View(viewModel);
+        }
+
+        public ActionResult GetTinTucByAlias(string alias)
+        {
+            alias = alias.Replace(".html", "");
+            var r = dbConnection.CMS_Router.FirstOrDefault(t => t.Alias.Contains(alias));
+            var chiTiet = dbConnection.CMS_TinTuc.FirstOrDefault(t => t.ID == r.IDMap);
+            var d = dbConnection.DM_TinTuc.FirstOrDefault(t => t.ID == chiTiet.IDDanhMuc);
+            var file = dbConnection.CMS_TinTucFileAttach.FirstOrDefault(t => t.IDTinTuc == chiTiet.ID);
+            if (file != null)
+            {
+                var attachFile = dbConnection.FILE_QuanLyFile.FirstOrDefault(t => t.ID == file.IDFile);
+                var fileUrl = attachFile.TenFileMoi;
+                ViewBag.fileUrl = fileUrl;
+            }
+            var newsRouters = new NewsRouterViewModel { News = chiTiet, Router = r, DanhMuc = d };
+            var configs = dbConnection.SYS_CaiDatCauHinh.Where(n => n.ForWeb == 1);
+            var newsArea = configs.FirstOrDefault(n => n.KeyCauHinh == "TH1065DF_NewsTop_Right");
+            ViewBag.valueCauHinh = newsArea.ValueCauHinh;
+            return View(newsRouters);
         }
 
         public ActionResult ChiTietTinTuc(int id)

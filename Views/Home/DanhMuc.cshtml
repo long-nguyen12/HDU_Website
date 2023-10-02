@@ -30,7 +30,7 @@
                                     <div class="col-4">
                                         <a class="x-img"
                                            title="@item.News.TieuDe"
-                                           href="@Url.Action("ChiTietTinTuc", new {id = item.News.ID})">
+                                           href="@Url.Action("GetTinTucByAlias", new {alias = item.Router.Alias})">
                                             <img catcherror=""
                                                  lazyload=""
                                                  class="img-fluid"
@@ -45,7 +45,7 @@
                                             </span>
                                         </p>
                                         <a title="@item.News.TieuDe"
-                                           href="@Url.Action("ChiTietTinTuc", new {id = item.News.ID})"
+                                           href="@Url.Action("GetTinTucByAlias", new {alias = item.Router.Alias})"
                                            style="text-decoration: none; color: #001D85; text-align: justify; font-weight: bold; ">
                                             @item.News.TieuDe
                                         </a>
