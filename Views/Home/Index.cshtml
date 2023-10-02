@@ -153,7 +153,7 @@
                         {
                             var item = icons[i];
                             string imageUrl = "http://media.hdu.edu.vn/" + item["GroupHinh"];
-                            <div class="col-md-3 col-12 statistic-item text-center counter" data-target="@item["GroupQCTitle"]" data-character="">
+                            <div class="col-md-3 col-12 statistic-item text-center counter" data-target="@item["GroupQCTitle"]" data-character="@item["GroupQCTitle"]">
                                 <img catcherror=""
                                      lazyload=""
                                      alt="@item["GroupQCTitle"]"
@@ -196,6 +196,7 @@
                     var $counter = $(this);
                     var target = parseInt($counter.attr('data-target'));
                     var character = $counter.attr('data-character');
+                    var withNoDigits = character.replace(/[0-9]/g, '');
                     var duration = 2000; // Animation duration in milliseconds
                     var step = Math.ceil(target / (duration / 10));
                     var count = 0;
@@ -206,7 +207,7 @@
                             count = target;
                             clearInterval(interval);
                         }
-                        $counter.find('.counter-value').text(count + character);
+                        $counter.find('.counter-value').text(count + withNoDigits);
                     }, 10);
                 });
             });

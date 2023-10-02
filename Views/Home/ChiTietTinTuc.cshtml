@@ -11,8 +11,8 @@
     <div id="breadcrumb-bar" class="col-12">
         <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#" style="text-decoration: none; color: #001D85;">Trang chủ</a></li>
-                <li class="breadcrumb-item"><a href="#" style="text-decoration: none; color: #001D85;">@Model.DanhMuc.TenDanhMuc</a></li>
+                <li class="breadcrumb-item"><a href="/" style="text-decoration: none; color: #001D85;">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="@Url.Action("DanhMuc", "Home" , new { idDanhMuc=Model.DanhMuc.ID })" style="text-decoration: none; color: #001D85;">@Model.DanhMuc.TenDanhMuc</a></li>
                 <li class="breadcrumb-item active" aria-current="page">@Model.News.TieuDe</li>
             </ol>
         </nav>
@@ -32,10 +32,9 @@
             </div>
             <div id="noidung">
             </div>
-            <div id="fileNoiDung">
-                <object data="mypdf.pdf" type="application/pdf" frameborder="0" width="100%" height="600px" style="padding: 20px;">
-                    <embed id="pdf_view" class="d-block w-100" style="display:none" type="application/pdf" />
-                </object>
+            <div id="fileNoiDung" style="display:none">
+                <a id="download_file">Tải về</a><a id="download_url" style="margin-left: 5px; text-decoration: none; color: #000;"></a>
+                <object id="pdf_view" class="d-block w-100" type="application/pdf"><p></p></object>
             </div>
         </div>
         <div class="col-lg-4 col-12">
@@ -61,12 +60,16 @@
 $(document).ready(function (e) {
     var fileUrl = `@ViewBag.fileUrl`;
     if (fileUrl.trim()) {
-        console.log(fileUrl)
+        var fileNoiDung = document.getElementById("fileNoiDung");
+        var download_url = document.getElementById("download_url");
         var pdf_view = document.getElementById("pdf_view");
         let url = 'http://media.hdu.edu.vn/' + fileUrl;
-        pdf_view.style.display = "inline";
+        fileNoiDung.style.display = "inline";
         pdf_view.style.height = "700px";
-        $("#pdf_view").attr("src", url);
+        download_url.textContent = url;
+        $("#download_url").attr("href", url);
+        $("#download_file").attr("href", url);
+        $("#pdf_view").attr("data", url);
         $("#pdf_view").show();
     }
     var htmlString = `@Model.News.NoiDung`;
