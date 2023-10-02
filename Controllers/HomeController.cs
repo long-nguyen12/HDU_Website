@@ -89,7 +89,24 @@ namespace HDU_Website.Controllers
         [ChildActionOnly]
         public ActionResult TinMoiCTTinTuc(int id, string tieude)
         {
-            var tinMoiModel = dbConnection.CMS_TinTuc.Where(n => n.IsHienThi == true && n.ForWeb == 1 && n.IDDanhMuc == id && n.IsDelete != true).OrderByDescending(n => n.ID).Take(10).ToList();
+            var rightNews = dbConnection.SYS_CaiDatCauHinh.Where(n => n.KeyCauHinh.Equals("TH1065DF_NewsTop_Right") && n.ForWeb == 1).FirstOrDefault();
+            var idDanhMuc = int.Parse(rightNews.ValueCauHinh);
+            var tinMoiModel = dbConnection.CMS_TinTuc.Where(n => n.IsHienThi == true && n.ForWeb == 1 && n.IDDanhMuc == idDanhMuc && n.IsDelete != true).OrderByDescending(n => n.ID).Take(5).ToList();
+            var routerList = dbConnection.CMS_Router.ToList();
+            var danhMucList = dbConnection.DM_TinTuc.ToList();
+            var newsRouters = from n in tinMoiModel
+                              join r in routerList on n.ID equals r.IDMap
+                              join d in danhMucList on n.IDDanhMuc equals d.ID
+                              select new NewsRouterViewModel { News = n, Router = r, DanhMuc = d };
+            var danhmuc = dbConnection.DM_TinTuc.Where(n => n.ID == idDanhMuc).FirstOrDefault();
+            ViewBag.NewsGroup = danhmuc.TenDanhMuc;
+            ViewBag.IDGroup = rightNews.ValueCauHinh;
+            return PartialView(newsRouters);
+        }
+        [ChildActionOnly]
+        public ActionResult TinNoiBatCTTinTuc(int id, string tieude)
+        {
+            var tinMoiModel = dbConnection.CMS_TinTuc.Where(n => n.IsHienThi == true && n.IsNoiBat == true && n.ForWeb == 1 && n.IDDanhMuc == id && n.IsDelete != true).OrderByDescending(n => n.ID).Take(5).ToList();
             var routerList = dbConnection.CMS_Router.ToList();
             var danhMucList = dbConnection.DM_TinTuc.ToList();
             var newsRouters = from n in tinMoiModel
@@ -98,19 +115,6 @@ namespace HDU_Website.Controllers
                               select new NewsRouterViewModel { News = n, Router = r, DanhMuc = d };
             var danhmuc = dbConnection.DM_TinTuc.Where(n => n.ID == id).FirstOrDefault();
             ViewBag.NewsGroup = danhmuc.TenDanhMuc;
-            ViewBag.IDGroup = id;
-            return PartialView(newsRouters);
-        }
-        [ChildActionOnly]
-        public ActionResult TinNoiBatCTTinTuc(int id, string tieude)
-        {
-            var tinMoiModel = dbConnection.CMS_TinTuc.Where(n => n.IsHienThi == true && n.IsNoiBat == true && n.ForWeb == 1 && n.IDDanhMuc == id && n.IsDelete != true).OrderByDescending(n => n.ID).Take(10).ToList();
-            var routerList = dbConnection.CMS_Router.ToList();
-            var danhMucList = dbConnection.DM_TinTuc.ToList();
-            var newsRouters = from n in tinMoiModel
-                              join r in routerList on n.ID equals r.IDMap
-                              join d in danhMucList on n.IDDanhMuc equals d.ID
-                              select new NewsRouterViewModel { News = n, Router = r, DanhMuc = d };
             ViewBag.IDGroup = id;
             return PartialView(newsRouters);
         }
@@ -201,6 +205,9 @@ namespace HDU_Website.Controllers
                 IdDanhMuc = idDanhMuc,
                 NewsRouters = newsRouters.ToPagedList(pageNumber, pageSize)
             };
+            var danhmuc = dbConnection.DM_TinTuc.Where(n => n.ID == idDanhMuc).FirstOrDefault();
+            ViewBag.NewsGroup = danhmuc.TenDanhMuc;
+            ViewBag.IDGroup = idDanhMuc;
 
             return View(viewModel);
         }
@@ -236,7 +243,7 @@ namespace HDU_Website.Controllers
             var r = dbConnection.CMS_Router.FirstOrDefault(t => t.IDMap == chiTiet.ID);
             var d = dbConnection.DM_TinTuc.FirstOrDefault(t => t.ID == chiTiet.IDDanhMuc);
             var file = dbConnection.CMS_TinTucFileAttach.FirstOrDefault(t => t.IDTinTuc == id);
-            if(file != null)
+            if (file != null)
             {
                 var attachFile = dbConnection.FILE_QuanLyFile.FirstOrDefault(t => t.ID == file.IDFile);
                 var fileUrl = attachFile.TenFileMoi;

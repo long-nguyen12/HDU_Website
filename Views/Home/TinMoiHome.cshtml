@@ -27,7 +27,7 @@
 </style>
 
 <div class="home-tin-moi-left">
-    <h2 class="title-content"> <a href="http://hdu.edu.vn/hanh-chinh-to-chuc-su-kien.html" title="Tin tức - Sự kiện"> Tin tức - Sự kiện</a></h2>
+    <h2 class="title-content"> <a href="@Url.Action("DanhMuc", "Home" , new { idDanhMuc=1 })" title="Tin tức - Sự kiện"> Tin tức - Sự kiện</a></h2>
 
     <div class="row" style="padding: 5px; color: #000;">
         @foreach (var item in Model.Take(1))

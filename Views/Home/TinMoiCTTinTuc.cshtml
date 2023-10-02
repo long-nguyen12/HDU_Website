@@ -32,8 +32,8 @@
 </style>
 
 <div style="margin-bottom: 10px;">
-    <h2 class="title-content"> <a href="http://hdu.edu.vn/tieu-diem-thang.html">@ViewBag.NewsGroup</a></h2>
-    @foreach (var item in Model.Take(10))
+    <h2 class="title-content"> <a href="@Url.Action("DanhMuc", "Home", new {idDanhMuc = ViewBag.IDGroup})">@ViewBag.NewsGroup</a></h2>
+    @foreach (var item in Model)
     {
         string imageUrl = "http://media.hdu.edu.vn/" + item.News.HinhDaiDien;
         <div class="row">
@@ -49,14 +49,14 @@
         </div>
     }
     @*<div class="row">
-        <div class="col-12 text-end d-inline" style="align-items: end; margin-top: 10px; font-style: italic;">
-            <a class="see-detail"
-               title="Xem thêm"
-               href="@Url.Action("DaoTao", "Home", new { idDanhMuc = ViewBag.IDGroup })"
-               style="text-decoration: none; color: #fa9627;">
-                Xem thêm >
-            </a>
-        </div>
-    </div>*@
+            <div class="col-12 text-end d-inline" style="align-items: end; margin-top: 10px; font-style: italic;">
+                <a class="see-detail"
+                   title="Xem thêm"
+                   href="@Url.Action("DaoTao", "Home", new { idDanhMuc = ViewBag.IDGroup })"
+                   style="text-decoration: none; color: #fa9627;">
+                    Xem thêm >
+                </a>
+            </div>
+        </div>*@
 
 </div>
