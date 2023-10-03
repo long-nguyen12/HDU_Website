@@ -5,6 +5,12 @@
     Layout = "~/Views/Shared/_LayoutDetail.cshtml";
 }
 
+<style>
+    #noidung img {
+        max-width: 100%; /* Limit the image width to the container's width */
+        height: auto; /* Maintain the aspect ratio */
+    }
+</style>
 
 <div class="container">
     <div id="breadcrumb-bar" class="col-12">
@@ -26,6 +32,7 @@
                 </span>
             </p>
             <div id="noidung" style="font-size: 14px;">
+                @Html.Raw(Model.NoiDung)
             </div>
         </div>
         <div class="col-lg-4 col-12">
@@ -38,47 +45,3 @@
         </div>
     </div>
 </div>
-<script>
-        function getImageSize(url) {
-  var deferred = $.Deferred();
-  var img = new Image();
-  img.onload = function() {
-    var width = this.width;
-    var height = this.height;
-    deferred.resolve({ width: width, height: height });
-  };
-  img.src = url;
-  return deferred.promise();
-}
-
-$(document).ready(function (e) {
-  var htmlString = `@Model.NoiDung`;
-  htmlString = he.decode(htmlString);
-
-  var tempElement = $('<div/>').html(htmlString);
-  var images = tempElement.find('img');
-  var divWidth = $('#noidung').width();
-
-  var promises = [];
-
-  images.each(function () {
-    var $img = $(this);
-    var imageSrc = $img.attr('src');
-    var promise = getImageSize(imageSrc);
-
-    promises.push(promise);
-
-    promise.done(function (imgSize) {
-      if (imgSize.width > divWidth) {
-        $img.css('width', '100%');
-        $img.css('height', 'auto');
-      }
-    });
-  });
-
-  $.when.apply($, promises).done(function () {
-    var modifiedHtmlString = tempElement.html();
-    $('#noidung').html(modifiedHtmlString);
-  });
-});
-</script>

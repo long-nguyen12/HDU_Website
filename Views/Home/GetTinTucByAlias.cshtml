@@ -4,8 +4,12 @@
     ViewBag.Title = "ChiTietTinTuc";
     Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
 }
-
-
+<style>
+    #noidung img {
+        max-width: 100%; /* Limit the image width to the container's width */
+        height: auto; /* Maintain the aspect ratio */
+    }
+</style>
 
 <div class="container">
     <div id="breadcrumb-bar" class="col-12">
@@ -31,6 +35,7 @@
                 @Model.News.MoTa
             </div>
             <div id="noidung">
+                @Html.Raw(Model.News.NoiDung)
             </div>
             <div id="fileNoiDung" style="display:none">
                 <a id="download_file">Tải về</a><a id="download_url" style="margin-left: 5px; text-decoration: none; color: #000;"></a>
@@ -41,7 +46,7 @@
             @{
                 Html.RenderAction("TinMoiCTTinTuc", "Home", new { id = int.Parse(@ViewBag.valueCauHinh), tieude = "Tin tuyển sinh" });
                 Html.RenderAction("TinNoiBatCTTinTuc", "Home", new { id = 1, tieude = "TIN NỔI BẬT" });
-                }
+            }
         </div>
     </div>
 </div>
@@ -72,34 +77,5 @@ $(document).ready(function (e) {
         $("#pdf_view").attr("data", url);
         $("#pdf_view").show();
     }
-    var htmlString = `@Model.News.NoiDung`;
-    htmlString = he.decode(htmlString);
-
-    var tempElement = $('<div/>').html(htmlString);
-    var images = tempElement.find('img');
-    var divWidth = $('#noidung').width();
-
-    var promises = [];
-
-    images.each(function () {
-    var $img = $(this);
-    var imageSrc = $img.attr('src');
-    var promise = getImageSize(imageSrc);
-
-    promises.push(promise);
-
-    promise.done(function (imgSize) {
-        if (imgSize.width > divWidth) {
-            $img.css('width', '100%');
-            $img.css('height', 'auto');
-            }
-        });
-    });
-
-    $.when.apply($, promises).done(function () {
-        var modifiedHtmlString = tempElement.html();
-        $('#noidung').html(modifiedHtmlString);
-    });
-
 });
 </script>
