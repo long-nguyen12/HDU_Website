@@ -1,4 +1,6 @@
-﻿<style>
+﻿@model HDU_Website.Models.SYS_CaiDatCauHinh
+
+<style>
     .nav-link {
         color: #001D85;
         font-weight: bold;
@@ -14,11 +16,12 @@
         white-space: nowrap;
         margin: 5px 0px 0px 0px;
         border-bottom: 1px solid #ccc;
-
     }
+
     .dropdown-menu > li:last-child > a {
         border-bottom: none;
     }
+
     .dropdown-menu > li > a:focus,
     .dropdown-menu > li > a:hover {
         color: #262626;
@@ -34,7 +37,6 @@
         background-color: #337ab7;
         outline: 0
     }
-
 </style>
 
 
@@ -164,14 +166,24 @@
                 </a>
             </div>
             <div class="col-lg-6 col-12 text-end d-inline">
-                <form action="@Url.Action("TimKiem", "Home", new {query = "Tin"})">
-                    <i class="fa fa-phone" aria-hidden="true"></i>&nbsp;(0237) 3910.222&nbsp;&nbsp;
-                    <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;cict@hdu.edu.vn&nbsp;&nbsp;&nbsp;
-                    <a href="https://www.facebook.com/DHHongDuc"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
-                    &nbsp;&nbsp;&nbsp;<a href="@("https://www.youtube.com/@hdu-tv")"><i class="fa fa-youtube" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
-                    <input type="text" placeholder="Tìm kiếm.." name="query">
-                    <input type="submit" hidden />
-                </form>
+                <div class="row">
+                    <form action="@Url.Action("TimKiem", "Home", new {query = "Tin"})">
+                        <i class="fa fa-phone" aria-hidden="true"></i>&nbsp;(0237) 3910.222&nbsp;&nbsp;
+                        <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;cict@hdu.edu.vn&nbsp;&nbsp;&nbsp;
+                        <a href="/">
+                            <img src="~/Content/images/vietnam.png" width="32" height="32" />
+                        </a>
+                        &nbsp;&nbsp;&nbsp;<a href="@Model.ValueCauHinh"><img src="~/Content/images/united-kingdom.png" width="32" height="32" /></i></a>
+                    </form>
+                </div>
+                <div class="row">
+                    <form action="@Url.Action("TimKiem", "Home", new {query = "Tin"})">
+                        <input type="text" placeholder="Tìm kiếm.." name="query">
+                        <input type="submit" hidden />
+
+
+                    </form>
+                </div>
             </div>
         </div>
     </div>

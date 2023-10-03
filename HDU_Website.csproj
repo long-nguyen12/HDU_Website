@@ -782,6 +782,8 @@
     <Content Include="Content\images\graduated-student.png" />
     <Content Include="Content\images\kiem-dinh-clgd.png" />
     <Content Include="Content\images\logo-hdu-removebg-preview-20221108085539-e.png" />
+    <Content Include="Content\images\united-kingdom.png" />
+    <Content Include="Content\images\vietnam.png" />
     <Content Include="Content\images\zalo.png" />
     <Content Include="Content\js\bootstrap.bundle.min.js" />
     <Content Include="Content\images\upm-logo.png" />
