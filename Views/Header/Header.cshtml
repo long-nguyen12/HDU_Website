@@ -1,4 +1,4 @@
-﻿@model HDU_Website.Models.SYS_CaiDatCauHinh
+﻿@model IEnumerable<HDU_Website.Models.SYS_CaiDatCauHinh>
 
 <style>
     .nav-link {
@@ -38,6 +38,11 @@
         outline: 0
     }
 </style>
+
+@{
+    var logo = Model.Where(n => n.KeyCauHinh.Equals("TH1065DF_Header_Logo")).FirstOrDefault();
+    var en_link = Model.Where(n => n.KeyCauHinh.Equals("TH1065DF_Header_LanguageEN")).FirstOrDefault();
+}
 
 
 <header>
@@ -162,26 +167,34 @@
         <div class="row align-items-center">
             <div class="col-lg-6 col-12 d-flex aligns-items-center">
                 <a class="navbar-brand" href="http://hdu.edu.vn/">
-                    <img id="banner" alt="Trang chủ" src="@Url.Content("~/Content/images/logo-hdu-removebg-preview-20221108085539-e.png")">
+                    @if (logo != null)
+                    {
+                        string url = "http://media.hdu.edu.vn/" + logo.ValueCauHinh;
+                        <img id="banner" alt="Trang chủ" src="@url">
+                    }
+                    else
+                    {
+                        <img id="banner" alt="Trang chủ" src="@Url.Content("~/Content/images/logo-hdu-removebg-preview-20221108085539-e.png")">
+
+                    }
                 </a>
             </div>
             <div class="col-lg-6 col-12 text-end d-inline">
                 <div class="row">
                     <form action="@Url.Action("TimKiem", "Home", new {query = "Tin"})">
-                        <i class="fa fa-phone" aria-hidden="true"></i>&nbsp;(0237) 3910.222&nbsp;&nbsp;
-                        <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;cict@hdu.edu.vn&nbsp;&nbsp;&nbsp;
-                        <a href="/">
-                            <img src="~/Content/images/vietnam.png" width="32" height="32" />
-                        </a>
-                        &nbsp;&nbsp;&nbsp;<a href="@Model.ValueCauHinh"><img src="~/Content/images/united-kingdom.png" width="32" height="32" /></i></a>
-                    </form>
-                </div>
-                <div class="row">
-                    <form action="@Url.Action("TimKiem", "Home", new {query = "Tin"})">
                         <input type="text" placeholder="Tìm kiếm.." name="query">
                         <input type="submit" hidden />
-
-
+                        &nbsp;&nbsp;&nbsp;<a href="/">
+                            <img src="~/Content/images/vietnam.png" width="32" height="32" />
+                        </a>
+                        @if (en_link != null)
+                        {
+                            <a href="@en_link.ValueCauHinh"><img src="~/Content/images/united-kingdom.png" width="32" height="32" /></a>
+                        }
+                        else
+                        {
+                            <a href="http://en.hdu.edu.vn"><img src="~/Content/images/united-kingdom.png" width="32" height="32" /></a>
+                        }
                     </form>
                 </div>
             </div>

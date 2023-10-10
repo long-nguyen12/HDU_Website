@@ -14,7 +14,7 @@ namespace HDU_Website.Controllers
         [ChildActionOnly]
         public ActionResult Header()
         {
-            var header = dbConnection.SYS_CaiDatCauHinh.Where(n => n.KeyCauHinh.Equals("TH1065DF_Header_LanguageEN") && n.ForWeb == 1).FirstOrDefault();
+            var header = dbConnection.SYS_CaiDatCauHinh.Where(n => n.ForWeb == 1).ToList();
             return PartialView(header);
         }
 
