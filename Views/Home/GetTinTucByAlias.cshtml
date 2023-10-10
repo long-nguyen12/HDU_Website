@@ -13,6 +13,7 @@
 
 <script>
     $(document).ready(function () {
+        addFacebookMetaTags();
         let formData = {
             id: @Model.News.ID,
         }
@@ -30,6 +31,20 @@
             }
         });
     })
+
+    function addFacebookMetaTags() {
+        // Define the meta tag properties based on your content
+        var ogTitle = "@Model.News.TieuDe"
+        var ogDescription = "@Model.News.MoTa";
+        var ogImage = "http://media.hdu.edu.vn/" + "@Model.News.HinhDaiDien";
+        var ogUrl = window.location.href;
+
+        // Create and append the meta tags to the <head> of your document
+        $('head').append('<meta property="og:title" content="' + ogTitle + '">');
+        $('head').append('<meta property="og:description" content="' + ogDescription + '">');
+        $('head').append('<meta property="og:image" content="' + ogImage + '">');
+        $('head').append('<meta property="og:url" content="' + ogUrl + '">');
+    }
 </script>
 
 <div class="container">
