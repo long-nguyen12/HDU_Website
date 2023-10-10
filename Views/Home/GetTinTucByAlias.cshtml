@@ -1,5 +1,4 @@
 ﻿@model HDU_Website.Controllers.NewsRouterViewModel
-
 @{
     ViewBag.Title = "ChiTietTinTuc";
     Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
@@ -10,10 +9,22 @@
         height: auto; /* Maintain the aspect ratio */
     }
 </style>
-
+@{ 
+    var ogTitle = Model.News.TieuDe;
+    var ogDescription = Model.News.MoTa;
+    var ogImage = "http://media.hdu.edu.vn/" + Model.News.HinhDaiDien;
+    var ogUrl = HttpContext.Current.Request.Url.AbsoluteUri;
+}
+@section AdditionalMeta
+{
+    <meta property="og:title" content="@ogTitle">
+    <meta property="og:description" content="@ogDescription">
+    <meta property="og:image" content="@ogImage">
+    <meta property="og:title" content="@ogUrl">
+}
 <script>
     $(document).ready(function () {
-        addFacebookMetaTags();
+        /*addFacebookMetaTags();*/
         let formData = {
             id: @Model.News.ID,
         }
@@ -32,7 +43,7 @@
         });
     })
 
-    function addFacebookMetaTags() {
+    @*function addFacebookMetaTags() {
         // Define the meta tag properties based on your content
         var ogTitle = "@Model.News.TieuDe"
         var ogDescription = "@Model.News.MoTa";
@@ -44,7 +55,7 @@
         $('head').append('<meta property="og:description" content="' + ogDescription + '">');
         $('head').append('<meta property="og:image" content="' + ogImage + '">');
         $('head').append('<meta property="og:url" content="' + ogUrl + '">');
-    }
+    }*@
 </script>
 
 <div class="container">
