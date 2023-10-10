@@ -105,9 +105,9 @@ namespace HDU_Website.Controllers
             return PartialView(newsRouters);
         }
         [ChildActionOnly]
-        public ActionResult TinNoiBatCTTinTuc(int id, string tieude)
+        public ActionResult TinNoiBatCTTinTuc(int id, string tieude, bool noibat)
         {
-            var tinMoiModel = dbConnection.CMS_TinTuc.Where(n => n.IsHienThi == true && n.IsNoiBat == true && n.ForWeb == 1 && n.IDDanhMuc == id && n.IsDelete != true).OrderByDescending(n => n.ID).Take(5).ToList();
+            var tinMoiModel = dbConnection.CMS_TinTuc.Where(n => n.IsHienThi == true && n.IsNoiBat == noibat && n.ForWeb == 1 && n.IDDanhMuc == id && n.IsDelete != true).OrderByDescending(n => n.ID).Take(5).ToList();
             var routerList = dbConnection.CMS_Router.ToList();
             var danhMucList = dbConnection.DM_TinTuc.ToList();
             var newsRouters = from n in tinMoiModel
@@ -115,7 +115,7 @@ namespace HDU_Website.Controllers
                               join d in danhMucList on n.IDDanhMuc equals d.ID
                               select new NewsRouterViewModel { News = n, Router = r, DanhMuc = d };
             var danhmuc = dbConnection.DM_TinTuc.Where(n => n.ID == id).FirstOrDefault();
-            ViewBag.NewsGroup = danhmuc.TenDanhMuc;
+            ViewBag.NewsGroup = tieude;
             ViewBag.IDGroup = id;
             return PartialView(newsRouters);
         }
@@ -281,6 +281,18 @@ namespace HDU_Website.Controllers
         {
             var baiViet = dbConnection.CMS_BaiViet.FirstOrDefault(t => t.ID == id);
             return View(baiViet);
+        }
+
+        public JsonResult Counting(int id)
+        {
+            var news = dbConnection.CMS_TinTuc.Where(n => n.ID == id).FirstOrDefault();
+            if (news != null)
+            {
+                news.SoLuotXem = news.SoLuotXem + 1;
+                dbConnection.SaveChanges();
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
         }
     }
 }

@@ -5,7 +5,26 @@
     Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
 }
 
-
+<script>
+    $(document).ready(function () {
+        let formData = {
+            id: @Model.News.ID,
+        }
+        $.ajax({
+            url: "/Home/Counting",
+            type: "POST",
+            data: JSON.stringify(formData),
+            contentType: "application/json;charset=utf-8",
+            success: function (response) {
+                console.log(response);
+            },
+            error: function (xhr, status, error) {
+                // Handle any errors
+                console.error(error);
+            }
+        });
+    })
+</script>
 
 <div class="container">
     <div id="breadcrumb-bar" class="col-12">
@@ -41,7 +60,7 @@
             @{
                 Html.RenderAction("TinMoiCTTinTuc", "Home", new { id = int.Parse(@ViewBag.valueCauHinh), tieude = "Tin tuyển sinh" });
                 Html.RenderAction("TinNoiBatCTTinTuc", "Home", new { id = 1, tieude = "TIN NỔI BẬT" });
-                }
+            }
         </div>
     </div>
 </div>

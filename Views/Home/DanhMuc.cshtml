@@ -83,17 +83,16 @@
             </div>
             <div class="col-lg-4 col-12">
                 @{
+                    Html.RenderAction("TinNoiBatCTTinTuc", "Home", new { id = 1, tieude = "Tin nổi bật", noibat = true });
                     Html.RenderAction("TinMoiCTTinTuc", "Home", new { id = 3, tieude = "Tin tuyển sinh" });
-                }
-                @{
-                    Html.RenderAction("TinNoiBatCTTinTuc", "Home", new { id = 1, tieude = "Tin mới" });
+                    Html.RenderAction("TinNoiBatCTTinTuc", "Home", new { id = Model.IdDanhMuc, tieude = "Tin liên quan", noibat = false });
                 }
             </div>
         </div>
     </div>
-}
-else
-{
+                    }
+                    else
+                    {
     <div class="row">
         <div class="col-lg-8 col-12">
         </div>

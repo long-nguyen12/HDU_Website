@@ -30,7 +30,7 @@
 </style>
 
 <div style="margin-bottom: 0px;">
-    <h2 class="title-content"> TIN NỔI BẬT</h2>
+    <h2 class="title-content">@ViewBag.NewsGroup</h2>
     @foreach (var item in Model.Take(5))
     {
         string imageUrl = "http://media.hdu.edu.vn/" + item.News.HinhDaiDien;

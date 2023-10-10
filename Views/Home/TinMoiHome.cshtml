@@ -30,7 +30,7 @@
     <h2 class="title-content"> <a href="@Url.Action("DanhMuc", "Home" , new { idDanhMuc=1 })" title="Tin tức - Sự kiện"> Tin tức - Sự kiện</a></h2>
 
     <div class="row" style="padding: 5px; color: #000;">
-        @foreach (var item in Model.Take(1))
+        @foreach (var item in Model.Where(n => n.News.IsNoiBat == true).Take(1))
         {
             string imageUrl = "http://media.hdu.edu.vn/" + item.News.HinhDaiDien;
             <div class="post-main-new d-flex">
