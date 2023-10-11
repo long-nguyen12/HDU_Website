@@ -294,5 +294,15 @@ namespace HDU_Website.Controllers
             }
             return Json(new { success = false });
         }
+
+        public JsonResult GetMenu()
+        {
+            var menus = dbConnection.CMS_Menu.Where(n => n.ForWeb == 1 && n.IsDelete != true && n.IsHienThi == true).ToList();
+            if (menus != null)
+            {
+                return Json(new { success = true, data = menus }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { success = false });
+        }
     }
 }
