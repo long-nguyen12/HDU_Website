@@ -58,8 +58,9 @@
         </div>
         <div class="col-lg-4 col-12">
             @{
+                Html.RenderAction("TinNoiBatCTTinTuc", "Home", new { id = 1, tieude = "TIN NỔI BẬT", noibat = true });
                 Html.RenderAction("TinMoiCTTinTuc", "Home", new { id = int.Parse(@ViewBag.valueCauHinh), tieude = "Tin tuyển sinh" });
-                Html.RenderAction("TinNoiBatCTTinTuc", "Home", new { id = 1, tieude = "TIN NỔI BẬT" });
+                Html.RenderAction("TinNoiBatCTTinTuc", "Home", new { id = Model.DanhMuc.ID, tieude = "TIN LIÊN QUAN", noibat = false });
             }
         </div>
     </div>

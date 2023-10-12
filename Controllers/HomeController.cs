@@ -86,7 +86,6 @@ namespace HDU_Website.Controllers
         }
 
         // TinMoiCTTinTuc - Menu Right Tin tuc trong chi tiet tin tuc
-
         [ChildActionOnly]
         public ActionResult TinMoiCTTinTuc(int id, string tieude)
         {
@@ -119,7 +118,6 @@ namespace HDU_Website.Controllers
             ViewBag.IDGroup = id;
             return PartialView(newsRouters);
         }
-
 
         [ChildActionOnly]
         public ActionResult TinHome(int id, int total)
@@ -158,7 +156,6 @@ namespace HDU_Website.Controllers
                             select new GalleryViewModel { Gallery = n, FileAnh = r };
             return PartialView(photoList);
         }
-
 
         public ActionResult DaoTao(int idDanhMuc, int? page)
         {
@@ -212,7 +209,6 @@ namespace HDU_Website.Controllers
 
             return View(viewModel);
         }
-
 
         public ActionResult TimKiem(string query, int? page)
         {

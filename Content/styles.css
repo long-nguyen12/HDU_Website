@@ -192,7 +192,6 @@ div#menu {
 .responsive-menu {
     display: none;
     width: 100%;
-    padding: 20px 15px;
     background: #fa9627;
     color: #fff;
     text-transform: uppercase;
@@ -1595,5 +1594,4 @@ div.img-zoom img.img-intro-school {
 .new-event-time {
     padding-right: 15px;
 }
-
 /* end */

@@ -780,6 +780,7 @@
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\icons.css" />
     <Content Include="Content\images\graduated-student.png" />
+    <Content Include="Content\images\hdu1.png" />
     <Content Include="Content\images\kiem-dinh-clgd.png" />
     <Content Include="Content\images\logo-hdu-removebg-preview-20221108085539-e.png" />
     <Content Include="Content\images\united-kingdom.png" />
