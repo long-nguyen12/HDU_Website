@@ -1,4 +1,4 @@
-﻿@model HDU_Website.Controllers.NewsRouterViewModel
+﻿@model HDU_Website.Controllers.BaiVietRouterViewModel
 @{
     ViewBag.Title = "ChiTietTinTuc";
     Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
@@ -14,15 +14,11 @@
 </style>
 @{ 
     var ogTitle = Model.News.TieuDe;
-    var ogDescription = Model.News.MoTa;
-    var ogImage = "http://media.hdu.edu.vn/" + Model.News.HinhDaiDien;
     var ogUrl = HttpContext.Current.Request.Url.AbsoluteUri;
 }
 @section AdditionalMeta
 {
     <meta property="og:title" content="@ogTitle">
-    <meta property="og:description" content="@ogDescription">
-    <meta property="og:image" content="@ogImage">
     <meta property="og:url" content="@ogUrl">
 }
 <script>
@@ -32,7 +28,7 @@
             id: @Model.News.ID,
         }
         $.ajax({
-            url: "/Home/Counting",
+            url: "/Home/BaiVietCountingv",
             type: "POST",
             data: JSON.stringify(formData),
             contentType: "application/json;charset=utf-8",
@@ -45,20 +41,6 @@
             }
         });
     })
-
-    @*function addFacebookMetaTags() {
-        // Define the meta tag properties based on your content
-        var ogTitle = "@Model.News.TieuDe"
-        var ogDescription = "@Model.News.MoTa";
-        var ogImage = "http://media.hdu.edu.vn/" + "@Model.News.HinhDaiDien";
-        var ogUrl = window.location.href;
-
-        // Create and append the meta tags to the <head> of your document
-        $('head').append('<meta property="og:title" content="' + ogTitle + '">');
-        $('head').append('<meta property="og:description" content="' + ogDescription + '">');
-        $('head').append('<meta property="og:image" content="' + ogImage + '">');
-        $('head').append('<meta property="og:url" content="' + ogUrl + '">');
-    }*@
 </script>
 
 <div class="container">
@@ -66,7 +48,6 @@
         <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/" style="text-decoration: none; color: #001D85;">Trang chủ</a></li>
-                <li class="breadcrumb-item"><a href="@Url.Action("DanhMuc", "Home" , new { idDanhMuc=Model.DanhMuc.ID })" style="text-decoration: none; color: #001D85;">@Model.DanhMuc.TenDanhMuc</a></li>
                 <li class="breadcrumb-item active" aria-current="page">@Model.News.TieuDe</li>
             </ol>
         </nav>
@@ -78,12 +59,9 @@
             </div>
             <p class="realease-date" style="margin-bottom: 5px; font-size: 14px;">
                 <i class="fa fa-calendar"></i><span>
-                    @Model.News.NgayHienThi.Value.ToString("dd/MM/yyyy")
+                    @Model.News.NgayTao.Value.ToString("dd/MM/yyyy")
                 </span>
             </p>
-            <div class="tintuc-mota">
-                @Model.News.MoTa
-            </div>
             <div id="noidung">
                 @Html.Raw(Model.News.NoiDung)
             </div>
@@ -96,7 +74,6 @@
             @{
                 Html.RenderAction("TinNoiBatCTTinTuc", "Home", new { id = 1, tieude = "TIN NỔI BẬT", noibat = true });
                 Html.RenderAction("TinMoiCTTinTuc", "Home", new { id = int.Parse(@ViewBag.valueCauHinh), tieude = "Tin tuyển sinh" });
-                Html.RenderAction("TinNoiBatCTTinTuc", "Home", new { id = Model.DanhMuc.ID, tieude = "TIN LIÊN QUAN", noibat = false });
             }
         </div>
     </div>

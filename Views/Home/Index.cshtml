@@ -97,27 +97,30 @@
             <div class="wrp-intro">
                 @{
                     var configIcons = Model.FirstOrDefault(n => n.KeyCauHinh == "TH1065DF_Slide_LKDM");
-                    dynamic icons = serializer.Deserialize(configIcons.ValueCauHinh, typeof(object));
-                    if (icons.Length > 0)
+                    if (configIcons != null)
                     {
-                        for (int i = 4; i < icons.Length - 1; i++)
+                        dynamic icons = serializer.Deserialize(configIcons.ValueCauHinh, typeof(object));
+                        if (icons != null && icons.Length > 0)
                         {
-                            var item = icons[i];
-                            string imageUrl = "http://media.hdu.edu.vn/" + item["GroupHinh"];
-                            <a target="_blank"
-                               class="block-intro "
-                               href="@item["GroupLienKet"]"
-                               title="@item["GroupQCTitle"]">
-                                <div class="grid-item">
-                                    <img catcherror=""
-                                         lazyload=""
-                                         alt="@item["GroupQCTitle"]"
-                                         src="@imageUrl" /><span class="text">@item["GroupQCTitle"]</span>
-                                    </div>
-                                </a>
+                            for (int i = 4; i < icons.Length - 1; i++)
+                            {
+                                var item = icons[i];
+                                string imageUrl = "http://media.hdu.edu.vn/" + item["GroupHinh"];
+                                <a target="_blank"
+                                   class="block-intro "
+                                   href="@item["GroupLienKet"]"
+                                   title="@item["GroupQCTitle"]">
+                                    <div class="grid-item">
+                                        <img catcherror=""
+                                             lazyload=""
+                                             alt="@item["GroupQCTitle"]"
+                                             src="@imageUrl" /><span class="text">@item["GroupQCTitle"]</span>
+                                        </div>
+                                    </a>
+                                }
                             }
-                        }
 
+                        }
                 }
             </div>
         </div>
@@ -128,12 +131,16 @@
                 <div class="row">
                     <div class="col-lg-8 col-12">
                         @{
-                            Html.RenderAction("TinMoiHome", "Home", new { id = 1 });
+                            var NewsTop = Model.FirstOrDefault(n => n.KeyCauHinh == "TH1065DF_NewsTop_Left");
+                            if (NewsTop != null)
+                            {
+                                Html.RenderAction("TinMoiHome", "Home", new { id = 1 });
+                            }
                         }
                     </div>
                     <div class="col-lg-4 col-12">
                         @{
-                            Html.RenderAction("TinNoiBat", "Home", new { id = 1, tieude = "TIN NỔI BẬT" });
+                            Html.RenderAction("TinNoiBat", "Home", new { id = 1 });
                             var newsArea = Model.FirstOrDefault(n => n.KeyCauHinh == "TH1065DF_NewsTop_Right");
                             Html.RenderAction("TinMoi", "Home", new { id = int.Parse(newsArea.ValueCauHinh), tieude = "Tin tuyển sinh" });
 
@@ -147,47 +154,52 @@
         <div class="container">
             <div class="row">
                 @{
-                    if (icons.Length > 0)
+                    if (configIcons != null)
                     {
-                        for (int i = 0; i <= 3; i++)
+                        dynamic icons = serializer.Deserialize(configIcons.ValueCauHinh, typeof(object));
+                        if (icons != null && icons.Length > 0)
                         {
-                            var item = icons[i];
-                            string imageUrl = "http://media.hdu.edu.vn/" + item["GroupHinh"];
-                            <div class="col-md-3 col-12 statistic-item text-center counter" data-target="@item["GroupQCTitle"]" data-character="@item["GroupQCTitle"]">
-                                <img catcherror=""
-                                     lazyload=""
-                                     alt="@item["GroupQCTitle"]"
-                                     width="100"
-                                     src="@imageUrl" />
-                                <p class="fs-2 counter-value">0</p>
-                                <p style="font-size: 18px;">@item["GroupMoTa"]</p>
-                            </div>
+                            {
+                                for (int i = 0; i <= 3; i++)
+                                {
+                                    var item = icons[i];
+                                    string imageUrl = "http://media.hdu.edu.vn/" + item["GroupHinh"];
+                                    <div class="col-md-3 col-12 statistic-item text-center counter" data-target="@item["GroupQCTitle"]" data-character="@item["GroupQCTitle"]">
+                                        <img catcherror=""
+                                             lazyload=""
+                                             alt="@item["GroupQCTitle"]"
+                                             width="100"
+                                             src="@imageUrl" />
+                                        <p class="fs-2 counter-value">0</p>
+                                        <p style="font-size: 18px;">@item["GroupMoTa"]</p>
+                                    </div>
+                                }
+                            }
                         }
                     }
-
                 }
                 @*<div class="col-md-3 col-12 statistic-item text-center counter" data-target="3233" data-character="">
-                    <img src="~/Content/images/graduated-student.png" width="100" />
-                    <p class="fs-2 counter-value">0</p>
-                    <p style="font-size: 18px;">Sinh viên tốt nghiệp năm 2022</p>
-                </div>
-                <div class="col-md-3 col-12 statistic-item text-center counter" data-target="91" data-character="%">
-                    <img src="~/Content/images/vieclam.png" width="100" />
-                    <p class="fs-2 counter-value">0</p>
-                    <p style="font-size: 18px;">Sinh viên có việc làm khảo sát năm 2022</p>
-                </div>
-                <div class="col-md-3 col-12 statistic-item text-center counter" data-target="4" data-character="&#9733;">
-                    <img src="~/Content/images/upm-logo.png" width="100" />
-                    <p class="fs-2  counter-value">
-                        0
-                    </p>
-                    <p style="font-size: 18px;">Đạt chuẩn đối sánh Chất lượng đại học</p>
-                </div>
-                <div class="col-md-3 col-12 statistic-item text-center counter" data-target="21" data-character="">
-                    <img src="~/Content/images/kiem-dinh-clgd.png" width="100" />
-                    <p class="fs-2 counter-value">0</p>
-                    <p style="font-size: 18px;">Chương trình đào tạo được kiểm định</p>
-                </div>*@
+                        <img src="~/Content/images/graduated-student.png" width="100" />
+                        <p class="fs-2 counter-value">0</p>
+                        <p style="font-size: 18px;">Sinh viên tốt nghiệp năm 2022</p>
+                    </div>
+                    <div class="col-md-3 col-12 statistic-item text-center counter" data-target="91" data-character="%">
+                        <img src="~/Content/images/vieclam.png" width="100" />
+                        <p class="fs-2 counter-value">0</p>
+                        <p style="font-size: 18px;">Sinh viên có việc làm khảo sát năm 2022</p>
+                    </div>
+                    <div class="col-md-3 col-12 statistic-item text-center counter" data-target="4" data-character="&#9733;">
+                        <img src="~/Content/images/upm-logo.png" width="100" />
+                        <p class="fs-2  counter-value">
+                            0
+                        </p>
+                        <p style="font-size: 18px;">Đạt chuẩn đối sánh Chất lượng đại học</p>
+                    </div>
+                    <div class="col-md-3 col-12 statistic-item text-center counter" data-target="21" data-character="">
+                        <img src="~/Content/images/kiem-dinh-clgd.png" width="100" />
+                        <p class="fs-2 counter-value">0</p>
+                        <p style="font-size: 18px;">Chương trình đào tạo được kiểm định</p>
+                    </div>*@
             </div>
         </div>
         <script>
@@ -268,7 +280,7 @@
                             @{
                                 var ads = Model.FirstOrDefault(n => n.KeyCauHinh == "TH1065DF_LKFT_ID");
                                 dynamic slide_ads = serializer.Deserialize(ads.ValueCauHinh, typeof(object));
-                                if (slide_ads.Length > 0)
+                                if (slide_ads != null && slide_ads.Length > 0)
                                 {
                                     for (int i = 0; i < slide_ads.Length; i++)
                                     {
