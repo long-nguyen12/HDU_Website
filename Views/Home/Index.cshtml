@@ -102,7 +102,7 @@
                         dynamic icons = serializer.Deserialize(configIcons.ValueCauHinh, typeof(object));
                         if (icons != null && icons.Length > 0)
                         {
-                            for (int i = 4; i < icons.Length - 1; i++)
+                            for (int i = 4; i < icons.Length; i++)
                             {
                                 var item = icons[i];
                                 string imageUrl = "http://media.hdu.edu.vn/" + item["GroupHinh"];
