@@ -59,8 +59,10 @@ namespace HDU_Website.Controllers
             if (domain != null)
             {
                 int forweb = (int)domain.ForWeb;
+                ViewBag.ForWeb = forweb;
                 return forweb;
             }
+            ViewBag.ForWeb = 1;
             return 1;
         }
 
@@ -80,24 +82,20 @@ namespace HDU_Website.Controllers
             {
                 string valueConfig = config.ValueCauHinh;
                 int[] intIDs = valueConfig.Split(',').Select(int.Parse).ToArray();
-
-                var tinLeft = dbConnection.CMS_TinTuc.Where(n => n.IsHienThi == true && n.ForWeb == forweb && intIDs.Contains((int)n.IDDanhMuc) && n.IsDelete != true).Distinct().OrderByDescending(n => n.NgayHienThi).OrderByDescending(n => n.ID).Take(5).ToList();
+                var tinLeft = dbConnection.CMS_TinTuc.Where(n => n.IsHienThi == true && n.ForWeb == forweb && intIDs.Contains((int)n.IDDanhMuc) && n.SoThuTu != null && n.IsDelete != true).OrderByDescending(n => n.NgayHienThi).Take(5).ToList();
                 var routerList = dbConnection.CMS_Router.ToList();
                 var danhMucList = dbConnection.DM_TinTuc.ToList();
                 var newsRouters = from n in tinLeft
                                   join r in routerList on n.ID equals r.IDMap
                                   join d in danhMucList on n.IDDanhMuc equals d.ID
                                   select new NewsRouterViewModel { News = n, Router = r, DanhMuc = d };
-                var checkDanhMuc = tinLeft.Take(1).FirstOrDefault();
-                var danhmuc = dbConnection.DM_TinTuc.Where(n => n.ID == checkDanhMuc.IDDanhMuc).FirstOrDefault();
+                var danhmuc = dbConnection.SYS_CaiDatCauHinh.Where(n => n.KeyCauHinh.Equals("TH1065DF_NewsTop_LeftLabel")).FirstOrDefault();
                 if (danhmuc != null)
                 {
-                    ViewBag.NewsGroup = danhmuc.TenDanhMuc;
-                    ViewBag.IDGroup = id;
+                    ViewBag.NewsGroup = danhmuc.ValueCauHinh;
                 }
                 return PartialView(newsRouters);
             }
-            //var tinMoiModel = dbConnection.CMS_TinTuc.Where(n => n.IsHienThi == true && n.ForWeb == forweb && n.IDDanhMuc == id && n.IsDelete != true).OrderByDescending(n => n.ID).Take(5).ToList();
             return PartialView();
         }
 
@@ -132,12 +130,12 @@ namespace HDU_Website.Controllers
                               join r in routerList on n.ID equals r.IDMap
                               join d in danhMucList on n.IDDanhMuc equals d.ID
                               select new NewsRouterViewModel { News = n, Router = r, DanhMuc = d };
-            var danhmuc = dbConnection.DM_TinTuc.Where(n => n.ID == id).FirstOrDefault();
+            var danhmuc = dbConnection.SYS_CaiDatCauHinh.Where(n => n.KeyCauHinh.Equals("TH1065DF_NewsTop_HotNewLabel")).FirstOrDefault();
             if (danhmuc != null)
             {
-                ViewBag.NewsGroup = danhmuc.TenDanhMuc;
-                ViewBag.IDGroup = id;
+                ViewBag.NewsGroup = danhmuc.ValueCauHinh;
             }
+            ViewBag.newsRouters = newsRouters;
             if (newsRouters != null)
                 return PartialView(newsRouters);
             return PartialView();
@@ -203,6 +201,32 @@ namespace HDU_Website.Controllers
                 ViewBag.IDGroup = id;
             }
             return PartialView(newsRouters);
+        }
+
+        [ChildActionOnly]
+        public ActionResult TinHomeSubSection(string key_id, string key_label)
+        {
+            int forweb = getForWeb();
+            var Label = dbConnection.SYS_CaiDatCauHinh.Where(n => n.KeyCauHinh.Equals(key_label)).FirstOrDefault();
+            var config = dbConnection.SYS_CaiDatCauHinh.Where(n => n.ForWeb == forweb && n.KeyCauHinh.Equals(key_id)).FirstOrDefault();
+            if (config != null)
+            {
+                string valueConfig = config.ValueCauHinh;
+                int[] intIDs = valueConfig.Split(',').Select(int.Parse).ToArray();
+                var tinMoiModel = dbConnection.CMS_TinTuc.Where(n => n.IsHienThi == true && n.ForWeb == forweb && intIDs.Contains((int)n.IDDanhMuc) && n.IsDelete != true).OrderByDescending(n => n.NgayHienThi).Take(5).ToList();
+                var routerList = dbConnection.CMS_Router.ToList();
+                var danhMucList = dbConnection.DM_TinTuc.ToList();
+                var newsRouters = from n in tinMoiModel
+                                  join r in routerList on n.ID equals r.IDMap
+                                  join d in danhMucList on n.IDDanhMuc equals d.ID
+                                  select new NewsRouterViewModel { News = n, Router = r, DanhMuc = d };
+                if (Label != null)
+                {
+                    ViewBag.NewsGroup = Label.ValueCauHinh;
+                }
+                return PartialView(newsRouters);
+            }
+            return PartialView();
         }
 
         [ChildActionOnly]

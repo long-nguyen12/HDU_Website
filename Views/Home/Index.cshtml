@@ -102,7 +102,7 @@
                         dynamic icons = serializer.Deserialize(configIcons.ValueCauHinh, typeof(object));
                         if (icons != null && icons.Length > 0)
                         {
-                            for (int i = 4; i < icons.Length; i++)
+                            for (int i = 0; i < icons.Length; i++)
                             {
                                 var item = icons[i];
                                 string imageUrl = "http://media.hdu.edu.vn/" + item["GroupHinh"];
@@ -154,15 +154,16 @@
         <div class="container">
             <div class="row">
                 @{
-                    if (configIcons != null)
+                    var configInfo = Model.FirstOrDefault(n => n.KeyCauHinh == "TH1065DF_Slide_Infor");
+                    if (configInfo != null && configInfo.ValueCauHinh != null)
                     {
-                        dynamic icons = serializer.Deserialize(configIcons.ValueCauHinh, typeof(object));
-                        if (icons != null && icons.Length > 0)
+                        dynamic infos = serializer.Deserialize(configInfo.ValueCauHinh, typeof(object));
+                        if (infos != null && infos.Length > 0)
                         {
                             {
-                                for (int i = 0; i <= 3; i++)
+                                for (int i = 0; i <= infos.Length; i++)
                                 {
-                                    var item = icons[i];
+                                    var item = infos[i];
                                     string imageUrl = "http://media.hdu.edu.vn/" + item["GroupHinh"];
                                     <div class="col-md-3 col-12 statistic-item text-center counter" data-target="@item["GroupQCTitle"]" data-character="@item["GroupQCTitle"]">
                                         <img catcherror=""
@@ -178,28 +179,6 @@
                         }
                     }
                 }
-                @*<div class="col-md-3 col-12 statistic-item text-center counter" data-target="3233" data-character="">
-                        <img src="~/Content/images/graduated-student.png" width="100" />
-                        <p class="fs-2 counter-value">0</p>
-                        <p style="font-size: 18px;">Sinh viên tốt nghiệp năm 2022</p>
-                    </div>
-                    <div class="col-md-3 col-12 statistic-item text-center counter" data-target="91" data-character="%">
-                        <img src="~/Content/images/vieclam.png" width="100" />
-                        <p class="fs-2 counter-value">0</p>
-                        <p style="font-size: 18px;">Sinh viên có việc làm khảo sát năm 2022</p>
-                    </div>
-                    <div class="col-md-3 col-12 statistic-item text-center counter" data-target="4" data-character="&#9733;">
-                        <img src="~/Content/images/upm-logo.png" width="100" />
-                        <p class="fs-2  counter-value">
-                            0
-                        </p>
-                        <p style="font-size: 18px;">Đạt chuẩn đối sánh Chất lượng đại học</p>
-                    </div>
-                    <div class="col-md-3 col-12 statistic-item text-center counter" data-target="21" data-character="">
-                        <img src="~/Content/images/kiem-dinh-clgd.png" width="100" />
-                        <p class="fs-2 counter-value">0</p>
-                        <p style="font-size: 18px;">Chương trình đào tạo được kiểm định</p>
-                    </div>*@
             </div>
         </div>
         <script>
@@ -225,40 +204,56 @@
             });
         </script>
     </section>
-    @{
-        var News = Model.FirstOrDefault(n => n.KeyCauHinh == "TH1065DF_NewsNoiBat_ArrID");
-        if (News != null)
-        {
-            var sections = News.ValueCauHinh.Split(',');
-            for (int i = sections.Length - 1; i >= 0; i--)
+    @* @{
+            var TH1065DF_GroupNews2Label = Model.FirstOrDefault(n >= n.KeyCauHinh.Equals("TH1065DF_GroupNews2Label"));
+            var News = Model.FirstOrDefault(n >= n.KeyCauHinh == "TH1065DF_NewsNoiBat_ArrID");
+            if (News != null)
             {
-                if (i % 2 != 0)
+                var sections = News.ValueCauHinh.Split(',');
+                for (int i = sections.Length - 1; i >= 0; i--)
                 {
-                    <section class="section-news bg-light" style="padding-top: 10px; padding-bottom: 20px;">
-                        @{
-                            Html.RenderAction("TinHome", "Home", new { id = sections[i], total = 5 });
-                        }
-                    </section>
-                }
-                else
-                {
-                    <section class="section-news" style="padding-top: 10px; padding-bottom: 20px;">
-                        @{
-                            Html.RenderAction("TinHome", "Home", new { id = sections[i], total = 5 });
-                        }
-                    </section>
+                    if (i % 2 != 0)
+                    {
+                        <section class="section-news bg-light" style="padding-top: 10px; padding-bottom: 20px;">
+                            @{
+                                Html.RenderAction("TinHome", "Home", new { id = sections[i], total = 5, tieude = TH1065DF_GroupNews2Label.ValueCauHinh });
+                            }
+                        </section>
+                    }
+                    else
+                    {
+                        <section class="section-news" style="padding-top: 10px; padding-bottom: 20px;">
+                            @{
+                                Html.RenderAction("TinHome", "Home", new { id = sections[i], total = 5 });
+                            }
+                        </section>
+                    }
                 }
             }
-        }
-    }
-    <section class="section-video  bg-light" style="padding-top: 10px; padding-bottom: 20px;">
+        }*@
+    <section class="section-news" style="padding-top: 10px; padding-bottom: 20px;">
+        @{Html.RenderAction("TinHomeSubSection", "Home", new { key_id = "TH1065DF_GroupNews2", key_label = "TH1065DF_GroupNews2Label" }); }
+    </section>
+    <section class="section-news bg-light" style="padding-top: 10px; padding-bottom: 20px;">
+        @{Html.RenderAction("TinHomeSubSection", "Home", new { key_id = "TH1065DF_GroupNews3", key_label = "TH1065DF_GroupNews3Label" }); }
+    </section>
+    <section class="section-news" style="padding-top: 10px; padding-bottom: 20px;">
+        @{Html.RenderAction("TinHomeSubSection", "Home", new { key_id = "TH1065DF_GroupNews4", key_label = "TH1065DF_GroupNews4Label" }); }
+    </section>
+    <section class="section-video bg-light" style="padding-top: 10px; padding-bottom: 20px;">
         <div class="main-content">
             <div class="container">
-                <div class="title-content" style="color: #033481;">HOẠT ĐỘNG</div>
+                @{
+                    var SectionMediaLabel = Model.FirstOrDefault(n => n.KeyCauHinh.Equals("TH1065DF_Media_GalleryLabel") && n.ForWeb == ViewBag.ForWeb);
+                    if (SectionMediaLabel != null)
+                    {
+                        <div class="title-content" style="color: #033481;">@SectionMediaLabel.ValueCauHinh</div>
+                    }
+                }
                 <div class="row" style="margin-bottom: 20px">
                     <div class="col-sm-6 col-12">
                         @{
-                            var ThuVien = Model.FirstOrDefault(n => n.KeyCauHinh == "TH1065DF_Media_Gallery");
+                            var ThuVien = Model.FirstOrDefault(n => n.KeyCauHinh == "TH1065DF_Media_Gallery" && n.ForWeb == ViewBag.ForWeb);
                             Html.RenderAction("ThuVienAnh", "Home", new { idAlbum = ThuVien.ValueCauHinh });
                         }
                     </div>

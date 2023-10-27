@@ -44,12 +44,12 @@
     var TH1065DF_Header_LanguageEN = Model.Where(n => n.KeyCauHinh.Equals("TH1065DF_Header_LanguageEN")).FirstOrDefault();
     var TH1065DF_Header_LanguageLAO = Model.Where(n => n.KeyCauHinh.Equals("TH1065DF_Header_LanguageLAO")).FirstOrDefault();
     var TH1065DF_Header_LanguageVi = Model.Where(n => n.KeyCauHinh.Equals("TH1065DF_Header_LanguageVi")).FirstOrDefault();
+    var TH1065DF_Header_Search = Model.Where(n => n.KeyCauHinh.Equals("TH1065DF_Header_Search")).FirstOrDefault();
 }
 
 <script>
     $(document).ready(function () {
         function checkWindowSize() {
-            console.log($(window).width())
             if ($(window).width() <= 768) {
                 $('#extension-area').hide();
                 $('#header').css('background-color', 'white');
@@ -79,15 +79,22 @@
                     else
                     {
                         <img id="banner" alt="Trang chủ" src="@Url.Content("~/Content/images/logo-hdu-removebg-preview-20221108085539-e.png")">
-
                     }
                 </a>
             </div>
             <div class="col-lg-8 col-12 text-end d-inline">
                 <div class="row">
                     <form id="extension-area" action="@Url.Action("TimKiem", "Home", new {query = "Tin"})">
-                        <input type="text" placeholder="Tìm kiếm.." name="query">
-                        <input type="submit" hidden />
+                        @if (TH1065DF_Header_Search != null)
+                        {
+                            <input type="text" placeholder="@TH1065DF_Header_Search.ValueCauHinh" name="query">
+                            <input type="submit" hidden />
+                        }
+                        else
+                        {
+                            <input type="text" placeholder="Tìm kiếm..." name="query">
+                            <input type="submit" hidden />
+                        }
                         &nbsp;&nbsp;&nbsp;
                         @if (TH1065DF_Header_LanguageVi != null)
                         {

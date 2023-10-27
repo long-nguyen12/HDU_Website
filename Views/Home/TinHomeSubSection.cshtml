@@ -1,0 +1,50 @@
+﻿@model IEnumerable<HDU_Website.Controllers.NewsRouterViewModel>
+
+@if (Model != null)
+{
+    <div class="main-content">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <a class="title-content text-uppercase" href="#" style="color: #033481;">
+                        @ViewBag.NewsGroup
+                    </a>
+                </div>
+            </div>
+            <div class="news-activity ">
+                @foreach (var item in Model)
+                {
+                    string imageUrl = "http://media.hdu.edu.vn/" + item.News.HinhDaiDien;
+                    string mota = "";
+                    if (item.News.MoTa != null)
+                    {
+                        mota = item.News.MoTa.Substring(0, 80) + "...";
+                    }
+                    <div class="block-activity ">
+                        <a class="x-img "
+                           title="@item.News.TieuDe"
+                           href="@Url.Action("GetTinTucByAlias", new {alias = item.Router.Alias})">
+                            <img catcherror=""
+                                 lazyload=""
+                                 class="img-fluid"
+                                 alt="@item.News.TieuDe"
+                                 src="@imageUrl" />
+                        </a>
+                        <div class="information ">
+                            <p class="realease-date">
+                                <i class="fa fa-calendar"></i><span>
+                                    @item.News.NgayTao.Value.ToString("dd/MM/yyyy")
+                                </span>
+                            </p>
+                            <a class="article-name"
+                               title="@item.News.TieuDe"
+                               href="@Url.Action("GetTinTucByAlias", new {alias = item.Router.Alias})">
+                                @item.News.TieuDe
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
