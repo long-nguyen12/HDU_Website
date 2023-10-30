@@ -31,12 +31,22 @@
 <div class="home-tin-moi-left">
     @if (Model != null)
     {
-        <h2 class="title-content"> <a href="@Url.Action("DanhMuc", "Home" , new { idDanhMuc=1 })">@ViewBag.NewsGroup</a></h2>
+        <h2 class="title-content"> <a href="@Url.Action("DanhMuc", "Home" , new { idDanhMuc=  ViewBag.NewsIDGroup })">@ViewBag.NewsGroup</a></h2>
 
         <div class="row" style="padding: 5px; color: #000;">
             @foreach (var item in Model.Where(n => n.News.IsNoiBat == true).Take(1))
             {
-                string imageUrl = "http://media.hdu.edu.vn/" + item.News.HinhDaiDien;
+                string imageUrl = "";
+                if (item.News.HinhDaiDien != null)
+                {
+
+                    imageUrl = "http://media.hdu.edu.vn/" + item.News.HinhDaiDien;
+                }
+                else
+                {
+                    imageUrl = "http://media.hdu.edu.vn/Media/1_hdu_home/FolderFunc/202310/Images/hdu-removebg-preview-removebg-preview-removebg-preview-160-160-20220717040954-e-20231026040308-e.png";
+
+                }
                 <div class="post-main-new d-flex">
                     <div class="row">
                         <div class="col-md-8 col-xl-8">
@@ -78,7 +88,6 @@
 
             }
         </div>
-        <br />
         <br />
         <div class="row" style="padding: 5px; color: #000;">
             @{int i = 0; }

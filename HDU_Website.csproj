@@ -857,6 +857,8 @@
     <Content Include="Views\Home\DanhMucList.cshtml" />
     <Content Include="Views\Home\GetBaiVietByAlias.cshtml" />
     <Content Include="Views\Home\TinHomeSubSection.cshtml" />
+    <Content Include="Views\Home\TinLienQuanCTTinTuc.cshtml" />
+    <Content Include="Views\Home\TinLienQuanCTBaiViet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

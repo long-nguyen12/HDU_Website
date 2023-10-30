@@ -1,4 +1,4 @@
-@model IEnumerable<HDU_Website.Controllers.NewsRouterViewModel>
+﻿@model IEnumerable<HDU_Website.Controllers.NewsRouterViewModel>
 <style>
     .timeline .event-timeline {
         border-bottom: 1px solid rgba(160, 160, 160, 0.2);
@@ -10,9 +10,12 @@
         width: 100%;
         height: 100%;
         position: absolute;
-        margin-top: 22px;
         /*background: linear-gradient(90deg, transparent, white);*/
         background: linear-gradient(45deg, transparent 0%, white);
+    }
+
+    .title-content {
+        color: #004998;
     }
 
     .timeline-link a {
@@ -25,19 +28,19 @@
             color: #007bff;
         }
 </style>
-
 @if (Model != null)
 {
     <div style="margin-bottom: 0px;">
-        <h2 class="title-content"> <a href="@Url.Action("DanhMuc", "Home", new {idDanhMuc = ViewBag.IDGroup})">@ViewBag.NewsGroup</a></h2>
+        <h2 class="title-content">@ViewBag.NewsGroup</h2>
         @foreach (var item in Model.Take(5))
         {
+            string imageUrl = "http://media.hdu.edu.vn/" + item.News.HinhDaiDien;
             <div class="row">
                 <div class="col-12">
                     <ul class="timeline">
                         <li class="event-timeline" style=" border-bottom: 1px solid rgba(160, 160, 160, 0.2);">
                             <div class="timeline-link">
-                                <a style="text-decoration: none" href="@Url.Action("GetTinTucByAlias", new {alias = item.Router.Alias})" title="@item.News.TieuDe">@item.News.TieuDe</a>
+                                <a style="text-decoration: none" href="@Url.Action("GetTinTucByAlias", new {alias = item.Router.Alias})" title="@item.News.TieuDe"> @item.News.TieuDe</a>
                             </div>
                         </li>
                     </ul>

@@ -96,29 +96,17 @@
                             <input type="submit" hidden />
                         }
                         &nbsp;&nbsp;&nbsp;
-                        @if (TH1065DF_Header_LanguageVi != null)
+                        @if (TH1065DF_Header_LanguageVi != null && !string.IsNullOrEmpty(TH1065DF_Header_LanguageVi.ValueCauHinh))
                         {
                             <a href="@TH1065DF_Header_LanguageVi.ValueCauHinh"><img src="~/Content/images/vietnam.png" width="32" height="32" /></a>
                         }
-                        else
-                        {
-                            <a href="http://hdu.edu.vn"><img src="#" width="32" height="32" /></a>
-                        }
-                        @if (TH1065DF_Header_LanguageEN != null)
+                        @if (TH1065DF_Header_LanguageEN != null && !string.IsNullOrEmpty(TH1065DF_Header_LanguageEN.ValueCauHinh))
                         {
                             <a href="@TH1065DF_Header_LanguageEN.ValueCauHinh"><img src="~/Content/images/united-kingdom.png" width="32" height="32" /></a>
                         }
-                        else
-                        {
-                            <a href="http://en.hdu.edu.vn"><img src="~/Content/images/united-kingdom.png" width="32" height="32" /></a>
-                        }
-                        @if (TH1065DF_Header_LanguageLAO != null)
+                        @if (TH1065DF_Header_LanguageLAO != null && !string.IsNullOrEmpty(TH1065DF_Header_LanguageLAO.ValueCauHinh))
                         {
                             <a href="@TH1065DF_Header_LanguageLAO.ValueCauHinh"><img src="~/Content/images/laos.png" width="32" height="32" /></a>
-                        }
-                        else
-                        {
-                            <a href="#"><img src="~/Content/images/laos.png" width="32" height="32" /></a>
                         }
                     </form>
                 </div>

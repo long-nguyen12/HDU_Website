@@ -99,7 +99,8 @@ $(document).ready(function (e) {
         let url = 'http://media.hdu.edu.vn/' + fileUrl;
         fileNoiDung.style.display = "inline";
         pdf_view.style.height = "700px";
-        download_url.textContent = url;
+        let file_name = url.split("/");
+        download_url.textContent = file_name[file_name.length - 1];
         $("#download_url").attr("href", url);
         $("#download_file").attr("href", url);
         $("#pdf_view").attr("data", url);

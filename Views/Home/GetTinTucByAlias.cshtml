@@ -95,8 +95,8 @@
         <div class="col-lg-4 col-12">
             @{
                 Html.RenderAction("TinNoiBatCTTinTuc", "Home", new { id = 1, tieude = "TIN NỔI BẬT", noibat = true });
-                Html.RenderAction("TinMoiCTTinTuc", "Home", new { id = int.Parse(@ViewBag.valueCauHinh), tieude = "Tin tuyển sinh" });
-                Html.RenderAction("TinNoiBatCTTinTuc", "Home", new { id = Model.DanhMuc.ID, tieude = "TIN LIÊN QUAN", noibat = false });
+                Html.RenderAction("TinMoiCTTinTuc", "Home");
+                Html.RenderAction("TinLienQuanCTTinTuc", "Home", new { id = Model.DanhMuc.ID, tieude = "TIN LIÊN QUAN", noibat = false });
             }
         </div>
     </div>
@@ -122,7 +122,8 @@ $(document).ready(function (e) {
         let url = 'http://media.hdu.edu.vn/' + fileUrl;
         fileNoiDung.style.display = "inline";
         pdf_view.style.height = "700px";
-        download_url.textContent = url;
+        let file_name = url.split("/");
+        download_url.textContent = file_name[file_name.length - 1];
         $("#download_url").attr("href", url);
         $("#download_file").attr("href", url);
         $("#pdf_view").attr("data", url);

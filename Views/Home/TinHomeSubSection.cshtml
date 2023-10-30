@@ -2,49 +2,64 @@
 
 @if (Model != null)
 {
-    <div class="main-content">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-12">
-                    <a class="title-content text-uppercase" href="#" style="color: #033481;">
-                        @ViewBag.NewsGroup
-                    </a>
-                </div>
-            </div>
-            <div class="news-activity ">
-                @foreach (var item in Model)
-                {
-                    string imageUrl = "http://media.hdu.edu.vn/" + item.News.HinhDaiDien;
-                    string mota = "";
-                    if (item.News.MoTa != null)
-                    {
-                        mota = item.News.MoTa.Substring(0, 80) + "...";
-                    }
-                    <div class="block-activity ">
-                        <a class="x-img "
-                           title="@item.News.TieuDe"
-                           href="@Url.Action("GetTinTucByAlias", new {alias = item.Router.Alias})">
-                            <img catcherror=""
-                                 lazyload=""
-                                 class="img-fluid"
-                                 alt="@item.News.TieuDe"
-                                 src="@imageUrl" />
+    <section class="section-news" style="padding-top: 10px; padding-bottom: 20px;">
+        <div class="main-content">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <a class="title-content text-uppercase" href="@Url.Action("DanhMuc", "Home" , new { idDanhMuc=  ViewBag.NewsIDGroup })" style="color: #033481;">
+                            @ViewBag.NewsGroup
                         </a>
-                        <div class="information ">
-                            <p class="realease-date">
-                                <i class="fa fa-calendar"></i><span>
-                                    @item.News.NgayTao.Value.ToString("dd/MM/yyyy")
-                                </span>
-                            </p>
-                            <a class="article-name"
+                    </div>
+                </div>
+                <div class="news-activity ">
+                    @foreach (var item in Model)
+                    {
+                        string imageUrl = "";
+                        if (item.News.HinhDaiDien != null)
+                        {
+
+                            imageUrl = "http://media.hdu.edu.vn/" + item.News.HinhDaiDien;
+                        }
+                        else
+                        {
+                            imageUrl = "http://media.hdu.edu.vn/Media/1_hdu_home/FolderFunc/202310/Images/hdu-removebg-preview-removebg-preview-removebg-preview-160-160-20220717040954-e-20231026040308-e.png";
+
+                        }
+                        string mota = "";
+                        if (item.News.MoTa != null)
+                        {
+                            mota = item.News.MoTa.Substring(0, 80) + "...";
+                        }
+                        <div class="block-activity ">
+                            <a class="x-img "
                                title="@item.News.TieuDe"
                                href="@Url.Action("GetTinTucByAlias", new {alias = item.Router.Alias})">
-                                @item.News.TieuDe
+                                <img catcherror=""
+                                     lazyload=""
+                                     class="img-fluid"
+                                     alt="@item.News.TieuDe"
+                                     src="@imageUrl" />
                             </a>
+                            <div class="information ">
+                                <p class="realease-date">
+                                    <i class="fa fa-calendar"></i><span>
+                                        @item.News.NgayTao.Value.ToString("dd/MM/yyyy")
+                                    </span>
+                                </p>
+                                <a class="article-name"
+                                   title="@item.News.TieuDe"
+                                   href="@Url.Action("GetTinTucByAlias", new {alias = item.Router.Alias})">
+                                    @item.News.TieuDe
+                                </a>
+                                <span class="fa fa-bookmark-o" aria-hidden="true"></span><span style="font-size: 14px;">
+                                    @item.DanhMuc.TenDanhMuc
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                }
+                    }
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 }

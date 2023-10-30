@@ -142,7 +142,7 @@
                         @{
                             Html.RenderAction("TinNoiBat", "Home", new { id = 1 });
                             var newsArea = Model.FirstOrDefault(n => n.KeyCauHinh == "TH1065DF_NewsTop_Right");
-                            Html.RenderAction("TinMoi", "Home", new { id = int.Parse(newsArea.ValueCauHinh), tieude = "Tin tuyển sinh" });
+                            Html.RenderAction("TinMoi", "Home");
 
                         }
                     </div>
@@ -154,27 +154,25 @@
         <div class="container">
             <div class="row">
                 @{
-                    var configInfo = Model.FirstOrDefault(n => n.KeyCauHinh == "TH1065DF_Slide_Infor");
+                    var configInfo = Model.FirstOrDefault(n => n.KeyCauHinh.Equals("TH1065DF_Slide_Infor"));
                     if (configInfo != null && configInfo.ValueCauHinh != null)
                     {
                         dynamic infos = serializer.Deserialize(configInfo.ValueCauHinh, typeof(object));
                         if (infos != null && infos.Length > 0)
                         {
+                            for (int i = 0; i < infos.Length; i++)
                             {
-                                for (int i = 0; i <= infos.Length; i++)
-                                {
-                                    var item = infos[i];
-                                    string imageUrl = "http://media.hdu.edu.vn/" + item["GroupHinh"];
-                                    <div class="col-md-3 col-12 statistic-item text-center counter" data-target="@item["GroupQCTitle"]" data-character="@item["GroupQCTitle"]">
-                                        <img catcherror=""
-                                             lazyload=""
-                                             alt="@item["GroupQCTitle"]"
-                                             width="100"
-                                             src="@imageUrl" />
-                                        <p class="fs-2 counter-value">0</p>
-                                        <p style="font-size: 18px;">@item["GroupMoTa"]</p>
-                                    </div>
-                                }
+                                var item = infos[i];
+                                string imageUrl = "http://media.hdu.edu.vn/" + item["GroupHinh"];
+                                <div class="col-md-3 col-12 statistic-item text-center counter" data-target="@item["GroupQCTitle"]" data-character="@item["GroupQCTitle"]">
+                                    <img catcherror=""
+                                         lazyload=""
+                                         alt="@item["GroupQCTitle"]"
+                                         width="100"
+                                         src="@imageUrl" />
+                                    <p class="fs-2 counter-value">0</p>
+                                    <p style="font-size: 18px;">@item["GroupMoTa"]</p>
+                                </div>
                             }
                         }
                     }
@@ -185,13 +183,12 @@
             $(document).ready(function () {
                 $('.counter').each(function () {
                     var $counter = $(this);
-                    var target = parseInt($counter.attr('data-target'));
+                    var target = parseFloat($counter.attr('data-target'));
                     var character = $counter.attr('data-character');
-                    var withNoDigits = character.replace(/[0-9]/g, '');
+                    var withNoDigits = character.replace(/[0-9.]/g, '');
                     var duration = 2000; // Animation duration in milliseconds
                     var step = Math.ceil(target / (duration / 10));
                     var count = 0;
-
                     var interval = setInterval(function () {
                         count += step;
                         if (count >= target) {
@@ -231,15 +228,21 @@
                 }
             }
         }*@
-    <section class="section-news" style="padding-top: 10px; padding-bottom: 20px;">
-        @{Html.RenderAction("TinHomeSubSection", "Home", new { key_id = "TH1065DF_GroupNews2", key_label = "TH1065DF_GroupNews2Label" }); }
-    </section>
-    <section class="section-news bg-light" style="padding-top: 10px; padding-bottom: 20px;">
-        @{Html.RenderAction("TinHomeSubSection", "Home", new { key_id = "TH1065DF_GroupNews3", key_label = "TH1065DF_GroupNews3Label" }); }
-    </section>
-    <section class="section-news" style="padding-top: 10px; padding-bottom: 20px;">
-        @{Html.RenderAction("TinHomeSubSection", "Home", new { key_id = "TH1065DF_GroupNews4", key_label = "TH1065DF_GroupNews4Label" }); }
-    </section>
+
+    @{Html.RenderAction("TinHomeSubSection", "Home", new { key_id = "TH1065DF_GroupNews2", key_label = "TH1065DF_GroupNews2Label" }); }
+    @{Html.RenderAction("TinHomeSubSection", "Home", new { key_id = "TH1065DF_GroupNews3", key_label = "TH1065DF_GroupNews3Label" }); }
+    @{Html.RenderAction("TinHomeSubSection", "Home", new { key_id = "TH1065DF_GroupNews4", key_label = "TH1065DF_GroupNews4Label" }); }
+    @{Html.RenderAction("TinHomeSubSection", "Home", new { key_id = "TH1065DF_GroupNews5", key_label = "TH1065DF_GroupNews5Label" }); }
+    @{Html.RenderAction("TinHomeSubSection", "Home", new { key_id = "TH1065DF_GroupNews6", key_label = "TH1065DF_GroupNews6Label" }); }
+    @*<section class="section-news" style="padding-top: 10px; padding-bottom: 20px;">
+            @{Html.RenderAction("TinHomeSubSection", "Home", new { key_id = "TH1065DF_GroupNews2", key_label = "TH1065DF_GroupNews2Label" }); }
+        </section>
+        <section class="section-news bg-light" style="padding-top: 10px; padding-bottom: 20px;">
+            @{Html.RenderAction("TinHomeSubSection", "Home", new { key_id = "TH1065DF_GroupNews3", key_label = "TH1065DF_GroupNews3Label" }); }
+        </section>
+        <section class="section-news" style="padding-top: 10px; padding-bottom: 20px;">
+            @{Html.RenderAction("TinHomeSubSection", "Home", new { key_id = "TH1065DF_GroupNews4", key_label = "TH1065DF_GroupNews4Label" }); }
+        </section>*@
     <section class="section-video bg-light" style="padding-top: 10px; padding-bottom: 20px;">
         <div class="main-content">
             <div class="container">
