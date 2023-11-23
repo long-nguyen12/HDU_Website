@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.WebPages;
 
 namespace HDU_Website.Controllers
 {
@@ -264,7 +265,7 @@ namespace HDU_Website.Controllers
         public ActionResult TinHomeSubSection(string key_id, string key_label)
         {
             int forweb = getForWeb();
-            var Label = dbConnection.SYS_CaiDatCauHinh.Where(n => n.KeyCauHinh.Equals(key_label)).FirstOrDefault();
+            var Label = dbConnection.SYS_CaiDatCauHinh.Where(n => n.KeyCauHinh.Equals(key_label) && n.ForWeb == forweb).FirstOrDefault();
             var config = dbConnection.SYS_CaiDatCauHinh.Where(n => n.ForWeb == forweb && n.KeyCauHinh.Equals(key_id)).FirstOrDefault();
             if (config != null)
             {
@@ -308,14 +309,21 @@ namespace HDU_Website.Controllers
         }
 
         [ChildActionOnly]
-        public ActionResult ThuVienAnh(int idAlbum)
+        public ActionResult ThuVienAnh()
         {
-            var photoModel = dbConnection.CMS_ThuVienAnh.Where(n => n.IDAlbum == idAlbum).ToList();
-            var fileModel = dbConnection.FILE_QuanLyFile.Where(n => n.IsDelete != true).ToList();
-            var photoList = from n in photoModel
-                            join r in fileModel on n.IDFile equals r.ID
-                            select new GalleryViewModel { Gallery = n, FileAnh = r };
-            return PartialView(photoList);
+            int forweb = getForWeb();
+            var ThuVien = dbConnection.SYS_CaiDatCauHinh.FirstOrDefault(n => n.KeyCauHinh == "TH1065DF_Media_Gallery" && n.ForWeb == forweb);
+            if (ThuVien != null && !ThuVien.ValueCauHinh.Trim().IsEmpty())
+            {
+                int idAlbum = int.Parse(ThuVien.ValueCauHinh);
+                var photoModel = dbConnection.CMS_ThuVienAnh.Where(n => n.IDAlbum == idAlbum).ToList();
+                var fileModel = dbConnection.FILE_QuanLyFile.Where(n => n.IsDelete != true).ToList();
+                var photoList = from n in photoModel
+                                join r in fileModel on n.IDFile equals r.ID
+                                select new GalleryViewModel { Gallery = n, FileAnh = r };
+                return PartialView(photoList);
+            }
+            return PartialView();
         }
 
         public ActionResult DaoTao(int idDanhMuc, int? page)

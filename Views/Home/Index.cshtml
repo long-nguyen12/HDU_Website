@@ -256,8 +256,7 @@
                 <div class="row" style="margin-bottom: 20px">
                     <div class="col-sm-6 col-12">
                         @{
-                            var ThuVien = Model.FirstOrDefault(n => n.KeyCauHinh == "TH1065DF_Media_Gallery" && n.ForWeb == ViewBag.ForWeb);
-                            Html.RenderAction("ThuVienAnh", "Home", new { idAlbum = ThuVien.ValueCauHinh });
+                            Html.RenderAction("ThuVienAnh", "Home");
                         }
                     </div>
                     <div class="col-sm-6 col-12">
