@@ -84,7 +84,8 @@ namespace HDU_Website.Controllers
             {
                 string valueConfig = config.ValueCauHinh;
                 int[] intIDs = valueConfig.Split(',').Select(int.Parse).ToArray();
-                var tinLeft = dbConnection.CMS_TinTuc.Where(n => n.IsHienThi == true && n.ForWeb == forweb && intIDs.Contains((int)n.IDDanhMuc) && n.IsDelete != true).OrderByDescending(n => n.NgayHienThi).Take(5).ToList();
+                /*var tinLeft = dbConnection.CMS_TinTuc.Where(n => n.IsHienThi == true && n.ForWeb == forweb && intIDs.Contains((int)n.IDDanhMuc) && n.IsDelete != true).OrderByDescending(n => n.NgayHienThi).Take(5).ToList();*/
+                var tinLeft = dbConnection.CMS_TinTuc.Where(n => n.IsHienThi == true && n.ForWeb == forweb && n.IsDelete != true).OrderByDescending(n => n.NgayHienThi).Take(100).ToList();
                 var routerList = dbConnection.CMS_Router.ToList();
                 var danhMucList = dbConnection.DM_TinTuc.ToList();
                 var newsRouters = from n in tinLeft
@@ -300,10 +301,21 @@ namespace HDU_Website.Controllers
         public ActionResult Video(String sectionType)
         {
             int forweb = getForWeb();
+            var videoType = (dynamic)null;
+            videoType = dbConnection.CMS_LoaiVideo.Where(n => n.IsHienThi == true && n.ForWeb == forweb && n.IsDelete != true).FirstOrDefault();
+
             var videoModel = (dynamic)null;
             if (sectionType.Equals("VideoList"))
             {
-                videoModel = dbConnection.CMS_Video.Where(n => n.IsHienThi == true && n.ForWeb == forweb && n.IsDelete != true).OrderByDescending(n => n.ID).Take(10).ToList();
+                if(videoType != null)
+                {
+                    int typeID = videoType.ID;
+                    videoModel = dbConnection.CMS_Video.Where(n => n.IsHienThi == true && n.ForWeb == forweb && n.IDLoai == typeID && n.IsDelete != true).OrderByDescending(n => n.ID).Take(10).ToList();
+                }
+                else
+                {
+                    videoModel = dbConnection.CMS_Video.Where(n => n.IsHienThi == true && n.ForWeb == forweb && n.IsDelete != true).OrderByDescending(n => n.ID).Take(10).ToList();
+                }
             }
             return PartialView(videoModel);
         }
@@ -458,7 +470,7 @@ namespace HDU_Website.Controllers
                 {
                     var attachFile = dbConnection.FILE_QuanLyFile.FirstOrDefault(t => t.ID == file.IDFile);
                     var fileUrl = attachFile.TenFileMoi;
-                    ViewBag.fileUrl = fileUrl;
+                    ViewBag.fileUrl = fileUrl.Replace('\\', '/');
                 }
                 var newsRouters = new NewsRouterViewModel { News = chiTiet, Router = r, DanhMuc = d };
                 int forweb = getForWeb();

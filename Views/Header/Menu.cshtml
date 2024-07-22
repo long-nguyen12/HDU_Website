@@ -57,14 +57,16 @@
                     <li>
                         <a id="logo" href="/" class="menu-item text-uppercase"><img src="~/Content/images/hdu1.png" width="40" height="40" /></a>
                     </li>
+                    <li di>
+                        <div class="row" id="search-item">
+                            <form action="@Url.Action("TimKiem", "Home", new {query = "Tin"})">
+                                <input id="extension-area" type="text" placeholder="Tìm kiếm..." name="query">
+                                <input type="submit" hidden />
+                            </form>
+                        </div>
+                    </li>
                 </ul>
             </nav>
-            @*<div class="search-box text-end align-items-center justify-content-center">
-                <form class="form-inline ml-auto" action="@Url.Action("TimKiem", "Home", new { query = "Tin" })">
-                    <input id="form-search-menu" type="text" placeholder="Tìm kiếm..." name="query">
-                    <input type="submit" hidden />
-                </form>
-            </div>*@
         </div>
     </div>
 </div>
@@ -74,6 +76,22 @@
     var menu = $('#menu');
     var menuOffset = menu.offset().top;
     var logo = $('#logo');
+    var searchItem = $('#search-item');
+    searchItem.hide();
+
+    $(document).ready(function () {
+        function checkWindowSize() {
+            if ($(window).width() > 768) {
+                searchItem.hide();
+            } else {
+                searchItem.show();
+            }
+        }
+
+        checkWindowSize();
+
+        $(window).on('resize', checkWindowSize);
+    });
 
     $(window).scroll(function () {
         if ($(window).scrollTop() > menuOffset && $(window).width() > 768) {
@@ -110,7 +128,6 @@
                     return object;
                 });
                 proceed = proceed.filter(item => !$.isEmptyObject(item));
-                console.log(proceed)
                 for (let i = 0; i < proceed.length; i++) {
                     let parentItem = proceed[i].parent;
                     let hasChild = proceed[i].hasChild;
@@ -137,7 +154,6 @@
                                   <li class="nav-item">
                                       <a class="menu-item text-uppercase" href="/Home/DanhMuc?idDanhMuc=${parentItem.IDMap}">${parentItem.TieuDe}</a>
                                   </li>`;
-                        console.log(parentItem.TieuDe)
                     }
                     $(".menu").append(contentToAppend);
                 }

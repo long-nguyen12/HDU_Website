@@ -34,48 +34,52 @@
         <h2 class="title-content"> <a href="@Url.Action("DanhMuc", "Home" , new { idDanhMuc=  ViewBag.NewsIDGroup })">@ViewBag.NewsGroup</a></h2>
 
         <div class="row" style="padding: 5px; color: #000;">
-            @foreach (var item in Model.Where(n => n.News.IsNoiBat == true).Take(1))
-            {
-                string imageUrl = "";
-                if (item.News.HinhDaiDien != null)
+            @{
+                var topItem = Model.Where(n => n.News.IsNoiBat == true).Take(1).FirstOrDefault();
+                if(topItem == null)
+                {
+                    topItem = Model.Take(1).FirstOrDefault();
+                }
+                string topImageUrl = "";
+                if (topItem.News.HinhDaiDien != null)
                 {
 
-                    imageUrl = "http://media.hdu.edu.vn/" + item.News.HinhDaiDien;
+                    topImageUrl = "http://media.hdu.edu.vn/" + topItem.News.HinhDaiDien;
                 }
                 else
                 {
-                    imageUrl = "http://media.hdu.edu.vn/Media/1_hdu_home/FolderFunc/202310/Images/hdu-removebg-preview-removebg-preview-removebg-preview-160-160-20220717040954-e-20231026040308-e.png";
+                    topImageUrl = "http://media.hdu.edu.vn/Media/1_hdu_home/FolderFunc/202310/Images/hdu-removebg-preview-removebg-preview-removebg-preview-160-160-20220717040954-e-20231026040308-e.png";
 
                 }
                 <div class="post-main-new d-flex">
                     <div class="row">
                         <div class="col-md-8 col-xl-8">
                             <div class="img-zoom">
-                                <a title="@item.News.TieuDe"
-                                   href="@Url.Action("GetTinTucByAlias", new {alias = item.Router.Alias})">
+                                <a title="@topItem.News.TieuDe"
+                                   href="@Url.Action("GetTinTucByAlias", new {alias = topItem.Router.Alias})">
                                     <img catcherror=""
                                          class="img-fluid img-main-new"
                                          lazyload=""
-                                         alt="@item.News.TieuDe"
-                                         src="@imageUrl" />
+                                         alt="@topItem.News.TieuDe"
+                                         src="@topImageUrl" />
                                 </a>
                             </div>
                         </div>
                         <div class="col-md-4 col-xl-4">
                             <div class=" d-flex flex-column justify-content-between" style="height: 100%;">
                                 <div>
-                                    <a style="text-decoration: none" href="@Url.Action("GetTinTucByAlias", new {alias = item.Router.Alias})" title="@item.News.TieuDe"><h4 class="post-title-news text-align "> @item.News.TieuDe</h4></a>
-                                    <p class="post-text-detail-news line-clamp3 text-align">@item.News.MoTa</p>
+                                    <a style="text-decoration: none" href="@Url.Action("GetTinTucByAlias", new {alias = topItem.Router.Alias})" title="@topItem.News.TieuDe"><h4 class="post-title-news text-align "> @topItem.News.TieuDe</h4></a>
+                                    <p class="post-text-detail-news line-clamp3 text-align">@topItem.News.MoTa</p>
                                     <div class="new-event-time d-flex justify-content-between align-items-end" style="margin-bottom:5px">
                                         <span>
                                             <i class="me-2 icon-credit-card"></i>
                                             <i class="fa fa-bookmark-o" aria-hidden="true"></i><span style="font-size: 14px; color: #bd6602">
-                                                @item.DanhMuc.TenDanhMuc
+                                                @topItem.DanhMuc.TenDanhMuc
                                             </span>
                                             &nbsp; &nbsp;
                                             <i class="fa fa-calendar"></i>
                                             <span style="font-size: 14px;">
-                                                @item.News.NgayHienThi.Value.ToString("dd/MM/yyyy")
+                                                @topItem.News.NgayHienThi.Value.ToString("dd/MM/yyyy")
                                             </span>
                                         </span>
                                     </div>
@@ -85,16 +89,14 @@
                         </div>
                     </div>
                 </div>
-
             }
         </div>
         <br />
         <div class="row" style="padding: 5px; color: #000;">
             @{int i = 0; }
-
             @foreach (var item in Model)
             {
-                if (i > 0)
+                if (i < 4 && item.News.ID != topItem.News.ID)
                 {
                     string imageUrl = "http://media.hdu.edu.vn/" + item.News.HinhDaiDien;
                     <div class="col-md-6 col-12">
@@ -130,8 +132,8 @@
                             </div>
                         </div>
                     </div>
+                    i += 1;
                 }
-                i += 1;
             }
         </div>
     }

@@ -8,11 +8,12 @@
         max-width: 100%; /* Limit the image width to the container's width */
         height: auto; /* Maintain the aspect ratio */
     }
+
     table {
         width: 100%;
     }
 </style>
-@{ 
+@{
     var ogTitle = Model.News.TieuDe;
     var ogDescription = Model.News.MoTa;
     var ogImage = "http://media.hdu.edu.vn/" + Model.News.HinhDaiDien;
@@ -87,8 +88,9 @@
             <div id="noidung">
                 @Html.Raw(Model.News.NoiDung)
             </div>
-            <div id="fileNoiDung" style="display:none">
-                <a id="download_file">Tải về</a><a id="download_url" style="margin-left: 5px; text-decoration: none; color: #000;"></a>
+            <div id="fileNoiDung">
+                <div id="download_links">
+                </div>
                 <object id="pdf_view" class="d-block w-100" type="application/pdf"><p></p></object>
             </div>
         </div>
@@ -119,15 +121,29 @@ $(document).ready(function (e) {
         var fileNoiDung = document.getElementById("fileNoiDung");
         var download_url = document.getElementById("download_url");
         var pdf_view = document.getElementById("pdf_view");
-        let url = 'https://media.hdu.edu.vn/' + fileUrl;
-        fileNoiDung.style.display = "inline";
-        pdf_view.style.height = "700px";
-        let file_name = url.split("/");
-        download_url.textContent = file_name[file_name.length - 1];
-        $("#download_url").attr("href", url);
-        $("#download_file").attr("href", url);
-        $("#pdf_view").attr("data", url);
-        $("#pdf_view").show();
+        try {
+            var files = fileUrl.split(',');
+            if (files.length > 1) {
+                for (let i = 0; i < files.length; i++) {
+                    let file = 'https://media.hdu.edu.vn/' + files[i];
+                    let file_name = file.split("/");
+                    $("#download_links").append(`<a href='${file}'>Tải về ${file_name[file_name.length - 1]}</a>`);
+                }
+            } else {
+                let file = files[0];
+                let url = 'https://media.hdu.edu.vn/' + file;
+                let file_name = file.split("/");
+                $("#download_links").append(`<a href='${url}'>Tải về ${file_name[file_name.length - 1]}</a>`);
+                fileNoiDung.style.display = "inline";
+                pdf_view.style.height = "700px";
+                 $("#download_url").attr("href", url);
+                 $("#download_file").attr("href", url);
+                 $("#pdf_view").attr("data", url);
+                $("#pdf_view").show();
+            }
+        } catch (err) {
+            console.log(err)
+        }
     }
 });
 </script>
