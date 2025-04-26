@@ -32,7 +32,7 @@
 {
     <div style="margin-bottom: 0px;">
         <h2 class="title-content">@ViewBag.NewsGroup</h2>
-        @foreach (var item in Model.Take(5))
+        @foreach (var item in Model)
         {
             string imageUrl = "http://media.hdu.edu.vn/" + item.News.HinhDaiDien;
             <div class="row">
@@ -47,15 +47,16 @@
                 </div>
             </div>
         }
-        @*<div class="row">
-                <div class="col-12 text-end d-inline" style="align-items: end; margin-top: 10px; font-style: italic;">
-                    <a class="see-detail"
-                       title="Xem thêm"
-                       href="@Url.Action("DaoTao", "Home", new { idDanhMuc = ViewBag.IDGroup })"
-                       style="text-decoration: none; color: #fa9627;">
-                    </a>
-                </div>
-            </div>*@
+        <div class="row">
+            <div class="col-12 text-end d-inline" style="align-items: end; margin-top: 10px; font-style: italic;">
+                <a class="see-detail"
+                   title="Xem thêm"
+                   href="@Url.Action("DanhMuc", "Home", new { idDanhMuc = ViewBag.IDGroup })"
+                   style="text-decoration: none; color: #fa9627;">
+                    Xem thêm >>
+                </a>
+            </div>
+        </div>
 
     </div>
 }

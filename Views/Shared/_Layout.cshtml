@@ -3,6 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
     <link rel="stylesheet" href="~/Content/css/font-awesome.css" />
     <link rel="stylesheet" href="~/Content/css/font-awesome.min.css" />
     <link rel="stylesheet" href="~/Content/styles.css" />
@@ -33,7 +35,7 @@
         Html.RenderAction("Index", "Footer");
     }
     @Scripts.Render("~/bundles/jquery")
-    @*@Scripts.Render("~/bundles/bootstrap")*@
+
     <script src="~/Content/js/bootstrap.bundle.min.js"></script>
     @RenderSection("scripts", required: false)
 

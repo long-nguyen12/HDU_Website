@@ -807,6 +807,7 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\fonts\FontAwesome.otf" />
     <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\menu.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -833,7 +834,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Header\Menu.cshtml" />
+    <Content Include="Views\Header\Menu_DV.cshtml" />
     <Content Include="Views\Footer\Index.cshtml" />
     <Content Include="Views\Home\TinNoiBat.cshtml" />
     <Content Include="Views\Home\TinMoi.cshtml" />
@@ -859,6 +860,7 @@
     <Content Include="Views\Home\TinHomeSubSection.cshtml" />
     <Content Include="Views\Home\TinLienQuanCTTinTuc.cshtml" />
     <Content Include="Views\Home\TinLienQuanCTBaiViet.cshtml" />
+    <Content Include="Views\Header\Menu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,9 +1,6 @@
 ﻿using HDU_Website.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.DynamicData;
 using System.Web.Mvc;
 
 namespace HDU_Website.Controllers
@@ -39,7 +36,7 @@ namespace HDU_Website.Controllers
         {
             int forweb = getForWeb();
             var IDNhom = dbConnection.SYS_CaiDatCauHinh.Where(n => n.ForWeb == forweb && n.KeyCauHinh.Equals("TH1065DF_Header_Menu")).FirstOrDefault();
-            if(IDNhom != null)
+            if (IDNhom != null)
             {
                 int id = int.Parse(IDNhom.ValueCauHinh);
                 var menuModel = dbConnection.CMS_Menu.Where(n => n.IDNhom == 1 && n.ForWeb == id).ToList();

@@ -3,6 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
     <title>Đại học Hồng Đức</title>
 
     @RenderSection("AdditionalMeta", false)
@@ -40,7 +42,6 @@
     }
 
     @Scripts.Render("~/bundles/jquery")
-    @*@Scripts.Render("~/bundles/bootstrap")*@
     <script src="~/Content/js/bootstrap.bundle.min.js"></script>
     @RenderSection("scripts", required: false)
 </body>

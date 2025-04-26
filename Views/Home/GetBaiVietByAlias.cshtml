@@ -8,11 +8,12 @@
         max-width: 100%; /* Limit the image width to the container's width */
         height: auto; /* Maintain the aspect ratio */
     }
+
     table {
         width: 100%;
     }
 </style>
-@{ 
+@{
     var ogTitle = Model.News.TieuDe;
     var ogUrl = HttpContext.Current.Request.Url.AbsoluteUri;
 }
@@ -59,7 +60,17 @@
             </div>
             <p class="realease-date" style="margin-bottom: 5px; font-size: 14px;">
                 <i class="fa fa-calendar"></i><span>
-                    @Model.News.NgayTao.Value.ToString("dd/MM/yyyy")
+                    @if (
+                       Model.News.NgayCapNhat != null)
+                    {
+
+                        @Model.News.NgayCapNhat.Value.ToString("dd/MM/yyyy");
+                    }
+                    else
+                    {
+
+                        @Model.News.NgayHienThi.Value.ToString("dd/MM/yyyy");
+                    }
                 </span>
             </p>
             <div id="noidung">
@@ -67,7 +78,7 @@
             </div>
             <div id="fileNoiDung" style="display:none">
                 <a id="download_file">Tải về</a><a id="download_url" style="margin-left: 5px; text-decoration: none; color: #000;"></a>
-                <object id="pdf_view" class="d-block w-100" type="application/pdf"><p></p></object>
+                <iframe id="pdf_view" class="d-block w-100" type="application/pdf"><p></p></iframe>
             </div>
         </div>
         <div class="col-lg-4 col-12">
@@ -98,12 +109,12 @@ $(document).ready(function (e) {
         var pdf_view = document.getElementById("pdf_view");
         let url = 'https://media.hdu.edu.vn/' + fileUrl;
         fileNoiDung.style.display = "inline";
-        pdf_view.style.height = "700px";
+        pdf_view.style.height = "1200px";
         let file_name = url.split("/");
         download_url.textContent = file_name[file_name.length - 1];
         $("#download_url").attr("href", url);
         $("#download_file").attr("href", url);
-        $("#pdf_view").attr("data", url);
+        $("#pdf_view").attr("src", url);
         $("#pdf_view").show();
     }
 });

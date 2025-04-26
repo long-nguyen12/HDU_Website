@@ -29,7 +29,15 @@
                         string mota = "";
                         if (item.News.MoTa != null)
                         {
-                            mota = item.News.MoTa.Substring(0, 80) + "...";
+                            if (item.News.MoTa.Length < 50)
+                            {
+                                mota = item.News.MoTa;
+
+                            }
+                            else
+                            {
+                                mota = item.News.MoTa.Substring(0, 50) + "...";
+                            }
                         }
                         <div class="block-activity ">
                             <a class="x-img "
@@ -44,7 +52,14 @@
                             <div class="information ">
                                 <p class="realease-date">
                                     <i class="fa fa-calendar"></i><span>
-                                        @item.News.NgayTao.Value.ToString("dd/MM/yyyy")
+                                            @if (item.News.NgayCapNhat != null)
+                                            {
+                                                @item.News.NgayCapNhat.Value.ToString("dd/MM/yyyy");
+                                            }
+                                            else
+                                            {
+                                                @item.News.NgayHienThi.Value.ToString("dd/MM/yyyy");
+                                            }
                                     </span>
                                 </p>
                                 <a class="article-name"

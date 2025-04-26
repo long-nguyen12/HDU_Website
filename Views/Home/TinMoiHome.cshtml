@@ -36,7 +36,7 @@
         <div class="row" style="padding: 5px; color: #000;">
             @{
                 var topItem = Model.Where(n => n.News.IsNoiBat == true).Take(1).FirstOrDefault();
-                if(topItem == null)
+                if (topItem == null)
                 {
                     topItem = Model.Take(1).FirstOrDefault();
                 }
@@ -44,11 +44,11 @@
                 if (topItem.News.HinhDaiDien != null)
                 {
 
-                    topImageUrl = "http://media.hdu.edu.vn/" + topItem.News.HinhDaiDien;
+                    topImageUrl = "https://media.hdu.edu.vn/" + topItem.News.HinhDaiDien;
                 }
                 else
                 {
-                    topImageUrl = "http://media.hdu.edu.vn/Media/1_hdu_home/FolderFunc/202310/Images/hdu-removebg-preview-removebg-preview-removebg-preview-160-160-20220717040954-e-20231026040308-e.png";
+                    topImageUrl = "https://media.hdu.edu.vn/Media/1_hdu_home/FolderFunc/202310/Images/hdu-removebg-preview-removebg-preview-removebg-preview-160-160-20220717040954-e-20231026040308-e.png";
 
                 }
                 <div class="post-main-new d-flex">
@@ -96,9 +96,9 @@
             @{int i = 0; }
             @foreach (var item in Model)
             {
-                if (i < 4 && item.News.ID != topItem.News.ID)
+                if (i < 6 && item.News.ID != topItem.News.ID)
                 {
-                    string imageUrl = "http://media.hdu.edu.vn/" + item.News.HinhDaiDien;
+                    string imageUrl = "https://media.hdu.edu.vn/" + item.News.HinhDaiDien;
                     <div class="col-md-6 col-12">
                         <div class="row">
                             <div class="col-6">
@@ -115,7 +115,16 @@
                             <div class="information col-6 text-align">
                                 <p class="realease-date" style="margin-bottom: 5px; font-size: 14px;">
                                     <i class="fa fa-calendar"></i><span>
-                                        @item.News.NgayHienThi.Value.ToString("dd/MM/yyyy")
+                                        @if (item.News.NgayCapNhat != null)
+                                        {
+                                            @item.News.NgayCapNhat.Value.ToString("dd/MM/yyyy")
+
+                                        }
+                                        else
+                                        {
+
+                                            @item.News.NgayHienThi.Value.ToString("dd/MM/yyyy")
+                                        }
                                     </span>
                                 </p>
                                 <a class="article-name text-align line-clamp3"

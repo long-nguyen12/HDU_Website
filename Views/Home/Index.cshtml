@@ -83,9 +83,13 @@
                     {
                         var item = slides[i];
                         string imageUrl = "http://media.hdu.edu.vn/" + item["GroupHinh"];
-                        <div class="item">
+                        @*<div class="item">*@
+                        <a target="_blank"
+                           class="item"
+                           href="@item["GroupLienKet"]">
                             <img src="@imageUrl" class="d-block w-100" alt="...">
-                        </div>
+                        </a>
+                        @*</div>*@
                     }
                 }
 

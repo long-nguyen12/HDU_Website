@@ -1,0 +1,194 @@
+﻿@model IEnumerable<HDU_Website.Models.CMS_Menu>
+
+<style>
+    .menu ul li a {
+        font-size: 16px;
+        font-weight: normal;
+        display: block;
+        color: #033481;
+        background: #fff;
+    }
+
+        .menu ul li a:hover,
+        .menu ul li:hover > a {
+            background: #033481;
+            color: #fff;
+        }
+
+    .menu {
+        position: relative; /* Ensure a positioning context for z-index */
+        z-index: 999; /* Adjust the value as needed */
+    }
+
+    #main-menu {
+        padding: 10px; /* Add padding to your menu items */
+        color: white; /* Text color */
+    }
+
+    #menu.sticky {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+
+    #logo {
+        display: none;
+    }
+
+    #form-search-menu {
+        padding: 2px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+
+    .search-box {
+        display: flex;
+    }
+</style>
+
+<div id="menu">
+    <div class="container">
+        <div class="menu-header">
+            <nav id="main-menu">
+                <a class="responsive-menu" href="#" id="resp-menu" style="text-decoration: none;"><i class="fa fa-reorder"></i>&nbsp;Menu</a>
+                <ul class="menu">
+                    <li>
+                        <a id="logo" href="/" class="menu-item text-uppercase"><img src="~/Content/images/hdu1.png" width="40" height="40" /></a>
+                    </li>
+                    <li di>
+                        <div class="row" id="search-item">
+                            <form action="@Url.Action("TimKiem", "Home", new {query = "Tin"})">
+                                <input id="extension-area" type="text" placeholder="Tìm kiếm..." name="query">
+                                <input type="submit" hidden />
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<script>
+    /*  $(document).ready(function () {*/
+    var menu = $('#menu');
+    var menuOffset = menu.offset().top;
+    var logo = $('#logo');
+    var searchItem = $('#search-item');
+    searchItem.hide();
+
+    $(document).ready(function () {
+        function checkWindowSize() {
+            if ($(window).width() > 768) {
+                searchItem.hide();
+            } else {
+                searchItem.show();
+            }
+        }
+
+        checkWindowSize();
+
+        $(window).on('resize', checkWindowSize);
+    });
+
+    $(window).scroll(function () {
+        if ($(window).scrollTop() > menuOffset && $(window).width() > 768) {
+            menu.addClass('sticky');
+            if (menu.hasClass('sticky')) {
+                logo.fadeIn(200);
+            }
+        } else {
+            menu.removeClass('sticky');
+            logo.fadeOut(200);
+        }
+    });
+    $.ajax({
+        url: "/Header/GetMenu",
+        type: "GET",
+        async: false,
+        contentType: "application/json;charset=utf-8",
+        success: function (response) {
+            if (response.success) {
+                let data = response.data;
+                let proceed = data.map(item => {
+                    let object = {}
+                    if (item.Level == 1) {
+                        object.parent = item;
+                        let children = []
+                        for (let i = 0; i < data.length; i++) {
+                            if (data[i].Level == 2 && data[i].IDThamChieu == item.ID) {
+                                children.push(data[i]);
+                            }
+                        }
+                        object.children = children;
+                        object.hasChild = children.length > 0 ? true : false;
+                    }
+                    return object;
+                });
+                proceed = proceed.filter(item => !$.isEmptyObject(item));
+                for (let i = 0; i < proceed.length; i++) {
+                    let parentItem = proceed[i].parent;
+                    let hasChild = proceed[i].hasChild;
+                    if (hasChild) {
+                        var contentToAppend = `
+                                  <li class="has-child">
+                                      <a href="${hasChild ? `javascript:void(0)` : `/Home/DanhMuc?idDanhMuc=${parentItem.IDMap}`}"
+                                         class="menu-item text-uppercase"
+                                         role="button"
+                                         aria-haspopup="true"
+                                         aria-expanded="false">
+                                         ${parentItem.TieuDe}<i class="fa fa-angle-down"></i>
+                                      </a>
+                                      <ul class="sub-menu" id="${parentItem.ID}_sub_menu">
+                                      </ul>
+                                  </li>`;
+                    } else if (parentItem.LoaiMenu == 2) {
+                        var contentToAppend = `
+                                  <li class="nav-item">
+                                      <a class="menu-item text-uppercase" href="${parentItem.Url}">${parentItem.TieuDe}</a>
+                                  </li>`;
+                    } else if (parentItem.LoaiMenu == 4) {
+                        var contentToAppend = `
+                                  <li class="nav-item">
+                                      <a class="menu-item text-uppercase" href="/Home/DanhMuc?idDanhMuc=${parentItem.IDMap}">${parentItem.TieuDe}</a>
+                                  </li>`;
+                    }
+                    $(".menu").append(contentToAppend);
+                }
+                for (let i = 0; i < proceed.length; i++) {
+                    let parentItem = proceed[i].parent;
+                    let childItems = proceed[i].children;
+                    let subTag = $(`#${parentItem.ID}_sub_menu`);
+                    for (let i = 0; i < childItems.length; i++) {
+                        let childItem = childItems[i];
+                        let contentToAppend = "";
+                        if (childItem.LoaiMenu == 2) {
+                            contentToAppend = `
+                                          <li>
+                                              <a href="${childItem.Url}">${childItem.TieuDe}</a>
+                                          </li>`;
+                        } else if (childItem.LoaiMenu == 3) {
+                            contentToAppend = `
+                                          <li>
+                                              <a href="/Home/GioiThieu/${childItem.IDMap}">${childItem.TieuDe}</a>
+                                          </li>`;
+                        } else if (childItem.LoaiMenu == 4) {
+                            contentToAppend = `
+                                          <li>
+                                              <a href="/Home/DanhMuc?idDanhMuc=${childItem.IDMap}">${childItem.TieuDe}</a>
+                                          </li>`;
+                        }
+                        subTag.append(contentToAppend);
+                    }
+                }
+            }
+        },
+        error: function (xhr, status, error) {
+            // Handle any errors
+            console.error(error);
+        }
+    });
+/*    })*/
+</script>

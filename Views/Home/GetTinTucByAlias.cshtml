@@ -28,7 +28,6 @@
 }
 <script>
     $(document).ready(function () {
-        /*addFacebookMetaTags();*/
         let formData = {
             id: @Model.News.ID,
         }
@@ -47,19 +46,6 @@
         });
     })
 
-    @*function addFacebookMetaTags() {
-        // Define the meta tag properties based on your content
-        var ogTitle = "@Model.News.TieuDe"
-        var ogDescription = "@Model.News.MoTa";
-        var ogImage = "http://media.hdu.edu.vn/" + "@Model.News.HinhDaiDien";
-        var ogUrl = window.location.href;
-
-        // Create and append the meta tags to the <head> of your document
-        $('head').append('<meta property="og:title" content="' + ogTitle + '">');
-        $('head').append('<meta property="og:description" content="' + ogDescription + '">');
-        $('head').append('<meta property="og:image" content="' + ogImage + '">');
-        $('head').append('<meta property="og:url" content="' + ogUrl + '">');
-    }*@
 </script>
 
 <div class="container">
@@ -79,7 +65,17 @@
             </div>
             <p class="realease-date" style="margin-bottom: 5px; font-size: 14px;">
                 <i class="fa fa-calendar"></i><span>
-                    @Model.News.NgayHienThi.Value.ToString("dd/MM/yyyy")
+                    @if (
+                       Model.News.NgayCapNhat != null)
+                    {
+
+                        @Model.News.NgayCapNhat.Value.ToString("dd/MM/yyyy");
+                    }
+                    else
+                    {
+
+                        @Model.News.NgayHienThi.Value.ToString("dd/MM/yyyy");
+                    }
                 </span>
             </p>
             <div class="tintuc-mota">
@@ -91,7 +87,7 @@
             <div id="fileNoiDung">
                 <div id="download_links">
                 </div>
-                <object id="pdf_view" class="d-block w-100" type="application/pdf"><p></p></object>
+                <iframe  id="pdf_view" class="d-block w-100" type="application/pdf"><p></p></iframe>
             </div>
         </div>
         <div class="col-lg-4 col-12">
@@ -123,11 +119,12 @@ $(document).ready(function (e) {
         var pdf_view = document.getElementById("pdf_view");
         try {
             var files = fileUrl.split(',');
+            console.log(files)
             if (files.length > 1) {
                 for (let i = 0; i < files.length; i++) {
                     let file = 'https://media.hdu.edu.vn/' + files[i];
                     let file_name = file.split("/");
-                    $("#download_links").append(`<a href='${file}'>Tải về ${file_name[file_name.length - 1]}</a>`);
+                    $("#download_links").append(`<a href='${file}'>Tải về ${file_name[file_name.length - 1]}</a><br/>`);
                 }
             } else {
                 let file = files[0];
@@ -135,10 +132,10 @@ $(document).ready(function (e) {
                 let file_name = file.split("/");
                 $("#download_links").append(`<a href='${url}'>Tải về ${file_name[file_name.length - 1]}</a>`);
                 fileNoiDung.style.display = "inline";
-                pdf_view.style.height = "700px";
-                 $("#download_url").attr("href", url);
-                 $("#download_file").attr("href", url);
-                 $("#pdf_view").attr("data", url);
+                pdf_view.style.height = "1200px";
+                $("#download_url").attr("href", url);
+                $("#download_file").attr("href", url);
+                $("#pdf_view").attr("src", url);
                 $("#pdf_view").show();
             }
         } catch (err) {

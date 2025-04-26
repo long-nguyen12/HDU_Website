@@ -50,7 +50,7 @@ header input[type="text"] {
 }
 
 /*menu*/
-nav {
+/*nav {
     display: block;
 }
 
@@ -319,14 +319,18 @@ a.homer {
 }
 
 @media (max-width: 320px) {
-}
+}*/
 /*end menu*/
 
 /* body */
 #breadcrumb-bar {
-    background: #fafafa;
+    background-color: #fafafa;
     padding-left: 10px;
     margin-top: 20px;
+}
+
+#nav-breadcrumb {
+    background-color: #fafafa;
 }
 
 section.introduction {
@@ -448,7 +452,7 @@ section.introduction {
 
     section.introduction .title {
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    }
+    }-0
 }
 
 @media (max-width: 425px) {
